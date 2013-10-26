@@ -47,6 +47,10 @@ public class Home extends Activity implements OnClickListener, Intents{
 		B_cultureGenerale = (Button) findViewById(R.id.button4);
 		B_cultureGenerale.setOnClickListener(this);
 		
+		
+		
+		
+		
 	}
 
 	@Override
@@ -90,16 +94,14 @@ public class Home extends Activity implements OnClickListener, Intents{
 			Intent intent = new Intent(Home.this, SelectionnerLevel.class);
 			//on créer 2 intents pour que tous les activités puisse avoir accès au thème et level
 			intent.putExtra(INTENT_LEVEL, levelUserTheme);
-			 //Log.w("[HOME]", "Intent Level = "+levelUserTheme);
-			
-			 intent.putExtra(INTENT_THEME, theme.toString());
-			// Log.w("[HOME]", "Theme = "+theme);
-			
-			 startActivity(intent);
+			intent.putExtra(INTENT_THEME, theme.toString());
+			intent.putExtra(INTENT_JEU,jeu);
+			startActivity(intent);
 		
 		return 1;
 	}
 
+	
 	
 
 }

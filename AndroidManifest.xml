@@ -26,6 +26,10 @@
             android:name="com.example.tiptopformation2.SelectionnerLevel"
             android:label="@string/title_activity_selectionner_level" >
         </activity>
+        <activity
+            android:name="com.example.tiptopformation2.Quizz"
+            android:label="@string/title_activity_quizz" >
+        </activity>
     </application>
 
 </manifest>

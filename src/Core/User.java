@@ -8,7 +8,7 @@ import android.content.res.Resources.Theme;
 public class User {
 	private String name;
 	private int point;
-	private HashMap level;
+	private HashMap level;//clé-valeur
 	
 	
 	public User() {
@@ -24,14 +24,14 @@ public class User {
 		this.name ="Alan";
 		this.point =10;
 		this.level = new HashMap();
+		
+		
 		//on met des niveaux au pif pour chaque thèmes mais normalement
 		//on devrait rechercher dans la bd
-		 
-		
 		level.put(THEMES.MENAGE ,10); //Pour ménage, l'user à 10 points
-		level.put(THEMES.MATHS ,20); //
-		level.put(THEMES.CULTURE_GENERALE ,14); //
-		level.put(THEMES.FRANCAIS ,8); //
+		level.put(THEMES.MATHS ,20); 
+		level.put(THEMES.CULTURE_GENERALE ,14); 
+		level.put(THEMES.FRANCAIS ,8); 
 		
 	} 
 	
@@ -39,6 +39,11 @@ public class User {
 	 * Retourne le niveau du joueur par rapport à un thème
 	 */
 	public int getLevelByTheme (THEMES theme){
+		/*
+		 * on récupère le nombre de point dans la hashmap
+		 * La clé est theme
+		 */
+		
 		int nbPointDuTheme = (Integer) level.get(theme);
 		
 		if (nbPointDuTheme < 10)

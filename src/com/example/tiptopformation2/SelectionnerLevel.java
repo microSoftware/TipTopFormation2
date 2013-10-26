@@ -1,7 +1,6 @@
 package com.example.tiptopformation2;
 
 import Core.Intents;
-import Core.Quizz;
 import Core.THEMES;
 import android.os.Bundle;
 import android.app.Activity;
@@ -108,6 +107,7 @@ public class SelectionnerLevel extends Activity implements OnClickListener, Inte
 		if (v == jouer){
 			Intent intent = new Intent(SelectionnerLevel.this, Quizz.class);
 			intent.putExtra(INTENT_LEVEL_CHOISI, levelChoisiParUtilisateur);
+			intent.putExtra(INTENT_THEME, theme.toString());
 			startActivity(intent);
 		}
 		
