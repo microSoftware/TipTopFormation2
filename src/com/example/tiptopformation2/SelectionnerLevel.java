@@ -1,6 +1,9 @@
 package com.example.tiptopformation2;
 
+import java.util.HashMap;
+
 import Core.Intents;
+import Core.Jeu;
 import Core.THEMES;
 import android.os.Bundle;
 import android.app.Activity;
@@ -17,47 +20,41 @@ import android.widget.Toast;
 
 public class SelectionnerLevel extends Activity implements OnClickListener, Intents {
 
-	//titre de l'activité
-	private static final String phrase ="Sélectionner le niveau pour le thème ";
-	
-	//couleur de grisement
+	//Couleur de grisement
 	private static final String colorGriserBouton="#FF7777";
 	private static final String colorAfficherBouton="#83B913";
 	
-	private String theme;//thème choisi
+	private THEMES theme;//thème choisi
 	private int levelUserTheme;//level du joueur sur ce thème
 	private int levelChoisiParUtilisateur=0;
+	private Jeu jeu;
 	
 	//Les variables de vues
 	private Button facile;
 	private Button moyen;
 	private Button difficile;
 	private Button jouer;
-	
+	private static final String phrase ="Sélectionner le niveau pour le thème ";
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.selectionner_level);
 
-		/*
-		 * On récupère le thème et le niveau du joueur sur ce thème
-		 */
-		TextView titre = (TextView) findViewById(R.id.textView1);
-		 theme = "";// Au cas où l'intent ne marche pas
-		 Intent intent = getIntent();
-		 if (intent != null) {
-            theme =intent.getStringExtra(INTENT_THEME);
-            levelUserTheme = intent.getIntExtra(INTENT_LEVEL, levelUserTheme);
-        }
 		
-		titre.setText(phrase+theme);
+		jeu = Jeu.getInstance();
+		theme = jeu.getThemeChoisi();
+		String themeTitre = theme.toString();
+		TextView titre = (TextView) findViewById(R.id.textView1);
+		titre.setText(phrase+themeTitre);
+		
 		
 		/*
 		 * On initialise nos boutons de vue et on grise les 
 		 * boutons qui sont interdits grâce à la fonction
 		 *  ::griserLevelsInterdit(levelUser)
 		 */
+		
 		facile = (Button) findViewById(R.id.facile);
 		moyen = (Button) findViewById(R.id.moyen);
 		difficile = (Button) findViewById(R.id.difficile);
@@ -69,11 +66,12 @@ public class SelectionnerLevel extends Activity implements OnClickListener, Inte
 		moyen.setOnClickListener(this);
 		difficile.setOnClickListener(this);
 		jouer.setOnClickListener(this);
+		
 	}
 
 	@Override
 	public void onClick(View v) {
-		
+		levelUserTheme = jeu.getUser().getLevelByTheme(theme);
 		
 		if(v == facile) {
 			levelChoisiParUtilisateur=1;
@@ -103,11 +101,11 @@ public class SelectionnerLevel extends Activity implements OnClickListener, Inte
 		if (levelChoisiParUtilisateur != -1 && levelChoisiParUtilisateur != 0)
 			jouer.setVisibility(View.VISIBLE);
 		
+		
 		//Dès qu'on clique sur "Jouer"
+		jeu.setLevelChoisi(levelChoisiParUtilisateur);
 		if (v == jouer){
 			Intent intent = new Intent(SelectionnerLevel.this, Quizz.class);
-			intent.putExtra(INTENT_LEVEL_CHOISI, levelChoisiParUtilisateur);
-			intent.putExtra(INTENT_THEME, theme.toString());
 			startActivity(intent);
 		}
 		

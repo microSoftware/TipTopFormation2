@@ -1,4 +1,4 @@
-package Core;
+package Exercices;
 
 import android.content.res.Resources.Theme;
 

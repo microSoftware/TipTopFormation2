@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_selectionner_level">SelectionnerLevel</string>
     <string name="title_activity_quizz">Quizz</string>
+    <string name="title_activity_testctivite">Testctivite</string>
 
 </resources>

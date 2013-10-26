@@ -2,13 +2,14 @@ package Core;
 
 public enum EXERCICES {
 
-	SYNONYME, DANGEROUS, TRICHOIX;
+	SYNONYME, SUPERCHOIX, TRICHOIX, MULTICHOIX;
 	
 	public String toString() {
 		switch(this) {
 		case SYNONYME: return "Synonyme";
-		case DANGEROUS: return "Dangerous";
+		case SUPERCHOIX: return "SuperChoix";
 		case TRICHOIX: return "TriChoix";
+		case MULTICHOIX: return "MultiChoix";
 		default: return "inconnu";
 		}
 	}

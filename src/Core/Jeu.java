@@ -3,13 +3,47 @@ package Core;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Jeu implements Parcelable {
+
+/*
+ * Jeu est un Singleton. Cela évite d'utiliser des intents. Moins de code. Plus simple
+ */
+public class Jeu  {
+	
+	private static Jeu instance;
 	private User user;
+	private THEMES themeChoisi;
+	private int levelChoisi;
 	//private Quizz quizzCurrent;
 	
-	public Jeu (){
+	
+	private Jeu (){
 		user  = new User();
 	}
+	
+	public static Jeu getInstance() {
+	        if (null == instance) { // Premier appel
+	            instance = new Jeu();
+	        }
+	        return instance;
+	}
+	 
+	public THEMES getThemeChoisi() {
+		return themeChoisi;
+	}
+
+	public int getLevelChoisi() {
+		return levelChoisi;
+	}
+
+	public void setLevelChoisi(int levelChoisi) {
+		this.levelChoisi = levelChoisi;
+	}
+
+	public void setThemeChoisi(THEMES themeChoisi) {
+		this.themeChoisi = themeChoisi;
+	}
+
+	
 	
 	public User getUser() {
 		return user;
@@ -20,16 +54,8 @@ public class Jeu implements Parcelable {
 		return user.getLevelByTheme(theme);
 	}
 
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		// TODO Auto-generated method stub
-		
-	}
 	
+
+
+
 }

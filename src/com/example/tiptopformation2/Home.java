@@ -30,7 +30,7 @@ public class Home extends Activity implements OnClickListener, Intents{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		
-		jeu = new Jeu();
+		jeu = Jeu.getInstance();
 		
 		//
 		//Listener sur les boutons 
@@ -56,19 +56,19 @@ public class Home extends Activity implements OnClickListener, Intents{
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		if(v == B_menage) {
-
-			choisirNiveau(THEMES.MENAGE, jeu.getUser().getLevelByTheme(THEMES.MENAGE));
-		}
-		else if(v == B_maths) {
-			choisirNiveau(THEMES.MATHS, jeu.getUser().getLevelByTheme(THEMES.MATHS));
-		}
-		else if(v == B_francais) {
-			choisirNiveau(THEMES.FRANCAIS, jeu.getUser().getLevelByTheme(THEMES.FRANCAIS));
-		}
-		else if(v == B_cultureGenerale) {
-			choisirNiveau(THEMES.CULTURE_GENERALE, jeu.getUser().getLevelByTheme(THEMES.CULTURE_GENERALE));
-		}
+		if(v == B_menage) 
+			jeu.setThemeChoisi(THEMES.MENAGE);
+		
+		else if(v == B_maths) 
+			jeu.setThemeChoisi(THEMES.MATHS);
+		
+		else if(v == B_francais) 
+			jeu.setThemeChoisi(THEMES.FRANCAIS);
+		
+		else if(v == B_cultureGenerale) 
+			jeu.setThemeChoisi(THEMES.CULTURE_GENERALE);
+		
+		choisirNiveau ();
 	}
 	
 	
@@ -89,16 +89,10 @@ public class Home extends Activity implements OnClickListener, Intents{
 	 * 
 	 * et le theme qui servira pour le quizz 
 	 */
-	public int choisirNiveau ( THEMES theme,  int levelUserTheme){
+	public void choisirNiveau (){
 		
 			Intent intent = new Intent(Home.this, SelectionnerLevel.class);
-			//on créer 2 intents pour que tous les activités puisse avoir accès au thème et level
-			intent.putExtra(INTENT_LEVEL, levelUserTheme);
-			intent.putExtra(INTENT_THEME, theme.toString());
-			intent.putExtra(INTENT_JEU,jeu);
 			startActivity(intent);
-		
-		return 1;
 	}
 
 	

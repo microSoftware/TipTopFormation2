@@ -30,6 +30,10 @@
             android:name="com.example.tiptopformation2.Quizz"
             android:label="@string/title_activity_quizz" >
         </activity>
+        <activity
+            android:name="com.example.tiptopformation2.Testctivite"
+            android:label="@string/title_activity_testctivite" >
+        </activity>
     </application>
 
 </manifest>
