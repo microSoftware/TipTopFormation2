@@ -1,5 +1,7 @@
 package Core;
 
+import com.example.tiptopformation2.Quizz;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,11 +15,16 @@ public class Jeu  {
 	private User user;
 	private THEMES themeChoisi;
 	private int levelChoisi;
-	//private Quizz quizzCurrent;
+	private QuizzModel quizz;
 	
 	
+	public QuizzModel getQuizz() {
+		return quizz;
+	}
+
 	private Jeu (){
 		user  = new User();
+		
 	}
 	
 	public static Jeu getInstance() {
@@ -52,6 +59,11 @@ public class Jeu  {
 
 	public int getLevelByTheme (THEMES theme){
 		return user.getLevelByTheme(theme);
+	}
+
+	public void creerQuizz() {
+		// TODO Auto-generated method stub
+		quizz = new QuizzModel();
 	}
 
 	

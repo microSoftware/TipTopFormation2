@@ -2,7 +2,6 @@ package com.example.tiptopformation2;
 
 import java.util.HashMap;
 
-import Core.Intents;
 import Core.Jeu;
 import Core.THEMES;
 import android.os.Bundle;
@@ -18,7 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SelectionnerLevel extends Activity implements OnClickListener, Intents {
+public class SelectionnerLevel extends Activity implements OnClickListener {
 
 	//Couleur de grisement
 	private static final String colorGriserBouton="#FF7777";

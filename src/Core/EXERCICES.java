@@ -2,7 +2,7 @@ package Core;
 
 public enum EXERCICES {
 
-	SYNONYME, SUPERCHOIX, TRICHOIX, MULTICHOIX;
+	SYNONYME, SUPERCHOIX, TRICHOIX, MULTICHOIX, TEST;
 	
 	public String toString() {
 		switch(this) {
@@ -10,6 +10,7 @@ public enum EXERCICES {
 		case SUPERCHOIX: return "SuperChoix";
 		case TRICHOIX: return "TriChoix";
 		case MULTICHOIX: return "MultiChoix";
+		case TEST: return "test";
 		default: return "inconnu";
 		}
 	}

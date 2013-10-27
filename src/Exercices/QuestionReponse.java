@@ -1,17 +1,62 @@
 package Exercices;
 
+import Core.EXERCICES;
+import Core.Jeu;
+import Core.THEMES;
 import android.content.res.Resources.Theme;
 
 public abstract class QuestionReponse {
 	
-	private Theme themeDuQuizz;
-	private int level;
-	protected static int[] tabQuestionHistorique = new int[5];//tableau des id qui ont déjà été ajoutés
+	@Override
+	public String toString() {
+		return "QuestionReponse [themeDuQuizz=" + themeDuQuizz + ", typeExo="
+				+ typeExo + ", level=" + level + ", numeroDeLaQuestion="
+				+ numeroDeLaQuestion + ", jeu=" + jeu + ", id=" + id + "]";
+	}
+
+	protected Theme themeDuQuizz;//null
+	protected EXERCICES typeExo;//test
+
+
+	protected int level;//0
+	protected int numeroDeLaQuestion;//0
+	protected Jeu jeu;//reference
+	protected int id;///1
 	
+	protected static int[] tabQuestionHistorique = new int[5];//tableau des id qui ont déjà été ajoutés
 	protected static int nbQuestionDejaAjouter=0;
 	
+	public QuestionReponse() {
+		super();
+		jeu = Jeu.getInstance();
+	}
+	
+	public void setNumeroDeLaQuestion(int numeroDeLaQuestion) {
+		this.numeroDeLaQuestion = numeroDeLaQuestion;
+	}
+
 	protected static void setTabQuestionHistorique(int[] tabQuestionHistorique) {
 		QuestionReponse.tabQuestionHistorique = tabQuestionHistorique;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public int getNumeroDeLaQuestion() {
+		return numeroDeLaQuestion;
+	}
+
+	public Jeu getJeu() {
+		return jeu;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public QuestionReponse getInstanceDeLaQuestion() {
+		return this;
 	}
 
 	protected static void setNbQuestionDejaAjouter(int nbQuestionDejaAjouter) {
@@ -68,8 +113,31 @@ public abstract class QuestionReponse {
 		 */
 		
 		//NE PAS OUBLIER D'AJOUTER l'id DE LA QUESTION DANS "tabQuestionHistorique" et d'INCREMENTER "nbQuestionDejaAjouter"
-		return null;
+		String chaine[]={"01","Ma question est ","réponse 1", "réponse 2","réponse 3"};
+		return chaine;
 	}
 	
+	/*
+	 * Fonction commune à la plupart des classes filles
+	 * Elle permet d'extraire les éléments d'un tableau d'une position x jusqu'à la fin du tableau
+	 */
+	protected String[] extraireTousElementsTableau(String[] tableau, int x){
+		String tab[] = null;
+		int counterTab = 0;
+		boolean encoreElement = true;
+		int i=x;
+		while (encoreElement){
+			if (tableau[i]!=null){
+				tab[counterTab] = tableau[i];
+			}
+			else {
+				encoreElement = false;
+			}
+		}
+		return tab;
+	}
 	
+	public EXERCICES getTypeExo() {
+		return typeExo;
+	}
 }

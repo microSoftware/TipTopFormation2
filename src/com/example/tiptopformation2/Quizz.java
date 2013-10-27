@@ -11,99 +11,35 @@ import android.widget.Toast;
 import Core.*;
 import Exercices.*;
 
-public class Quizz extends Activity implements Intents {
+public class Quizz extends Activity {
 
+	private Jeu jeu;
+	private QuizzModel quizz;
 	
-		//variables de la classe
-		private static final int nbQuestionParQuizz = 10;
-		private THEMES theme;
-		private int levelUserTheme;
-		private ArrayList<QuestionReponse> tableauDeToutesLesQuestions;
-		private int numeroQuestionCourante;
-		private int nbPointGagne;
-		private Jeu jeu;
-		
-		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quizz);
-		
-		tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>();
-		
+
 		jeu = Jeu.getInstance();
-		theme = jeu.getThemeChoisi();
-		levelUserTheme = jeu.getUser().getLevelByTheme(theme);
+		quizz = jeu.getQuizz();
+		quizz.setTheme(jeu.getThemeChoisi());
+		quizz.setLevelUserTheme(jeu.getLevelChoisi());
 		
-		//Intent intent = new Intent(Quizz.this, Testctivite.class);
-		//startActivity(intent);
-		
-		if (theme == THEMES.MENAGE){
-			/*
-			 * Pour le thème ménage, il y a les exos :
-			 * - Synonyme
-			 * - SuperChoix
-			 * - MultiChoix 
-			 */
-			int nombreExercicePourCeTheme = 3; 
-			int repetitionD1MemeExo = nbQuestionParQuizz / nombreExercicePourCeTheme;
-			ajouterQuestionDansQuizz(EXERCICES.SYNONYME, repetitionD1MemeExo);
-			ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
-			
-			//si ce n'est pas un multiple de 3 : on doit ajouter une question de plus à un exo
-			if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 1)
-				ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, repetitionD1MemeExo+1);//on ajoute 1 question de plus pour un exo
-			else if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 2)
-				ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, repetitionD1MemeExo+2);//on ajoute 2 questions de plus pour un exo
-		}
-		//A Rajouter ici pour l'ajout d'un thème ...
-		
-		
-		//retourHome();
+		quizz.creerLeQuizz();
+		lancerLeQuizz();
 	}
 
 	
+
 	
-	private void ajouterQuestionDansQuizz (EXERCICES typeExo, int nombreDeQuestionAAjouter){
-		
-		if (typeExo == EXERCICES.SYNONYME){
-			for (int i=0;i<nombreDeQuestionAAjouter;i++)
-				tableauDeToutesLesQuestions.add( new Synonyme() );
-		}
-		
-		else if (typeExo == EXERCICES.SUPERCHOIX){
-			for (int i=0;i<nombreDeQuestionAAjouter;i++)
-				tableauDeToutesLesQuestions.add( new SuperChoix() );
-		}
-		
-		else if (typeExo == EXERCICES.TRICHOIX){
-			for (int i=0;i<nombreDeQuestionAAjouter;i++)
-				tableauDeToutesLesQuestions.add( new TriChoix() );
-		}
-		
-		else if (typeExo == EXERCICES.MULTICHOIX){
-			for (int i=0;i<nombreDeQuestionAAjouter;i++)
-				tableauDeToutesLesQuestions.add( new MultiChoix() );
-		}
-		
-	}
-	
-	private void melangerQuestionsDuQuizz(){
-		
-		
-	}
-	
-	private void creerLeQuizz (){
-		
-	}
-	
-	
-	private void retourHome (){
-		//Dès que le quizz est fini, on retourne au choix des thèmes => HOME
+
+	private void retourHome() {
+		// Dès que le quizz est fini, on retourne au choix des thèmes => HOME
 		Intent intent = new Intent(Quizz.this, Home.class);
 		startActivity(intent);
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -111,6 +47,21 @@ public class Quizz extends Activity implements Intents {
 		return true;
 	}
 
+	private void lancerLeQuizz() {
+		/*
+		 * une boucle for qui parcourt la liste de question pour chaque
+		 * itération faire un if (typeExercice = "Synonyme") lancer activité
+		 * Synonyme et modifier la méthode getQuestionInstance
+		 */
+		
+		for (QuestionReponse question : quizz.getTableauDeToutesLesQuestions() ){
+			if ( (question.getNumeroDeLaQuestion() == quizz.getNumeroQuestionCourante() )  && (question.getTypeExo() == EXERCICES.TEST) ){
+				Intent intent = new Intent(Quizz.this, CultureGeneraleJeu.class);
+				startActivity(intent);
+			}
+		}
+	}
 
+	
 
 }

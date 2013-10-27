@@ -31,8 +31,12 @@
             android:label="@string/title_activity_quizz" >
         </activity>
         <activity
-            android:name="com.example.tiptopformation2.Testctivite"
-            android:label="@string/title_activity_testctivite" >
+            android:name="com.example.tiptopformation2.SuperChoixJeu"
+            android:label="@string/title_activity_super_choix_jeu" >
+        </activity>
+        <activity
+            android:name="com.example.tiptopformation2.CultureGeneraleJeu"
+            android:label="@string/title_activity_culture_generale_jeu" >
         </activity>
     </application>
 

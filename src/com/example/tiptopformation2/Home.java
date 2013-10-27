@@ -1,6 +1,5 @@
 package com.example.tiptopformation2;
 
-import Core.Intents;
 import Core.Jeu;
 import Core.THEMES;
 import android.os.Bundle;
@@ -14,7 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class Home extends Activity implements OnClickListener, Intents{
+public class Home extends Activity implements OnClickListener{
 
 	//les boutons
 	private Button B_menage;
@@ -31,6 +30,7 @@ public class Home extends Activity implements OnClickListener, Intents{
 		setContentView(R.layout.activity_home);
 		
 		jeu = Jeu.getInstance();
+		jeu.creerQuizz();
 		
 		//
 		//Listener sur les boutons 

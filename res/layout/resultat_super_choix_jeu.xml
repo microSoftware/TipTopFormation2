@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    
+    
+    <TextView 
+        android:id="@+id/reponse"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="50sp"
+        android:text="Bonne réponse !"
+        android:textColor="@android:color/holo_green_light"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"/>
+    
+    
+    <TextView 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="La bonne réponse est toxique car ......"
+        android:layout_marginTop="50dp"
+        android:textSize="25sp"/>
+    
+
+</LinearLayout>
