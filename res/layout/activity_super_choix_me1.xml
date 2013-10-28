@@ -7,19 +7,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".SuperChoixJeuME2" >
+    tools:context=".SuperChoixJeuME1" >
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Que signifie ce pictogramme ?"
-        android:textStyle="bold"
         android:textSize="25sp"
-        android:layout_gravity="center_horizontal" />
+        android:textStyle="bold" />
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:src="@drawable/toxique" />
@@ -34,32 +34,48 @@
 
     <Button
         android:id="@+id/correct"
-        android:text="Toxique"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="60dp"
-        android:background="@android:color/holo_blue_light" />
+        android:background="@android:color/holo_blue_light"
+        android:text="Toxique" />
 
     <Button
         android:id="@+id/incorrect"
-        android:text="Corrosif"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:background="@android:color/holo_blue_light"
-         />
-    
-    <Button 
-        android:id="@+id/valider"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:text="Valider"
-        android:textSize="30sp"
-        android:layout_gravity="right|bottom"
-        android:layout_marginTop="30dp"
-        android:background="@android:color/holo_green_light"
-        android:textColor="@android:color/white"/>
+        android:text="Corrosif" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/home"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:background="@android:color/holo_red_light"
+            android:text="Menu"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/valider"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="350dp"
+            android:background="@android:color/holo_green_light"
+            android:text="Valider"
+            android:textColor="@android:color/white"
+            android:textSize="30sp" />
+    </LinearLayout>
 
 </LinearLayout>
