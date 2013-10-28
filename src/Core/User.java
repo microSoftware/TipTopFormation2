@@ -28,10 +28,10 @@ public class User {
 		
 		//on met des niveaux au pif pour chaque thèmes mais normalement
 		//on devrait rechercher dans la bd
-		level.put(THEMES.MENAGE ,10); //Pour ménage, l'user à 10 points
-		level.put(THEMES.MATHS ,20); 
-		level.put(THEMES.CULTURE_GENERALE ,14); 
-		level.put(THEMES.FRANCAIS ,8); 
+		level.put(THEMES.MENAGE ,10); //Pour ménage, l'user à 10 points => level 2
+		level.put(THEMES.MATHS ,20); //level 3
+		level.put(THEMES.CULTURE_GENERALE ,14); //level 2
+		level.put(THEMES.FRANCAIS ,8); //level 1
 		
 	} 
 	

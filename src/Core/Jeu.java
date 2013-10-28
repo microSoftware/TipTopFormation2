@@ -13,8 +13,6 @@ public class Jeu  {
 	
 	private static Jeu instance;
 	private User user;
-	private THEMES themeChoisi;
-	private int levelChoisi;
 	private QuizzModel quizz;
 	
 	
@@ -34,23 +32,6 @@ public class Jeu  {
 	        return instance;
 	}
 	 
-	public THEMES getThemeChoisi() {
-		return themeChoisi;
-	}
-
-	public int getLevelChoisi() {
-		return levelChoisi;
-	}
-
-	public void setLevelChoisi(int levelChoisi) {
-		this.levelChoisi = levelChoisi;
-	}
-
-	public void setThemeChoisi(THEMES themeChoisi) {
-		this.themeChoisi = themeChoisi;
-	}
-
-	
 	
 	public User getUser() {
 		return user;
@@ -61,7 +42,7 @@ public class Jeu  {
 		return user.getLevelByTheme(theme);
 	}
 
-	public void creerQuizz() {
+	public void initialiserLeQuizz() {
 		// TODO Auto-generated method stub
 		quizz = new QuizzModel();
 	}

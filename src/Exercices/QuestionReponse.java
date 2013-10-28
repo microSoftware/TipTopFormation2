@@ -7,12 +7,7 @@ import android.content.res.Resources.Theme;
 
 public abstract class QuestionReponse {
 	
-	@Override
-	public String toString() {
-		return "QuestionReponse [themeDuQuizz=" + themeDuQuizz + ", typeExo="
-				+ typeExo + ", level=" + level + ", numeroDeLaQuestion="
-				+ numeroDeLaQuestion + ", jeu=" + jeu + ", id=" + id + "]";
-	}
+	
 
 	protected Theme themeDuQuizz;//null
 	protected EXERCICES typeExo;//test
@@ -23,8 +18,12 @@ public abstract class QuestionReponse {
 	protected Jeu jeu;//reference
 	protected int id;///1
 	
-	protected static int[] tabQuestionHistorique = new int[5];//tableau des id qui ont déjà été ajoutés
+	
+	/*
+	 * Pour savoir si un type d'exo a des doublons
+	 */
 	protected static int nbQuestionDejaAjouter=0;
+	protected static int[] tabQuestionHistorique = new int[5];//tableau des id qui ont déjà été ajoutés
 	
 	public QuestionReponse() {
 		super();
@@ -139,5 +138,12 @@ public abstract class QuestionReponse {
 	
 	public EXERCICES getTypeExo() {
 		return typeExo;
+	}
+	
+	@Override
+	public String toString() {
+		return "QuestionReponse [themeDuQuizz=" + themeDuQuizz + ", typeExo="
+				+ typeExo + ", level=" + level + ", numeroDeLaQuestion="
+				+ numeroDeLaQuestion + ", jeu=" + jeu + ", id=" + id + "]";
 	}
 }

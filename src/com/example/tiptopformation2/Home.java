@@ -30,7 +30,11 @@ public class Home extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_home);
 		
 		jeu = Jeu.getInstance();
-		jeu.creerQuizz();
+		/*On ne peux pas initialiser Quizz dans la classe Jeu 
+		 * Je ne sais pas pourquoi, donc si qqu pouvait analyser
+		 * ça...
+		 */
+		jeu.initialiserLeQuizz();
 		
 		//
 		//Listener sur les boutons 
@@ -57,16 +61,16 @@ public class Home extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		if(v == B_menage) 
-			jeu.setThemeChoisi(THEMES.MENAGE);
+			jeu.getQuizz().setTheme(THEMES.MENAGE);
 		
 		else if(v == B_maths) 
-			jeu.setThemeChoisi(THEMES.MATHS);
+			jeu.getQuizz().setTheme(THEMES.MATHS);
 		
 		else if(v == B_francais) 
-			jeu.setThemeChoisi(THEMES.FRANCAIS);
+			jeu.getQuizz().setTheme(THEMES.FRANCAIS);
 		
 		else if(v == B_cultureGenerale) 
-			jeu.setThemeChoisi(THEMES.CULTURE_GENERALE);
+			jeu.getQuizz().setTheme(THEMES.CULTURE_GENERALE);
 		
 		choisirNiveau ();
 	}

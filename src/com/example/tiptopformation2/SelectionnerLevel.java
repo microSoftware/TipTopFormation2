@@ -3,6 +3,7 @@ package com.example.tiptopformation2;
 import java.util.HashMap;
 
 import Core.Jeu;
+import Core.QuizzModel;
 import Core.THEMES;
 import android.os.Bundle;
 import android.app.Activity;
@@ -26,7 +27,7 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 	private THEMES theme;//thème choisi
 	private int levelUserTheme;//level du joueur sur ce thème
 	private int levelChoisiParUtilisateur=0;
-	private Jeu jeu;
+	private QuizzModel quizz;
 	
 	//Les variables de vues
 	private Button facile;
@@ -41,8 +42,10 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 		setContentView(R.layout.selectionner_level);
 
 		
-		jeu = Jeu.getInstance();
-		theme = jeu.getThemeChoisi();
+		quizz = Jeu.getInstance().getQuizz();
+		theme = quizz.getTheme();
+		levelUserTheme = Jeu.getInstance().getUser().getLevelByTheme(theme);
+		
 		String themeTitre = theme.toString();
 		TextView titre = (TextView) findViewById(R.id.textView1);
 		titre.setText(phrase+themeTitre);
@@ -70,23 +73,24 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		levelUserTheme = jeu.getUser().getLevelByTheme(theme);
+		
 		
 		if(v == facile) {
 			levelChoisiParUtilisateur=1;
 			
 		}
-		else if(v == moyen) {
+		if(v == moyen) {
 			if (levelUserTheme>=2)//on grise le bouton moyen
 				levelChoisiParUtilisateur=2;
-			else levelChoisiParUtilisateur=-1;
+			else 
+				levelChoisiParUtilisateur=-1;
 			
 		}
-		else if(v == difficile) {
+		if(v == difficile) {
 			if (levelUserTheme>=3)//on grise le bouton difficile
 				levelChoisiParUtilisateur=3;
-			else levelChoisiParUtilisateur=-1;
-			
+			else 
+				levelChoisiParUtilisateur=-1;
 		}
 		
 		
@@ -94,16 +98,22 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 		 * Si la personne n'a pas le niveau neccessaire on affiche un petit message
 		 * Si le personne a le niveau requis on fait apparaitre un bouton "JOUER"
 		 */
-		if (levelChoisiParUtilisateur == -1)
+		if (levelChoisiParUtilisateur == -1){
 			Toast.makeText(this, "Vous n'avez pas encore le niveau neccessaire" , Toast.LENGTH_LONG).show();
+			jouer.setVisibility(View.GONE);
+		}
 		
 		if (levelChoisiParUtilisateur != -1 && levelChoisiParUtilisateur != 0)
 			jouer.setVisibility(View.VISIBLE);
 		
 		
+		
 		//Dès qu'on clique sur "Jouer"
-		jeu.setLevelChoisi(levelChoisiParUtilisateur);
 		if (v == jouer){
+			quizz.setLevelChoisi(levelChoisiParUtilisateur);
+			Log.w("SelectionnerLevel", "on créer le quizz !");
+			quizz.creerLeQuizz();
+			
 			Intent intent = new Intent(SelectionnerLevel.this, Quizz.class);
 			startActivity(intent);
 		}

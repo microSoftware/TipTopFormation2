@@ -26,12 +26,14 @@ public class CultureGeneraleJeu extends Activity implements OnClickListener {
 		
 		Jeu jeu = Jeu.getInstance();
 		instanceDeLaQuestion = jeu.getQuizz().getQuestionInstance();
+		Log.w("CCulture>GeneraleJeu", "instanceDeLaQuestion = "+instanceDeLaQuestion);
 		int numeroDeLaQuestion = instanceDeLaQuestion.getNumeroDeLaQuestion();
 		TextView num = (TextView) findViewById(R.id.textView3);
 		String numeroDeLaQuestionString = String.valueOf(numeroDeLaQuestion);
 		num.setText(numeroDeLaQuestionString);
 		
-		valider = (Button) findViewById(R.id.button1);
+		valider = (Button) findViewById(R.id.valider);
+		valider.setOnClickListener(this);
 	}
 
 	@Override
@@ -44,6 +46,7 @@ public class CultureGeneraleJeu extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		
 		if (v == valider){
 			Intent intent = new Intent(CultureGeneraleJeu.this, Quizz.class);
 			startActivity(intent);

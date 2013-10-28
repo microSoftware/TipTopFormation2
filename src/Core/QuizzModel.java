@@ -2,6 +2,7 @@ package Core;
 
 import java.util.ArrayList;
 
+import android.util.Log;
 import Exercices.CultureGenerale;
 import Exercices.MultiChoix;
 import Exercices.QuestionReponse;
@@ -11,27 +12,40 @@ import Exercices.TriChoix;
 
 public class QuizzModel {
 	// variables de la classe
-	private static final int nbQuestionParQuizz = 10;
+	private static final int nbQuestionParQuizz = 5; //Je ne comprends pas pourquoi la liste fait 10 élément
+	private Jeu jeu;
 	private THEMES theme;
-	private ArrayList<QuestionReponse> tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>();
+	private int levelChoisi=0;
+	private ArrayList<QuestionReponse> tableauDeToutesLesQuestions;
 	private int numeroQuestionCourante;
 	private int nbPointGagne;
-	private Jeu jeu;
-	private int levelUserTheme;
+	
+
+	
+	
 	
 	public QuizzModel() {
 		super();
-		
 		jeu = Jeu.getInstance();
-		
+		numeroQuestionCourante=0;
+		tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>(nbQuestionParQuizz);
+		Log.w("[QuizzModel] Constructeur ", "Taille de la liste = "+tableauDeToutesLesQuestions.size()); //0
 	}
 
 	public void setTheme(THEMES theme) {
 		this.theme = theme;
 	}
 
-	public void setLevelUserTheme(int levelUserTheme) {
-		this.levelUserTheme = levelUserTheme;
+	
+
+	
+
+	public void incrementeNumeroQuestionCourante() {
+		if (numeroQuestionCourante <= nbQuestionParQuizz)
+			this.numeroQuestionCourante++;
+		else 
+			Log.w("[QuizzModel] incrementeNumeroQuestionCourante()", "dans le else : numeroQuestionCourante <= nbQuestionParQuizz");
+	
 	}
 
 	public static int getNbquestionparquizz() {
@@ -62,29 +76,57 @@ public class QuizzModel {
 		return jeu;
 	}
 
-	public int getLevelUserTheme() {
-		return levelUserTheme;
-	}
 	
-	private void melangerQuestionsDuQuizz() {
+	
+	public int getLevelChoisi() {
+		return levelChoisi;
+	}
 
+	public void setLevelChoisi(int levelChoisi) {
+		this.levelChoisi = levelChoisi;
+	}
+
+	private void melangerQuestionsDuQuizz() {
+			//on mélange 
+			// ...
+		
+		
+			/*
+			 * Une fois qu'on a mélangé toutes les questions, on peut donner
+			 * un numéro (1/10)
+			 */
+			int i=0;
+			for (QuestionReponse question : tableauDeToutesLesQuestions){
+				question.setNumeroDeLaQuestion(i);
+				i++;
+			}
 	}
 
 	public void creerLeQuizz() {
-
-		if (theme == THEMES.MENAGE)
-			creerLeQuizz_MENAGE();
-
-		else if (theme == THEMES.MATHS)
-			creerLeQuizz_MATHS();
-
-		else if (theme == THEMES.FRANCAIS)
-			creerLeQuizz_FRANCAIS();
-
-		else if (theme == THEMES.CULTURE_GENERALE)
-			creerLeQuizz_CULTURE_GENERALE();
-
+		Log.w("[QuizzModel] creerLeQuizz début ", "Taille de la liste = "+tableauDeToutesLesQuestions.size());
+			
+		if (levelChoisi != 0){
+			if (theme == THEMES.MENAGE)
+				creerLeQuizz_MENAGE();
+	
+			else if (theme == THEMES.MATHS)
+				creerLeQuizz_MATHS();
+	
+			else if (theme == THEMES.FRANCAIS)
+				creerLeQuizz_FRANCAIS();
+	
+			else if (theme == THEMES.CULTURE_GENERALE)
+				creerLeQuizz_CULTURE_GENERALE();
+			
+			melangerQuestionsDuQuizz();
+		}
+			
+			
+			Log.w("[QuizzModel] fin de creerLeQuizz ", "Taille de la liste = "+tableauDeToutesLesQuestions.size());
 	}
+		
+
+	
 
 	private void creerLeQuizz_MENAGE() {
 		/*
@@ -154,10 +196,7 @@ public class QuizzModel {
 	}
 
 	private void creerLeQuizz_CULTURE_GENERALE() {
-		
 		ajouterQuestionDansQuizz(EXERCICES.TEST, nbQuestionParQuizz);
-		
-
 	}
 
 	private void ajouterQuestionDansQuizz(EXERCICES typeExo, int nombreDeQuestionAAjouter) {

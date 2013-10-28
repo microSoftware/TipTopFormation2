@@ -7,13 +7,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.Toast;
 import Core.*;
 import Exercices.*;
 
 public class Quizz extends Activity {
 
-	private Jeu jeu;
 	private QuizzModel quizz;
 	
 	@Override
@@ -21,13 +22,10 @@ public class Quizz extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quizz);
 
-		jeu = Jeu.getInstance();
-		quizz = jeu.getQuizz();
-		quizz.setTheme(jeu.getThemeChoisi());
-		quizz.setLevelUserTheme(jeu.getLevelChoisi());
-		
-		quizz.creerLeQuizz();
+		quizz = Jeu.getInstance().getQuizz();
 		lancerLeQuizz();
+		
+		
 	}
 
 	
@@ -48,18 +46,31 @@ public class Quizz extends Activity {
 	}
 
 	private void lancerLeQuizz() {
+		quizz.incrementeNumeroQuestionCourante();
+		int numeroDeLaQuestionCourante=quizz.getNumeroQuestionCourante();
 		/*
-		 * une boucle for qui parcourt la liste de question pour chaque
-		 * itération faire un if (typeExercice = "Synonyme") lancer activité
-		 * Synonyme et modifier la méthode getQuestionInstance
+		 * Quand le quizz est fini on affiche la page de résultat
 		 */
-		
-		for (QuestionReponse question : quizz.getTableauDeToutesLesQuestions() ){
-			if ( (question.getNumeroDeLaQuestion() == quizz.getNumeroQuestionCourante() )  && (question.getTypeExo() == EXERCICES.TEST) ){
-				Intent intent = new Intent(Quizz.this, CultureGeneraleJeu.class);
-				startActivity(intent);
+		if (numeroDeLaQuestionCourante == quizz.getNbquestionparquizz() ){
+			setContentView(R.layout.quizz_resultat);
+			Button recommencer = (Button) findViewById(R.id.button1);
+			Button home = (Button) findViewById(R.id.button2);
+		}
+		else {
+			for (QuestionReponse question : quizz.getTableauDeToutesLesQuestions() ){
+				if ( (question.getNumeroDeLaQuestion() == numeroDeLaQuestionCourante )  && (question.getTypeExo() == EXERCICES.TEST) ){
+					
+					Log.w("tag", "----------------------------------------------");
+					Log.w("tag", "Numéro de la question courante : "+numeroDeLaQuestionCourante);
+					Log.w("tag", "Numéro de l'instance de la question "+question.getNumeroDeLaQuestion());
+					Log.w("tag", "----------------------------------------------");
+					
+					Intent intent = new Intent(Quizz.this, CultureGeneraleJeu.class);
+					startActivity(intent);
+				}
 			}
 		}
+		
 	}
 
 	
