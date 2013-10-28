@@ -2,6 +2,11 @@ TipTopFormation2
 ================
 
 
+Faire le test : 
+===============
+
+Choisir le thème "Culture Générale"
+
 Choses à faire :
 ================
 - Intégré le jeu SuperChoix
