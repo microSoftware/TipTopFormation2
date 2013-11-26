@@ -21,7 +21,7 @@ import android.widget.Toast;
 public class SelectionnerLevel extends Activity implements OnClickListener {
 
 	//Couleur de grisement
-	private static final String colorGriserBouton="#FF7777";
+	private static final String colorGriserBouton="#FF5555";
 	private static final String colorAfficherBouton="#83B913";
 	
 	
@@ -47,48 +47,55 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 		levelUserTheme = Jeu.getInstance().getUser().getLevelByTheme(theme);
 		
 		String themeTitre = theme.toString();
-		TextView titre = (TextView) findViewById(R.id.textView1);
-		titre.setText(phrase+themeTitre);
+		//TextView titre = (TextView) findViewById(R.id.textView1);
+		//titre.setText(phrase+themeTitre);
 		
 		
 		/*
 		 * On initialise nos boutons de vue et on grise les 
 		 * boutons qui sont interdits grâce à la fonction
-		 *  ::griserLevelsInterdit(levelUser)
+		 * griserLevelsInterdit(levelUser)
 		 */
 		
 		facile = (Button) findViewById(R.id.facile);
 		moyen = (Button) findViewById(R.id.moyen);
 		difficile = (Button) findViewById(R.id.difficile);
-		jouer = (Button) findViewById(R.id.jouer);
+		
 		griserLevelsInterdit();
 		
 		//Les listeners
 		facile.setOnClickListener(this);
 		moyen.setOnClickListener(this);
 		difficile.setOnClickListener(this);
-		jouer.setOnClickListener(this);
+		
 		
 	}
 
 	@Override
 	public void onClick(View v) {
 		
-		
+		//On clique sur le bouton FACILE
 		if(v == facile) {
 			levelChoisiParUtilisateur=1;
-			
+			commencer();
 		}
+		
+		//On clique sur le bouton MOYEN
 		if(v == moyen) {
-			if (levelUserTheme>=2)//on grise le bouton moyen
+			if (levelUserTheme>=2){//on grise le bouton moyen
 				levelChoisiParUtilisateur=2;
+				commencer();
+			}
 			else 
 				levelChoisiParUtilisateur=-1;
-			
 		}
+		
+		//On clique sur le bouton DIFFICILE
 		if(v == difficile) {
-			if (levelUserTheme>=3)//on grise le bouton difficile
+			if (levelUserTheme>=3) {//on grise le bouton difficile
 				levelChoisiParUtilisateur=3;
+				commencer();
+			}
 			else 
 				levelChoisiParUtilisateur=-1;
 		}
@@ -96,26 +103,12 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 		
 		/*
 		 * Si la personne n'a pas le niveau neccessaire on affiche un petit message
-		 * Si le personne a le niveau requis on fait apparaitre un bouton "JOUER"
+		 * Si le personne a le niveau requis => elle commence le quizz 
 		 */
 		if (levelChoisiParUtilisateur == -1){
 			Toast.makeText(this, "Vous n'avez pas encore le niveau neccessaire" , Toast.LENGTH_LONG).show();
-			jouer.setVisibility(View.GONE);
 		}
 		
-		if (levelChoisiParUtilisateur != -1 && levelChoisiParUtilisateur != 0)
-			jouer.setVisibility(View.VISIBLE);
-		
-		
-		
-		//Dès qu'on clique sur "Jouer"
-		if (v == jouer){
-			quizz.setLevelChoisi(levelChoisiParUtilisateur);
-			quizz.creerLeQuizz();
-			
-			Intent intent = new Intent(SelectionnerLevel.this, Quizz.class);
-			startActivity(intent);
-		}
 		
 	}
 	
@@ -126,7 +119,16 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 		return true;
 	}
 
-	
+	/*
+	 * Si le level est correct on commence le quizz
+	 */
+	private void commencer(){
+		quizz.setLevelChoisi(levelChoisiParUtilisateur);
+		quizz.creerLeQuizz();
+		
+		Intent intent = new Intent(SelectionnerLevel.this, Quizz.class);
+		startActivity(intent);
+	}
 	
 	private void griserLevelsInterdit (){
 		
