@@ -7,35 +7,58 @@ import android.content.res.Resources.Theme;
 
 public abstract class QuestionReponse {
 	
-	
+	/*
+	 * Tous ce qui est commun à toutes les questions :
+	 * - le thème du quizz, le type de l'exo, le level
+	 * - numéro de la question, l'id de la question
+	 */
 
 	protected Theme themeDuQuizz;//null
 	protected EXERCICES typeExo;//test
 
-
-	protected int level;//0
-	protected int numeroDeLaQuestion;//0
-	protected Jeu jeu;//reference
+	protected Jeu jeu;
+	private int level;//0 pour savoir quel fichier csv lire
 	protected int id;///1
+	protected int numeroDeLaQuestion;//0
+	protected String question;
+	protected String phraseCorrection;
+	protected int NbBonnesReponses;
+	protected String[][] lesElements;
 	
-	
+	public int getNbBonnesReponses() {
+		return NbBonnesReponses;
+	}
+
 	/*
-	 * Pour savoir si un type d'exo a des doublons
+	 *  - tab[0][0] = Element 0 : le texte ET tab[0][1] = Element 0 : l'image
+	 *  - tab[1][0] = Element 1 : le texte ET tab[1][1] = Element 1 : l'image
+	 *  ...
+	 *  Cette méthode permet donc d'ajouter autant d'info que l'in veut par élément :
+	 *  correction personnalisé, un deuxième images, une aide, une autre formulation du
+	 *  texte...
 	 */
-	protected static int nbQuestionDejaAjouter=0;
-	protected static int[] tabQuestionHistorique = new int[5];//tableau des id qui ont déjà été ajoutés
-	
+	public String[][] getLesElements() {
+		return lesElements;
+	}
+
 	public QuestionReponse() {
 		super();
 		jeu = Jeu.getInstance();
+		
 	}
 	
 	public void setNumeroDeLaQuestion(int numeroDeLaQuestion) {
 		this.numeroDeLaQuestion = numeroDeLaQuestion;
 	}
 
-	protected static void setTabQuestionHistorique(int[] tabQuestionHistorique) {
-		QuestionReponse.tabQuestionHistorique = tabQuestionHistorique;
+	
+
+	public String getQuestion() {
+		return question;
+	}
+
+	public String getPhraseCorrection() {
+		return phraseCorrection;
 	}
 
 	public int getLevel() {
@@ -58,23 +81,14 @@ public abstract class QuestionReponse {
 		return this;
 	}
 
-	protected static void setNbQuestionDejaAjouter(int nbQuestionDejaAjouter) {
-		QuestionReponse.nbQuestionDejaAjouter = nbQuestionDejaAjouter;
-	}
+	
 
-	protected Theme getThemeDuQuizz() {
+	public Theme getThemeDuQuizz() {
 		return themeDuQuizz;
 	}
 
-	protected static int[] getTabQuestionHistorique() {
-		return tabQuestionHistorique;
-	}
-
-	protected static int getNbQuestionDejaAjouter() {
-		return nbQuestionDejaAjouter;
-	}
-
-	protected static String[]  lireCSV (int[] idANePasPrendre){
+	
+	public static String[]  lireCSV (int[] idANePasPrendre){
 		/*
 		 int nbLigne = nbLigneFichier(urlFichier);
 		String[][] monTableau = new String[nbLigne][nbColonneMax];
@@ -117,10 +131,10 @@ public abstract class QuestionReponse {
 	}
 	
 	/*
-	 * Fonction commune à la plupart des classes filles
+	 * Fonction commune à toutes les classes filles
 	 * Elle permet d'extraire les éléments d'un tableau d'une position x jusqu'à la fin du tableau
 	 */
-	protected String[] extraireTousElementsTableau(String[] tableau, int x){
+	public String[] extraireTousElementsTableau(String[] tableau, int x){
 		String tab[] = null;
 		int counterTab = 0;
 		boolean encoreElement = true;
@@ -140,10 +154,5 @@ public abstract class QuestionReponse {
 		return typeExo;
 	}
 	
-	@Override
-	public String toString() {
-		return "QuestionReponse [themeDuQuizz=" + themeDuQuizz + ", typeExo="
-				+ typeExo + ", level=" + level + ", numeroDeLaQuestion="
-				+ numeroDeLaQuestion + ", jeu=" + jeu + ", id=" + id + "]";
-	}
+	
 }

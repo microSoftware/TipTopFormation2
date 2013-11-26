@@ -10,17 +10,8 @@ public class Synonyme extends QuestionReponse{
 	public Synonyme() {
 		super();
 		
-	
-		//on prend le csv
-		lesElements = lireCSV(getTabQuestionHistorique());
 		
 	}
-	
-	public void remplirLesVariables (int id, String texte, String[] lesElements ){
-		
-		
-	}
-	
 	
 	
 	

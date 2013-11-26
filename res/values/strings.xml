@@ -10,5 +10,6 @@
     <string name="title_activity_super_choix">SuperChoix</string>
     <string name="title_activity_super_choix_jeu">SuperChoixJeu</string>
     <string name="title_activity_culture_generale_jeu">CultureGeneraleJeu</string>
+    <string name="title_activity_multi_choix_jeu">MultiChoixJeu</string>
 
 </resources>

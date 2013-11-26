@@ -30,10 +30,6 @@ public class Home extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_home);
 		
 		jeu = Jeu.getInstance();
-		/*On ne peux pas initialiser Quizz dans la classe Jeu 
-		 * Je ne sais pas pourquoi, donc si qqu pouvait analyser
-		 * ça...
-		 */
 		jeu.initialiserLeQuizz();
 		
 		//
@@ -86,15 +82,11 @@ public class Home extends Activity implements OnClickListener{
 	
 
 	/*
-	 * Lance l'écran ou l'on choisi les niveaux 
-	 * Paramètre : levelUserTheme qui est le niveaux du joueur 
-	 * sur ce thème là (1,2 ou 3). Cela permet de griser les cases
-	 * qu'elle n'est pas autorisé à cliquer
+	 * On choisi son niveau
 	 * 
-	 * et le theme qui servira pour le quizz 
 	 */
 	public void choisirNiveau (){
-		
+			//on change d'activité => SelectionnerLevel
 			Intent intent = new Intent(Home.this, SelectionnerLevel.class);
 			startActivity(intent);
 	}

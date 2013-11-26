@@ -5,13 +5,20 @@ import Core.THEMES;
 
 public class CultureGenerale extends QuestionReponse {
 	
-	private static final String phraseEntete="Remettez les éléments dans l'ordre";//a adapter pour les thèmes ...
+	private static final String phraseEntete="Remettez les éléments dans l'ordre";
 	private String question;
 	private String[] lesElements = new String[2];
+	
+	/*
+	 * Historique des ids pour ne pas avoir 2 fois la même question.
+	 */
+	protected static int nbQuestionDejaAjouter=0;
+	protected static int[] tabQuestionHistorique;
 	
 	public CultureGenerale() {
 		super();
 		typeExo = EXERCICES.TEST;
+		tabQuestionHistorique = new int[getJeu().getQuizz().getNbquestionparquizz()];
 		remplirLesVariables();
 		
 		

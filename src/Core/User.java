@@ -53,7 +53,7 @@ public class User {
 		else if (nbPointDuTheme < 30)
 			return 3;
 		
-		return 0; //Erreur
+		return 0;
 		
 	}
 	

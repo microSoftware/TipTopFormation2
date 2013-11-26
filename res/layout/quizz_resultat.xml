@@ -12,13 +12,13 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/recommencer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Recommencer" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/revenirHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choisir un autre thème" />

@@ -24,7 +24,7 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 	private static final String colorGriserBouton="#FF7777";
 	private static final String colorAfficherBouton="#83B913";
 	
-	private THEMES theme;//thème choisi
+	
 	private int levelUserTheme;//level du joueur sur ce thème
 	private int levelChoisiParUtilisateur=0;
 	private QuizzModel quizz;
@@ -43,7 +43,7 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 
 		
 		quizz = Jeu.getInstance().getQuizz();
-		theme = quizz.getTheme();
+		THEMES theme = quizz.getTheme();
 		levelUserTheme = Jeu.getInstance().getUser().getLevelByTheme(theme);
 		
 		String themeTitre = theme.toString();
@@ -111,7 +111,6 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 		//Dès qu'on clique sur "Jouer"
 		if (v == jouer){
 			quizz.setLevelChoisi(levelChoisiParUtilisateur);
-			Log.w("SelectionnerLevel", "on créer le quizz !");
 			quizz.creerLeQuizz();
 			
 			Intent intent = new Intent(SelectionnerLevel.this, Quizz.class);

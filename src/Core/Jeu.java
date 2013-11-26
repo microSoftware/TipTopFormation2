@@ -1,13 +1,16 @@
 package Core;
 
 import com.example.tiptopformation2.Quizz;
+import com.example.tiptopformation2.SelectionnerLevel;
 
+import android.content.Intent;
+import android.content.res.Resources.Theme;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 
 /*
- * Jeu est un Singleton. Cela évite d'utiliser des intents. Moins de code. Plus simple
+ * Jeu est un Singleton. Cela évite d'utiliser des intents. Moins de code. Plus simple.
  */
 public class Jeu  {
 	
@@ -47,8 +50,23 @@ public class Jeu  {
 		quizz = new QuizzModel();
 	}
 
+	public void recommencer(){
+		/*
+		 * Pour recommencer une partie 
+		 * Il faut sauvegarder le thème et le level choisi
+		 * Mettre quizz à null et recréer un quizz avec le thème et le level
+		 */
+		
+		//sauvegarde du thème et du level
+		THEMES theme = quizz.getTheme();
+		int level = quizz.getLevelChoisi();
+		
+		quizz = null;
+		quizz = new QuizzModel(theme, level);
+		
+	}
 	
-
+	
 
 
 }

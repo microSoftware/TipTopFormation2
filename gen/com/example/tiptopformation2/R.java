@@ -26,53 +26,65 @@ public final class R {
         public static final int toxique=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f080013;
+        public static final int BonneImage1=0x7f080012;
+        public static final int BonneImage2=0x7f080010;
+        public static final int BonneReponse1=0x7f080009;
+        public static final int BonneReponse2=0x7f080011;
+        public static final int MauvaiseImage1=0x7f08000a;
+        public static final int MauvaiseImage2=0x7f08000e;
+        public static final int MauvaiseReponse1=0x7f080013;
+        public static final int MauvaiseReponse2=0x7f08000f;
+        public static final int NombreBonneReponse=0x7f08000d;
+        public static final int Question=0x7f08000c;
+        public static final int Valider=0x7f080008;
+        public static final int action_settings=0x7f08001f;
         public static final int button1=0x7f080004;
         public static final int button2=0x7f080006;
         public static final int button3=0x7f080007;
         public static final int button4=0x7f080005;
-        public static final int correct=0x7f080009;
-        public static final int difficile=0x7f080011;
-        public static final int facile=0x7f08000f;
-        public static final int home=0x7f08000b;
-        public static final int incorrect=0x7f08000a;
-        public static final int incorrect2=0x7f08000c;
-        public static final int jouer=0x7f080012;
-        public static final int moyen=0x7f080010;
-        public static final int reponse=0x7f08000e;
+        public static final int checkBox2=0x7f08000b;
+        public static final int correct=0x7f080016;
+        public static final int difficile=0x7f08001d;
+        public static final int facile=0x7f08001b;
+        public static final int incorrect=0x7f080017;
+        public static final int jouer=0x7f08001e;
+        public static final int moyen=0x7f08001c;
+        public static final int numeroQuestion=0x7f080014;
+        public static final int recommencer=0x7f080018;
+        public static final int reponse=0x7f08001a;
+        public static final int revenirHome=0x7f080019;
         public static final int textView1=0x7f080002;
         public static final int textView2=0x7f080001;
         public static final int textView3=0x7f080003;
         public static final int valider=0x7f080000;
-        public static final int zoneDepot=0x7f080008;
-        public static final int zoneText=0x7f08000d;
+        public static final int zoneDepot=0x7f080015;
     }
     public static final class layout {
         public static final int activity_culture_generale_jeu=0x7f030000;
         public static final int activity_home=0x7f030001;
-        public static final int activity_quizz=0x7f030002;
-        public static final int activity_super_choix_jeu=0x7f030003;
-        public static final int activity_super_choix_me1=0x7f030004;
-        public static final int activity_super_choix_me2=0x7f030005;
-        public static final int activity_super_choix_me3=0x7f030006;
-        public static final int quizz_resultat=0x7f030007;
-        public static final int resultat_super_choix_jeu=0x7f030008;
-        public static final int selectionner_level=0x7f030009;
+        public static final int activity_multi_choix_jeu=0x7f030002;
+        public static final int activity_quizz=0x7f030003;
+        public static final int activity_super_choix_jeu=0x7f030004;
+        public static final int quizz_resultat=0x7f030005;
+        public static final int resultat_super_choix_jeu=0x7f030006;
+        public static final int selectionner_level=0x7f030007;
     }
     public static final class menu {
         public static final int culture_generale_jeu=0x7f070000;
         public static final int home=0x7f070001;
-        public static final int quizz=0x7f070002;
-        public static final int selectionner_level=0x7f070003;
-        public static final int super_choix=0x7f070004;
-        public static final int super_choix_jeu=0x7f070005;
-        public static final int testctivite=0x7f070006;
+        public static final int multi_choix_jeu=0x7f070002;
+        public static final int quizz=0x7f070003;
+        public static final int selectionner_level=0x7f070004;
+        public static final int super_choix=0x7f070005;
+        public static final int super_choix_jeu=0x7f070006;
+        public static final int testctivite=0x7f070007;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
         public static final int title_activity_culture_generale_jeu=0x7f050008;
+        public static final int title_activity_multi_choix_jeu=0x7f050009;
         public static final int title_activity_quizz=0x7f050004;
         public static final int title_activity_selectionner_level=0x7f050003;
         public static final int title_activity_super_choix=0x7f050006;

@@ -12,7 +12,7 @@ import Exercices.TriChoix;
 
 public class QuizzModel {
 	// variables de la classe
-	private static final int nbQuestionParQuizz = 5; //Je ne comprends pas pourquoi la liste fait 10 élément
+	private static final int nbQuestionParQuizz = 5; 
 	private Jeu jeu;
 	private THEMES theme;
 	private int levelChoisi=0;
@@ -23,13 +23,28 @@ public class QuizzModel {
 
 	
 	
-	
 	public QuizzModel() {
 		super();
 		jeu = Jeu.getInstance();
 		numeroQuestionCourante=0;
 		tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>(nbQuestionParQuizz);
-		Log.w("[QuizzModel] Constructeur ", "Taille de la liste = "+tableauDeToutesLesQuestions.size()); //0
+	}
+	
+	/*
+	 * Ce constructeur sert uniquement quand on fait recommencer une partie
+	 * Donc on garder le même thème et level
+	 */
+	public QuizzModel(THEMES theme, int level) {
+		super();
+		Log.w("QuizzModel", "constructeur 1");
+		jeu = Jeu.getInstance();
+		this.theme = theme;
+		this.levelChoisi = level;
+		numeroQuestionCourante=0;
+		tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>(nbQuestionParQuizz);
+		//et Hop ! on crée le quizz
+		Log.w("QuizzModel", "constructeur 2");
+		creerLeQuizz();
 	}
 
 	public void setTheme(THEMES theme) {
@@ -43,10 +58,7 @@ public class QuizzModel {
 	public void incrementeNumeroQuestionCourante() {
 		if (numeroQuestionCourante <= nbQuestionParQuizz)
 			this.numeroQuestionCourante++;
-		else 
-			Log.w("[QuizzModel] incrementeNumeroQuestionCourante()", "dans le else : numeroQuestionCourante <= nbQuestionParQuizz");
-	
-	}
+		}
 
 	public static int getNbquestionparquizz() {
 		return nbQuestionParQuizz;
@@ -89,7 +101,7 @@ public class QuizzModel {
 	private void melangerQuestionsDuQuizz() {
 			//on mélange 
 			// ...
-		
+		Log.w("QuizzModel", "melangerQuestionsDuQuizz()");
 		
 			/*
 			 * Une fois qu'on a mélangé toutes les questions, on peut donner
@@ -103,8 +115,7 @@ public class QuizzModel {
 	}
 
 	public void creerLeQuizz() {
-		Log.w("[QuizzModel] creerLeQuizz début ", "Taille de la liste = "+tableauDeToutesLesQuestions.size());
-			
+		Log.w("QuizzModel", "creerLeQuizz()");	
 		if (levelChoisi != 0){
 			if (theme == THEMES.MENAGE)
 				creerLeQuizz_MENAGE();
@@ -120,9 +131,8 @@ public class QuizzModel {
 			
 			melangerQuestionsDuQuizz();
 		}
+
 			
-			
-			Log.w("[QuizzModel] fin de creerLeQuizz ", "Taille de la liste = "+tableauDeToutesLesQuestions.size());
 	}
 		
 
@@ -132,22 +142,26 @@ public class QuizzModel {
 		/*
 		 * Pour le thème ménage, il y a les exos : - Synonyme - SuperChoix - MultiChoix
 		 */
-		int nombreExercicePourCeTheme = 3;
-		int repetitionD1MemeExo = nbQuestionParQuizz
-				/ nombreExercicePourCeTheme;
-		ajouterQuestionDansQuizz(EXERCICES.SYNONYME, repetitionD1MemeExo);
-		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
-
-		// si ce n'est pas un multiple de 3 : on doit ajouter une question de
-		// plus à un exo
-		if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 1)
-			ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX,
-					repetitionD1MemeExo + 1);// on ajoute 1 question de plus
-												// pour un exo
-		else if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 2)
-			ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX,
-					repetitionD1MemeExo + 2);// on ajoute 2 questions de plus
-												// pour un exo
+//		int nombreExercicePourCeTheme = 3;
+//		int repetitionD1MemeExo = nbQuestionParQuizz
+//				/ nombreExercicePourCeTheme;
+//		ajouterQuestionDansQuizz(EXERCICES.SYNONYME, repetitionD1MemeExo);
+//		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
+//
+//		// si ce n'est pas un multiple de 3 : on doit ajouter une question de
+//		// plus à un exo
+//		if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 1)
+//			ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX,
+//					repetitionD1MemeExo + 1);// on ajoute 1 question de plus
+//												// pour un exo
+//		else if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 2)
+//			ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX,
+//					repetitionD1MemeExo + 2);// on ajoute 2 questions de plus
+//												// pour un exo
+	
+	
+		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, nbQuestionParQuizz);
+	
 	}
 
 	private void creerLeQuizz_MATHS() {
@@ -200,7 +214,7 @@ public class QuizzModel {
 	}
 
 	private void ajouterQuestionDansQuizz(EXERCICES typeExo, int nombreDeQuestionAAjouter) {
-
+		Log.w("QuizzModel", "ajouterQuestionDansQuizz()");
 		if (typeExo == EXERCICES.SYNONYME) {
 			for (int i = 0; i < nombreDeQuestionAAjouter; i++)
 				tableauDeToutesLesQuestions.add( new Synonyme() );

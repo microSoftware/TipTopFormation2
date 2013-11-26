@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="14" />
+        android:targetSdkVersion="15" />
 
     <application
         android:allowBackup="true"
@@ -37,6 +37,10 @@
         <activity
             android:name="com.example.tiptopformation2.CultureGeneraleJeu"
             android:label="@string/title_activity_culture_generale_jeu" >
+        </activity>
+        <activity
+            android:name="com.example.tiptopformation2.MultiChoixJeu"
+            android:label="@string/title_activity_multi_choix_jeu" >
         </activity>
     </application>
 
