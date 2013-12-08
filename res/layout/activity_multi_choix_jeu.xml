@@ -8,106 +8,117 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <Button
-        android:id="@+id/Valider"
+    <TextView
+        android:id="@+id/Question"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:text="Valider" />
+        android:layout_marginTop="30dp"
+        android:text="Question posée" />
+
+    <TextView
+        android:id="@+id/NombreBonneReponse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Question"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:text="Nombre de bonnes réponses : 2" />
 
     <CheckBox
-        android:id="@+id/BonneReponse1"
+        android:id="@+id/checkBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/MauvaiseImage1"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/NombreBonneReponse"
+        android:layout_marginTop="100dp"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/checkBox2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBox1"
+        android:layout_below="@+id/checkBox1"
+        android:layout_marginTop="14dp"
+        android:text="CheckBox" />
+
+    <CheckBox
+        android:id="@+id/checkBox3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/checkBox2"
-        android:layout_alignRight="@+id/checkBox2"
-        android:text="Bonne réponse" />
+        android:layout_below="@+id/checkBox2"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="14dp"
+        android:text="CheckBox" />
 
-        <TextView
-            android:id="@+id/Question"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/NombreBonneReponse"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="17dp"
-            android:text="Question posée" />
+    <CheckBox
+        android:id="@+id/checkBox4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/checkBox3"
+        android:layout_below="@+id/checkBox3"
+        android:layout_marginTop="14dp"
+        android:text="CheckBox" />
 
-        <ImageView
-            android:id="@+id/MauvaiseImage2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/MauvaiseReponse2"
-            android:layout_marginLeft="18dp"
-            android:layout_toRightOf="@+id/NombreBonneReponse"
-            android:src="@drawable/ic_launcher" />
+    <ImageView
+        android:id="@+id/ImageView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView01"
+        android:layout_alignTop="@+id/checkBox4"
+        android:src="@drawable/ic_launcher" />
 
-        <ImageView
-            android:id="@+id/BonneImage2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/BonneReponse2"
-            android:layout_alignLeft="@+id/MauvaiseImage2"
-            android:src="@drawable/ic_launcher" />
+    <CheckedTextView
+        android:id="@+id/correction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Valider"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="Correction" />
 
-        <ImageView
-            android:id="@+id/MauvaiseImage1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/BonneImage2"
-            android:layout_alignLeft="@+id/BonneImage2"
-            android:src="@drawable/ic_launcher" />
+    <ImageView
+        android:id="@+id/ImageView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/checkBox3"
+        android:layout_marginRight="28dp"
+        android:src="@drawable/ic_launcher" />
 
-        <ImageView
-            android:id="@+id/BonneImage1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/MauvaiseImage1"
-            android:layout_alignLeft="@+id/MauvaiseImage1"
-            android:src="@drawable/ic_launcher" />
+    <ImageView
+        android:id="@+id/ImageView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView02"
+        android:layout_alignTop="@+id/checkBox2"
+        android:src="@drawable/ic_launcher" />
 
-        <CheckBox
-            android:id="@+id/BonneReponse2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/MauvaiseReponse1"
-            android:layout_centerVertical="true"
-            android:text="Bonne réponse" />
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ImageView01"
+        android:layout_alignTop="@+id/checkBox1"
+        android:src="@drawable/ic_launcher" />
+	
+	<TextView
+	    android:id="@+id/numeroQuestion"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentTop="true"
+	    android:text="1" />
 
-        <CheckBox
-            android:id="@+id/MauvaiseReponse1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/MauvaiseImage1"
-            android:layout_alignLeft="@+id/BonneReponse1"
-            android:text="MauvaiseReponse" />
-
-        <CheckBox
-            android:id="@+id/MauvaiseReponse2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/BonneReponse2"
-            android:layout_below="@+id/BonneReponse2"
-            android:layout_marginTop="15dp"
-            android:text="Mauvaise Réponse" />
-
-        <TextView
-            android:id="@+id/NombreBonneReponse"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/BonneImage1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="26dp"
-            android:text="Nombre de bonnes réponses : 2" />
-
-        <TextView
-            android:id="@+id/numeroQuestion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/BonneImage1"
-            android:text="1" />
-
+	<Button
+	    android:id="@+id/Valider"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentBottom="true"
+	    android:layout_alignParentRight="true"
+	    android:text="Valider" />
+	
 </RelativeLayout>

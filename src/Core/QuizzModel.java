@@ -43,7 +43,6 @@ public class QuizzModel {
 		numeroQuestionCourante=0;
 		tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>(nbQuestionParQuizz);
 		//et Hop ! on crée le quizz
-		Log.w("QuizzModel", "constructeur 2");
 		creerLeQuizz();
 	}
 
@@ -160,8 +159,8 @@ public class QuizzModel {
 //												// pour un exo
 	
 	
-		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, nbQuestionParQuizz);
-	
+		//ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, nbQuestionParQuizz);
+		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, nbQuestionParQuizz);
 	}
 
 	private void creerLeQuizz_MATHS() {

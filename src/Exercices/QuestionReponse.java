@@ -2,6 +2,7 @@ package Exercices;
 
 import Core.EXERCICES;
 import Core.Jeu;
+import Core.QuizzModel;
 import Core.THEMES;
 import android.content.res.Resources.Theme;
 
@@ -12,39 +13,31 @@ public abstract class QuestionReponse {
 	 * - le thème du quizz, le type de l'exo, le level
 	 * - numéro de la question, l'id de la question
 	 */
-
-	protected Theme themeDuQuizz;//null
-	protected EXERCICES typeExo;//test
-
 	protected Jeu jeu;
+	protected QuizzModel quizz;
+	protected Theme themeDuQuizz;
+	protected EXERCICES typeExo;
 	private int level;//0 pour savoir quel fichier csv lire
-	protected int id;///1
-	protected int numeroDeLaQuestion;//0
+	protected int id;
+	
+	protected int numeroDeLaQuestion;
 	protected String question;
 	protected String phraseCorrection;
-	protected int NbBonnesReponses;
-	protected String[][] lesElements;
 	
-	public int getNbBonnesReponses() {
-		return NbBonnesReponses;
-	}
+	
+	
+	
 
-	/*
-	 *  - tab[0][0] = Element 0 : le texte ET tab[0][1] = Element 0 : l'image
-	 *  - tab[1][0] = Element 1 : le texte ET tab[1][1] = Element 1 : l'image
-	 *  ...
-	 *  Cette méthode permet donc d'ajouter autant d'info que l'in veut par élément :
-	 *  correction personnalisé, un deuxième images, une aide, une autre formulation du
-	 *  texte...
-	 */
-	public String[][] getLesElements() {
-		return lesElements;
+	
+
+	public QuizzModel getQuizz() {
+		return quizz;
 	}
 
 	public QuestionReponse() {
 		super();
 		jeu = Jeu.getInstance();
-		
+		quizz = jeu.getQuizz();
 	}
 	
 	public void setNumeroDeLaQuestion(int numeroDeLaQuestion) {

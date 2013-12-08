@@ -59,13 +59,23 @@ public class Quizz extends Activity implements OnClickListener {
 		/*
 		 * Quand le quizz est fini on affiche la page de résultat
 		 */
-		if (numeroDeLaQuestionCourante == quizz.getNbquestionparquizz() ){
+		Log.w("Quizz", "lancerLeQuizz() ; numeroDeLaQuestionCourante = "+numeroDeLaQuestionCourante);
+		Log.w("Quizz", "lancerLeQuizz() ; quizz.getNbquestionparquizz() = "+ quizz.getNbquestionparquizz() );
+		
+		/*
+		 * Le problème c'est que le numéro de la question est incrémenté avant le if
+		 * Sauf que si on le met après il y a une erreur. Trouve l'origine de ce erreur
+		 * et le monde s'ouvrira à toi ^^
+		 */
+		
+		if ( numeroDeLaQuestionCourante == quizz.getNbquestionparquizz()  ){
 			setContentView(R.layout.quizz_resultat);
-			 recommencer = (Button) findViewById(R.id.recommencer);
+			recommencer = (Button) findViewById(R.id.recommencer);
 			recommencer.setOnClickListener(this);
-			 home = (Button) findViewById(R.id.revenirHome);
+			home = (Button) findViewById(R.id.revenirHome);
 			home.setOnClickListener(this);
 		}
+
 		else {
 			for (QuestionReponse question : quizz.getTableauDeToutesLesQuestions() ){
 				if ( (question.getNumeroDeLaQuestion() == numeroDeLaQuestionCourante )  && (question.getTypeExo() == EXERCICES.TEST) ){
@@ -76,8 +86,14 @@ public class Quizz extends Activity implements OnClickListener {
 					Intent intent = new Intent(Quizz.this, MultiChoixJeu.class);
 					startActivity(intent);
 				}
+				else if ( (question.getNumeroDeLaQuestion() == numeroDeLaQuestionCourante )  && (question.getTypeExo() == EXERCICES.SUPERCHOIX) ){
+					Intent intent = new Intent(Quizz.this, SuperChoixJeu.class);
+					startActivity(intent);
+				}
+				
 			}
 		}
+		
 		
 	}
 
