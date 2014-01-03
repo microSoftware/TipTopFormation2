@@ -1,19 +1,18 @@
 package com.example.tiptopformation2;
 
-import java.util.ArrayList;
+import Core.EXERCICES;
+import Core.Jeu;
+import Core.QuizzModel;
+import Exercices.QuestionReponse;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.bluetooth.BluetoothAdapter.LeScanCallback;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
-import Core.*;
-import Exercices.*;
 
 public class Quizz extends Activity implements OnClickListener {
 
@@ -27,13 +26,13 @@ public class Quizz extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_quizz);
-		
+		setContentView(R.layout.activity_quizz); //pour le retour en arrière
+		Log.w("Quizz (activité)", "onCreate - avant lancerLeQuizz()");
 		jeu = Jeu.getInstance();
 		quizz = Jeu.getInstance().getQuizz();
 		
 		lancerLeQuizz();
-		
+		Log.w("Quizz (activité)", "onCreate - après lancerLeQuizz()");
 	}
 
 	
@@ -54,21 +53,19 @@ public class Quizz extends Activity implements OnClickListener {
 	}
 
 	private void lancerLeQuizz() {
+		Log.w("Quizz (activité)", "lancerLeQuizz() - Etape 0");
 		quizz.incrementeNumeroQuestionCourante();
 		int numeroDeLaQuestionCourante=quizz.getNumeroQuestionCourante();
+		
 		/*
 		 * Quand le quizz est fini on affiche la page de résultat
 		 */
-		Log.w("Quizz", "lancerLeQuizz() ; numeroDeLaQuestionCourante = "+numeroDeLaQuestionCourante);
-		Log.w("Quizz", "lancerLeQuizz() ; quizz.getNbquestionparquizz() = "+ quizz.getNbquestionparquizz() );
+		Log.w("Quizz (activité)", "lancerLeQuizz() ; numeroDeLaQuestionCourante = "+numeroDeLaQuestionCourante);
+		Log.w("Quizz (activité)", "lancerLeQuizz() ; quizz.getNbquestionparquizz() = "+ quizz.getNbquestionparquizz() );
 		
-		/*
-		 * Le problème c'est que le numéro de la question est incrémenté avant le if
-		 * Sauf que si on le met après il y a une erreur. Trouve l'origine de ce erreur
-		 * et le monde s'ouvrira à toi ^^
-		 */
 		
-		if ( numeroDeLaQuestionCourante == quizz.getNbquestionparquizz()  ){
+		
+		if ( numeroDeLaQuestionCourante == quizz.getNbquestionparquizz() ){
 			setContentView(R.layout.quizz_resultat);
 			recommencer = (Button) findViewById(R.id.recommencer);
 			recommencer.setOnClickListener(this);
@@ -78,18 +75,27 @@ public class Quizz extends Activity implements OnClickListener {
 
 		else {
 			for (QuestionReponse question : quizz.getTableauDeToutesLesQuestions() ){
-				if ( (question.getNumeroDeLaQuestion() == numeroDeLaQuestionCourante )  && (question.getTypeExo() == EXERCICES.TEST) ){
-					Intent intent = new Intent(Quizz.this, CultureGeneraleJeu.class);
-					startActivity(intent);
+				
+				if ( (question.getNumeroDeLaQuestion() == numeroDeLaQuestionCourante )   ){
+					
+					if ( question.getTypeExo() == EXERCICES.TEST){
+						Intent intent = new Intent(Quizz.this, CultureGeneraleJeu.class);
+						startActivity(intent);
+					}
+					
+					else if ( question.getTypeExo() == EXERCICES.MULTICHOIX ){
+						Intent intent = new Intent(Quizz.this, MultiChoixJeu.class);
+						startActivity(intent);
+					}
+					
+					else if ( question.getTypeExo() == EXERCICES.SUPERCHOIX ){
+						Intent intent = new Intent(Quizz.this, SuperChoixJeu.class);
+						startActivity(intent);
+					}
+					
+					
 				}
-				else if ( (question.getNumeroDeLaQuestion() == numeroDeLaQuestionCourante )  && (question.getTypeExo() == EXERCICES.MULTICHOIX) ){
-					Intent intent = new Intent(Quizz.this, MultiChoixJeu.class);
-					startActivity(intent);
-				}
-				else if ( (question.getNumeroDeLaQuestion() == numeroDeLaQuestionCourante )  && (question.getTypeExo() == EXERCICES.SUPERCHOIX) ){
-					Intent intent = new Intent(Quizz.this, SuperChoixJeu.class);
-					startActivity(intent);
-				}
+				
 				
 			}
 		}

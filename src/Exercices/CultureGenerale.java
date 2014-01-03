@@ -1,7 +1,6 @@
 package Exercices;
 
 import Core.EXERCICES;
-import Core.THEMES;
 
 public class CultureGenerale extends QuestionReponse {
 	
@@ -34,7 +33,7 @@ public class CultureGenerale extends QuestionReponse {
 		// lesElements = extraireTousElementsTableau(chaine, 2);
 		
 	
-		 id = 1;
+		 id = "1";
 		 question= "Ceci est ma question";
 		 lesElements[0] = "élement 1";
 		 lesElements[1] = "élement 2";

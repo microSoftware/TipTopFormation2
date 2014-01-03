@@ -4,7 +4,6 @@ import com.example.tiptopformation2.R.id;
 
 import Core.Jeu;
 import Core.QuizzModel;
-import Exercices.MultiChoix;
 import Exercices.SuperChoix;
 import android.app.Activity;
 import android.content.ClipData;
@@ -22,7 +21,6 @@ import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class SuperChoixJeu extends Activity implements OnTouchListener {
 
@@ -40,6 +38,7 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 	private String question;
 	private String[] lesElements; 
 	private String correction;
+	private String imageNom;
 	
 	//variables de vue
 	Button depot;
@@ -145,9 +144,13 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 		int alea;
 
 		image = (ImageView) findViewById(R.id.image);
-		image.setImageResource(R.drawable.toxique);
+		String variableValue = imageNom;
+		image.setImageResource(getResources().getIdentifier(variableValue, "drawable", getPackageName()));
+		
 		numeroQuestionVue = (TextView) findViewById(id.numeroQuestion);
 		numeroQuestionVue.setText(numeroQuestion+"/"+nombreDeQuestion);
+		TextView laQuestionVue = (TextView) findViewById(id.laquestion);
+		laQuestionVue.setText(question);
 		
 		if (niveau == 1){ // Si le niveau est 1 => 2 réponse possibes
 			alea = (int)  (Math.random()*2);
@@ -233,13 +236,13 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 		 */
 		instanceDeLaQuestion =  (SuperChoix) Jeu.getInstance().getQuizz().getQuestionInstance();
 		niveau = Jeu.getInstance().getQuizz().getLevelChoisi();
-		numeroQuestion = instanceDeLaQuestion.getNumeroDeLaQuestion();
+		numeroQuestion = instanceDeLaQuestion.getNumeroDeLaQuestion() +1 ;
 		nombreDeQuestion = QuizzModel.getNbquestionparquizz();
 		question = instanceDeLaQuestion.getQuestion();
 		//lesElements = new String[5];
 		lesElements = instanceDeLaQuestion.getLesElements();
 		correction = instanceDeLaQuestion.getPhraseCorrection();
-
+		imageNom = instanceDeLaQuestion.getImage();
 	}
 	
 	

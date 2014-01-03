@@ -1,9 +1,6 @@
 package Core;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
-import android.content.res.Resources.Theme;
 
 public class User {
 	private String name;
@@ -28,7 +25,7 @@ public class User {
 		
 		//on met des niveaux au pif pour chaque thèmes mais normalement
 		//on devrait rechercher dans la bd
-		level.put(THEMES.MENAGE ,10); //Pour ménage, l'user à 10 points => level 2
+		level.put(THEMES.MENAGE ,25); //Pour ménage, l'user à 10 points => level 2
 		level.put(THEMES.MATHS ,20); //level 3
 		level.put(THEMES.CULTURE_GENERALE ,14); //level 2
 		level.put(THEMES.FRANCAIS ,8); //level 1

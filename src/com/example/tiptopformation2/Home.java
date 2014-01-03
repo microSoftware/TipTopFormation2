@@ -2,16 +2,15 @@ package com.example.tiptopformation2;
 
 import Core.Jeu;
 import Core.THEMES;
-import android.os.Bundle;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class Home extends Activity implements OnClickListener{
 
@@ -28,13 +27,18 @@ public class Home extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		
+		Log.w("Home", "onCreate - avant initialiserQuizz()");
 		jeu = Jeu.getInstance();
+		jeu.initialiserContexteAndroid(this.getApplicationContext());
 		jeu.initialiserLeQuizz();
-		
+		Log.w("Home", "onCreate - après initialiserQuizz()");
 		//
 		//Listener sur les boutons 
 		//
+		
+		Log.w("d",getApplicationContext().toString());
+		Log.w("d",getBaseContext().toString());
+		
 		B_menage = (Button) findViewById(R.id.button1);
 		B_menage.setOnClickListener(this);
 		

@@ -1,11 +1,7 @@
 package Exercices;
 
-import com.example.tiptopformation2.MultiChoixJeu;
-import com.example.tiptopformation2.Quizz;
-
-import android.content.Intent;
-import android.util.Log;
 import Core.EXERCICES;
+import android.util.Log;
 
 public class MultiChoix extends QuestionReponse {
 	
@@ -54,7 +50,7 @@ public class MultiChoix extends QuestionReponse {
 		// lesElements = extraireTousElementsTableau(chaine, 2);
 		
 	
-		 id = 1;
+		 id = "1";
 		 question= "Cocher les bonnes réponses";
 		 lesElements[0][0] = "Bonne réponse 1";
 		 lesElements[0][1] = "toxique";

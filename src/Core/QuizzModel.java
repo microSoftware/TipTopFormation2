@@ -1,14 +1,15 @@
 package Core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-import android.util.Log;
 import Exercices.CultureGenerale;
 import Exercices.MultiChoix;
 import Exercices.QuestionReponse;
 import Exercices.SuperChoix;
 import Exercices.Synonyme;
 import Exercices.TriChoix;
+import android.util.Log;
 
 public class QuizzModel {
 	// variables de la classe
@@ -26,7 +27,7 @@ public class QuizzModel {
 	public QuizzModel() {
 		super();
 		jeu = Jeu.getInstance();
-		numeroQuestionCourante=0;
+		numeroQuestionCourante=-1;
 		tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>(nbQuestionParQuizz);
 	}
 	
@@ -50,9 +51,7 @@ public class QuizzModel {
 		this.theme = theme;
 	}
 
-	
 
-	
 
 	public void incrementeNumeroQuestionCourante() {
 		if (numeroQuestionCourante <= nbQuestionParQuizz)
@@ -98,10 +97,10 @@ public class QuizzModel {
 	}
 
 	private void melangerQuestionsDuQuizz() {
-			//on mélange 
-			// ...
+			
 		Log.w("QuizzModel", "melangerQuestionsDuQuizz()");
-		
+			
+		Collections.shuffle(tableauDeToutesLesQuestions);
 			/*
 			 * Une fois qu'on a mélangé toutes les questions, on peut donner
 			 * un numéro (1/10)
@@ -111,6 +110,7 @@ public class QuizzModel {
 				question.setNumeroDeLaQuestion(i);
 				i++;
 			}
+			afficherTableauQuestion ();
 	}
 
 	public void creerLeQuizz() {
@@ -213,7 +213,7 @@ public class QuizzModel {
 	}
 
 	private void ajouterQuestionDansQuizz(EXERCICES typeExo, int nombreDeQuestionAAjouter) {
-		Log.w("QuizzModel", "ajouterQuestionDansQuizz()");
+		Log.w("QuizzModel", "ajouterQuestionDansQuizz() - étape 0");
 		if (typeExo == EXERCICES.SYNONYME) {
 			for (int i = 0; i < nombreDeQuestionAAjouter; i++)
 				tableauDeToutesLesQuestions.add( new Synonyme() );
@@ -245,11 +245,29 @@ public class QuizzModel {
 	public QuestionReponse getQuestionInstance() {
 		
 		for (QuestionReponse question : tableauDeToutesLesQuestions){
-			if (question.getNumeroDeLaQuestion() == numeroQuestionCourante){
-				question.setNumeroDeLaQuestion(numeroQuestionCourante);
+			if (question.getNumeroDeLaQuestion() == numeroQuestionCourante )
 				return question;
-			}
+			
 		}
 		return null;
+	}
+
+	private void afficherTableauQuestion (){
+		/*
+		 * Pour le débuggage
+		 */
+		Log.w("DEBUGGAGE", "============================");
+		Log.w("DEBUGGAGE", "============================");
+		Log.w("DEBUGGAGE", "FIN DE CREATION DU QUIZZ");
+		Log.w("DEBUGGAGE", "============================");
+		Log.w("DEBUGGAGE", "============================");
+		for (QuestionReponse question : tableauDeToutesLesQuestions){
+			Log.w("DEBUGGAGE", "-------------------------------");
+			Log.w("DEBUGGAGE", "id = "+question.getId());
+			Log.w("DEBUGGAGE", "numéro de la question = "+question.getNumeroDeLaQuestion());
+			Log.w("DEBUGGAGE", "question = "+question.getQuestion());
+			Log.w("DEBUGGAGE", "-------------------------------");
+		}
+		
 	}
 }

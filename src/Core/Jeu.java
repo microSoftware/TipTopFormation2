@@ -1,12 +1,6 @@
 package Core;
 
-import com.example.tiptopformation2.Quizz;
-import com.example.tiptopformation2.SelectionnerLevel;
-
-import android.content.Intent;
-import android.content.res.Resources.Theme;
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.content.Context;
 
 
 /*
@@ -14,6 +8,7 @@ import android.os.Parcelable;
  */
 public class Jeu  {
 	
+	private Context contexte;
 	private static Jeu instance;
 	private User user;
 	private QuizzModel quizz;
@@ -48,6 +43,7 @@ public class Jeu  {
 	public void initialiserLeQuizz() {
 		// TODO Auto-generated method stub
 		quizz = new QuizzModel();
+		
 	}
 
 	public void recommencer(){
@@ -64,6 +60,23 @@ public class Jeu  {
 		quizz = null;
 		quizz = new QuizzModel(theme, level);
 		
+	}
+	
+	/*
+	 * Cette méthode pour récupérer les ressources (fichiers
+	 * csv). En effet, si une classe n'est pas une activité,
+	 * elle ne peut pas acceder au ressource. L'astuce consiste
+	 * donc à passer en argument le contexte d'une activité android
+	 * à une classe java.
+	 */
+	public void initialiserContexteAndroid(Context context) {
+		
+		this.contexte = context;
+		
+	}
+
+	public Context getContexte() {
+		return contexte;
 	}
 	
 	

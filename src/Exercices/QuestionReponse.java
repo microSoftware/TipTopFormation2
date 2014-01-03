@@ -1,24 +1,34 @@
 package Exercices;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+
+import android.content.Context;
+import android.content.res.Resources;
+import android.util.Log;
+
+import com.example.tiptopformation2.R;
+
 import Core.EXERCICES;
 import Core.Jeu;
 import Core.QuizzModel;
 import Core.THEMES;
-import android.content.res.Resources.Theme;
 
 public abstract class QuestionReponse {
 	
 	/*
-	 * Tous ce qui est commun à toutes les questions :
+	 * Tous ce qui est commun à tous les exos :
 	 * - le thème du quizz, le type de l'exo, le level
 	 * - numéro de la question, l'id de la question
 	 */
 	protected Jeu jeu;
 	protected QuizzModel quizz;
-	protected Theme themeDuQuizz;
+	protected THEMES themeDuQuizz;
 	protected EXERCICES typeExo;
-	private int level;//0 pour savoir quel fichier csv lire
-	protected int id;
+	protected int level;
+	protected String id;
 	
 	protected int numeroDeLaQuestion;
 	protected String question;
@@ -38,6 +48,8 @@ public abstract class QuestionReponse {
 		super();
 		jeu = Jeu.getInstance();
 		quizz = jeu.getQuizz();
+		level = quizz.getLevelChoisi();
+		themeDuQuizz = quizz.getTheme();
 	}
 	
 	public void setNumeroDeLaQuestion(int numeroDeLaQuestion) {
@@ -66,7 +78,7 @@ public abstract class QuestionReponse {
 		return jeu;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
@@ -76,75 +88,103 @@ public abstract class QuestionReponse {
 
 	
 
-	public Theme getThemeDuQuizz() {
+	public THEMES getThemeDuQuizz() {
 		return themeDuQuizz;
 	}
 
 	
-	public static String[]  lireCSV (int[] idANePasPrendre){
-		/*
-		 int nbLigne = nbLigneFichier(urlFichier);
-		String[][] monTableau = new String[nbLigne][nbColonneMax];
- 
-		try {
- 
-			FileInputStream fichier = new FileInputStream(urlFichier);
-			BufferedReader buffer = new BufferedReader(new InputStreamReader(
-					fichier));
-			LineNumberReader l = new LineNumberReader(buffer);
-			String str;
-			String ligne;
-			while ((ligne = l.readLine()) != null) {
-				// on parcourt toutes les lignes
- 
-				// ligne = notre ligne
- 
-				StringTokenizer colonnes = new StringTokenizer(ligne, ";");
-				// nos colonnne
-				int i = 0;
-				while (colonnes.hasMoreTokens()) {
- 
-					monTableau[l.getLineNumber() - 1][i] = colonnes.nextToken();
-					i++;
-				}
- 
-			}
- 
-		} catch (IOException e) {
-			System.out.println("Erreur dans la lecture du fichier");
-			e.printStackTrace();
-		}
-		//retourne donc un tableau[ligne][colonne] qui contient tout notre fichier
-		return monTableau;
-		 */
-		
-		//NE PAS OUBLIER D'AJOUTER l'id DE LA QUESTION DANS "tabQuestionHistorique" et d'INCREMENTER "nbQuestionDejaAjouter"
-		String chaine[]={"01","Ma question est ","réponse 1", "réponse 2","réponse 3"};
-		return chaine;
-	}
-	
-	/*
-	 * Fonction commune à toutes les classes filles
-	 * Elle permet d'extraire les éléments d'un tableau d'une position x jusqu'à la fin du tableau
-	 */
-	public String[] extraireTousElementsTableau(String[] tableau, int x){
-		String tab[] = null;
-		int counterTab = 0;
-		boolean encoreElement = true;
-		int i=x;
-		while (encoreElement){
-			if (tableau[i]!=null){
-				tab[counterTab] = tableau[i];
-			}
-			else {
-				encoreElement = false;
-			}
-		}
-		return tab;
-	}
 	
 	public EXERCICES getTypeExo() {
 		return typeExo;
+	}
+	
+	
+	public String  lireFichierCSV (){
+		Log.w("QuestionReponse", "lireFichierCSV 1");
+		
+		try {
+			Context con = jeu.getContexte();
+			Resources res = con.getResources();
+	        InputStream in_s = null;
+	        Log.w("QuestionReponse", "lireFichierCSV 2");
+	        if (themeDuQuizz == THEMES.MENAGE)
+	        {
+	        	if (typeExo == EXERCICES.MULTICHOIX){
+		        	if (level == 1)
+		        		in_s = res.openRawResource(R.raw.multichoix_menage_lv1);
+		        	if (level == 2)
+		        		in_s = res.openRawResource(R.raw.multichoix_menage_lv2);
+		        	
+	        	}
+	        	
+	        	if (typeExo == EXERCICES.SUPERCHOIX){
+		        	if (level == 1)
+		        		in_s = res.openRawResource(R.raw.superchoix_menage_lv1);
+		        	if (level == 2)
+		        		in_s = res.openRawResource(R.raw.superchoix_menage_lv2);
+		        	if (level == 3)
+		        		in_s = res.openRawResource(R.raw.superchoix_menage_lv3);
+		        	Log.w("QuestionReponse", "lireFichierCSV 3");
+	        	}
+	        	
+	        	if (typeExo == EXERCICES.SYNONYME){
+		        	if (level == 1)
+		        		in_s = res.openRawResource(R.raw.synonyme_menage_lv1);
+		        	if (level == 2)
+		        		in_s = res.openRawResource(R.raw.synonyme_menage_lv2);
+		        	if (level == 3)
+		        		in_s = res.openRawResource(R.raw.synonyme_menage_lv3);
+		        	
+	        	}
+	        }
+	       
+	        byte[] b = new byte[in_s.available()];
+	        
+	        in_s.read(b);
+	        String texte = new String(b);
+	        Log.w("QuestionReponse", "le fichier lu : "+ texte);
+	        return texte;
+	        
+	    } catch (Exception e) {
+	    	 e.printStackTrace();
+	    	 Log.w("test", "Erreur dans la lecture du fichier");
+	    }
+		
+		return null;
+		
+		
+	}
+	
+	
+	public String[][] extraireTousElementsTableau(){
+		String texte = lireFichierCSV ();
+		Log.w("QuestionReponse", "extraireTousElementsTableau 1");
+		List<String> listeLignes = new ArrayList<String>(); 
+		//on sépare le fichier en ligne
+		StringTokenizer lignes = new StringTokenizer(texte, "\n");
+		
+		while (lignes.hasMoreTokens()) {
+			listeLignes.add(lignes.nextToken());
+		}
+		Log.w("QuestionReponse", "extraireTousElementsTableau 2");
+		int nombreLignes = listeLignes.size();
+		String [][] tableau = new String [nombreLignes][8];
+		Log.w("QuestionReponse", "extraireTousElementsTableau 3");
+		int numeroLigne = 0;
+		for (String ligne : listeLignes) {
+			StringTokenizer colonnes = new StringTokenizer(ligne, ";");
+			//on parcourt les colonnes
+			int i = 0;
+			while (colonnes.hasMoreTokens()) {
+				String terme = colonnes.nextToken();
+				tableau[numeroLigne][i] = terme;
+				i++;
+			}
+			numeroLigne++;
+		}
+		Log.w("QuestionReponse", "extraireTousElementsTableau 4");
+		//retourne donc un tableau[ligne][colonnes] qui contient tout notre fichier
+		return tableau;
 	}
 	
 	
