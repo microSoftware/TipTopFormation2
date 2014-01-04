@@ -119,12 +119,13 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 				
 				if (depot.getText().equals(correct.getText()) == false){
 					
-					reponse.setText("Mauvaise réponse ! \n"+correction);
+					reponse.setText("Mauvaise réponse !");
 					reponse.setTextColor(Color.RED);
 					isRight = false;
 				}
 				
 				reponse.setVisibility(View.VISIBLE);
+				explication.setText(correction);
 				explication.setVisibility(View.VISIBLE);
 				
 				if (!boutonSuivantAfficher){

@@ -1,5 +1,3 @@
-01;Lequel de ces produit utiliseriez-vous pour laver le sol ?;1;Agglutinant;menage_agglutinant.png;D�graissant;menage_degraissant.png
-02;Quel mat�riel utiliseriez vous pour d�poussi�rer le sol ?;1;Aspirateur;menage_aspirateur.png;Raclette;menage_raclette.png
-03;A quel chaleur utiliseriez vous le fer � repasser pour une mati�re tel que le nylon ou la soie ?;1;Fer doux;menage_ferdoux.png;Fer chaud;menage_ferchaud.png
-
-
+01;Lequel de ces produit utiliseriez-vous pour laver le sol ?;La bonne réponse était ...;1;Agglutinant;menage_agglutinant;Dégraissant;menage_degraissant
+02;Quel matériel utiliseriez vous pour dépoussiérer le sol ?;La bonne réponse était ...;1;Aspirateur;menage_aspirateur;Raclette;menage_raclette
+03;A quel chaleur utiliseriez vous le fer à repasser pour une matière tel que le nylon ou la soie ?;La bonne réponse était ...;1;Fer doux;menage_ferdoux;Fer chaud;menage_ferchaud

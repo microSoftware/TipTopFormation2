@@ -16,14 +16,13 @@ import android.util.Log;
 
 public class SuperChoix extends QuestionReponse {
 
-	private String[]lesElements;
+	private String[] lesElements;
 	protected String image;
+	
 	/*
 	 * Historique des ids pour ne pas avoir 2 fois la même question.
 	 */
 	private static List<String> tabQuestionHistorique;//liste des id que l'on a déjà
-	
-	
 	
 	public SuperChoix() {
 		super();
@@ -41,18 +40,18 @@ public class SuperChoix extends QuestionReponse {
 		
 		 String[] tabData = recupererQuestion();
 		 Log.w("", "Test de l'id      #"+tabData[0]+"#");
+		 
 		 id = tabData[0];
-		
-		 question= tabData[2];
 		 image = tabData[1];
-		 lesElements[0] = tabData[3];
-		 lesElements[1] = tabData[4];
+		 question= tabData[2];
+		 phraseCorrection = tabData[3];
+		 lesElements[0] = tabData[4];
+		 lesElements[1] = tabData[5];
 		 if (level == 2)
-			 lesElements[2] = tabData[5];
+			 lesElements[2] = tabData[6];
 		
-		 phraseCorrection = "La correction de la question";
+		 
 	}
-	
 	
 	private String[] recupererQuestion(){
 		Log.w("a","---------------------------------------------");
@@ -92,50 +91,7 @@ public class SuperChoix extends QuestionReponse {
 		//on rajoute première question du fichier
 		return tabTexte[0];
 	}
-	
-	/*
-	private String[] recupererQuestion1(){
-		Log.w("a","---------------------------------------------");
-		Log.w("a","---------------------------------------------");
-		Log.w("a","---------------------------------------------");
-		Log.w("a","--------------recupererQuestion1-----------");
-		Log.w("a","---------------------------------------------");
-		Log.w("a","---------------------------------------------");
-		Log.w("a","---------------------------------------------");
-		String[][] tabTexte = new String [5][];
-		String[] tabData1 = {"04","menage_trestoxique","Glisser le mot correspondant au pictogramme1","Très toxique","Irritant","Polluant"};
-		String[] tabData2 = {"05","menage_inflammable","Glisser le mot correspondant au pictogramme","Inflammable","Explosif","Comburant"};
-		String[] tabData3 = {"06","menage_irritant","Glisser le mot correspondant au pictogramme","Irritant","Nocif","Toxique"};
-		String[] tabData4 = {"07","menage_trestoxique","Glisser le mot correspondant au pictogramme2","Très toxique","Irritant","Polluant"};
-		String[] tabData5 = {"08","menage_trestoxique","Glisser le mot correspondant au pictogramme3","Très toxique","Irritant","Polluant"};
-		tabTexte[0] = tabData1;
-		tabTexte[1] = tabData2;
-		tabTexte[2] = tabData3;
-		tabTexte[3] = tabData4;
-		tabTexte[4] = tabData5;
-		int nombreElementTableau = tabTexte.length -1;
 		
-		boolean ok = false;
-		while (!ok){
-			int alea = (int) (Math.random()*nombreElementTableau);
-			String question[] = tabTexte[alea];
-			int idQuestion = Integer.valueOf(question[0]);
-			int tailleListe = tabQuestionHistorique.size();
-			if (!isDejaCetteQuestion(idQuestion)){
-				//on a pas encore cette question dans la liste
-				//donc on l'ajoute
-				ok=true;//on sort de la boucle
-				tabQuestionHistorique.add(idQuestion);
-				return question;
-			}
-			
-		}
-		
-		return null;
-	}
-	 */
-	
-	
 	private boolean isDejaCetteQuestion(String id){
 		
 		for (String idDejaFait : SuperChoix.tabQuestionHistorique){
@@ -156,7 +112,5 @@ public class SuperChoix extends QuestionReponse {
 	public String getImage() {
 		return image;
 	}
-
-	
 
 }

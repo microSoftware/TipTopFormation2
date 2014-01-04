@@ -55,7 +55,7 @@ public class MultiChoixJeu extends Activity  {
 		private Button submit;		
 		
 		// Cette liste permettra de distribuer aléatoirement les variables.
-		List<String> list = new ArrayList<String>();
+		List<String[]> list = new ArrayList<String[]>();
 		
 		private boolean boutonSuivantAfficher=false;
 		
@@ -121,26 +121,36 @@ public class MultiChoixJeu extends Activity  {
 			instanceDeLaQuestion = (MultiChoix) Jeu.getInstance().getQuizz().getQuestionInstance();
 			niveau = Jeu.getInstance().getQuizz().getLevelChoisi();
 			NbBonnesReponses = instanceDeLaQuestion.getNbBonnesReponses();
-			numeroQuestion = instanceDeLaQuestion.getNumeroDeLaQuestion();
+			numeroQuestion = instanceDeLaQuestion.getNumeroDeLaQuestion() + 1;
 			nombreDeQuestion = QuizzModel.getNbquestionparquizz();
 			question = instanceDeLaQuestion.getQuestion();
+			correction = instanceDeLaQuestion.getPhraseCorrection();
 			lesElements = new String[5][2];
 			lesElements = instanceDeLaQuestion.getLesElements();
-			correction = instanceDeLaQuestion.getPhraseCorrection();
+			
 			
 			
 			
 			//on remplace les éléments par les vrais du model
-			proposition1 = lesElements[0][0];//la réponse texte
-			image1 =  lesElements[0][1];//l'image de la réponse
-			proposition2 = lesElements[1][0];
-			image1 =  lesElements[1][1];
-			proposition3 = lesElements[2][0];
-			image1 =  lesElements[2][1];
-			proposition4 = lesElements[3][0];
-			image1 =  lesElements[3][1];
 			
 			
+			 if (niveau == 1){
+				proposition1 = lesElements[0][0];//la réponse texte
+				image1 =  lesElements[0][1];//l'image de la réponse
+				proposition2 = lesElements[1][0];
+				image2 =  lesElements[1][1];
+			 }
+			 else if (niveau == 2){//3 réponses possible
+				 proposition1 = lesElements[0][0];
+				 proposition2 = lesElements[1][0];
+				 proposition3 = lesElements[2][0];
+			}
+			else if (niveau == 3){//4 réponses possible
+				 proposition1 = lesElements[0][0];
+				 proposition2 = lesElements[1][0];
+				 proposition3 = lesElements[2][0];
+				 proposition4 = lesElements[3][0];
+			}
 			
 			
 			
@@ -178,35 +188,26 @@ public class MultiChoixJeu extends Activity  {
 			correctionEcrite.setText("");
 
 			// Ajout des propositions dans la liste, globales quel que soit le niveau
-			list.add(proposition1);
-			list.add(proposition2);
-			
+			list.add(lesElements[0]);
+			list.add(lesElements[1]);
+			nombreBonneReponse.setVisibility(-1);
+			img4.setVisibility(-1);
+			img3.setVisibility(-1);
+			img2.setVisibility(-1);
+			img1.setVisibility(-1);
 			if (niveau == 1){
-				// on désactive deux checkbox, deux images & le texte "nombre de bonne réponse"
+				// on 2 checkbox, 2 images
 				reponse3.setVisibility(-1);
 				reponse4.setVisibility(-1);
-				img3.setVisibility(-1);
-				img4.setVisibility(-1);
-				nombreBonneReponse.setVisibility(-1);
 			}
 			else if (niveau == 2){
-				// Affichage : "Nombre de bonne réponse"
-				if (NbBonnesReponses > 1)
-					nombreBonneReponse.setText("Bonnes réponses : "+NbBonnesReponses);
-				else 
-					nombreBonneReponse.setText("Bonne réponse : "+NbBonnesReponses);
-				
-				// On ajoute les deux propositions dans le cas où il y a 4 propositions
-				list.add(proposition3);
-				list.add(proposition4);
+				// on 3 checkbox, PAS D'IMAGE
+				reponse4.setVisibility(-1);
+				list.add(lesElements[2]);
 			}
-			else {
-				// on désactive le texte "nombre de bonne réponse"
-				nombreBonneReponse.setVisibility(-1);
-				
-				// On ajoute les deux propositions dans le cas où il y a 4 propositions
-				list.add(proposition3);
-				list.add(proposition4);
+			else if  (niveau == 3) {//4 choix, PAS D'IMAGE
+				list.add(lesElements[2]);
+                list.add(lesElements[3]);
 			}
 
 			questionPosee.setText(question);
@@ -214,72 +215,72 @@ public class MultiChoixJeu extends Activity  {
 		}
 
 		public void melanger(){
-
+			
+			// Mélange via la méthode shuffle
+			Collections.shuffle(list);
 			if (niveau == 1){
-
-				// Mélange via la méthode shuffle
-				Collections.shuffle(list);
 				// Attribution des valeurs
-				reponse1.setText(list.get(0));
-				reponse2.setText(list.get(1));
+				reponse1.setText(list.get(0)[0]);
+				reponse2.setText(list.get(1)[0]);
+				//img1.setImageResource(getResources().getIdentifier(list.get(0)[1], "drawable", getPackageName()));
+				//img2.setImageResource(getResources().getIdentifier(list.get(1)[1], "drawable", getPackageName()));
 			}
-			else {
-
-				Collections.shuffle(list);
-				reponse1.setText(list.get(0));
-				reponse2.setText(list.get(1));
-				reponse3.setText(list.get(2));
-				reponse4.setText(list.get(3));
+			else if (niveau == 2){
+				reponse1.setText(list.get(0)[0]);
+				reponse2.setText(list.get(1)[0]);
+				reponse3.setText(list.get(2)[0]);
+			}
+			else if (niveau == 3){
+				reponse1.setText(list.get(0)[0]);
+				reponse2.setText(list.get(1)[0]);
+				reponse3.setText(list.get(2)[0]);
+				reponse4.setText(list.get(3)[0]);
 			}
 		}
 
 		public boolean verifierResultats(){
-			if (niveau == 1){
-				// on vérifie si reponse1 est égal à la proposition 2 ( fausse )
-				// mais aussi si elle est coché
-				if ((reponse1.getText().equals(proposition2)) && (reponse1.isChecked()))
+			if (NbBonnesReponses == 1){
+				if(getNbChecked() != 1)
 					return false;
-				
-				// On vérifie si rien est coché
-				else if ( (! reponse1.isChecked()) && (! reponse2.isChecked()))
-					return false;
-			}
-			else {
-				if (NbBonnesReponses == 1){
-					if(getNbChecked() != 1)
-						return false;
-					else {
-						// on vérifie si l'une des réponses est fausse et si elle est sélectionné 
-						if ((! reponse1.getText().equals(proposition1)) && (reponse1.isChecked()))
-							return false;
-						if ((! reponse2.getText().equals(proposition1)) && (reponse1.isChecked()))
-							return false;
-						if ((! reponse3.getText().equals(proposition1)) && (reponse1.isChecked()))
-							return false;
-						if ((! reponse4.getText().equals(proposition1)) && (reponse1.isChecked()))
-							return false;
-					}
-				}
-				
-				else { // dans le cas où 2 bonnes réponses sont cochés
-					if(getNbChecked() != 2)
-						return false;
-					
-					if (((! reponse1.getText().equals(proposition1))||(! reponse1.getText().equals(proposition2))) && (reponse1.isChecked()))
-						return false;
-					if (((! reponse2.getText().equals(proposition1))||(! reponse1.getText().equals(proposition2))) && (reponse1.isChecked()))
-						return false;
-					if (((! reponse3.getText().equals(proposition1))||(! reponse1.getText().equals(proposition2))) && (reponse1.isChecked()))
-						return false;
-					if (((! reponse4.getText().equals(proposition1))||(! reponse1.getText().equals(proposition2))) && (reponse1.isChecked()))
-						return false;
-				}
 			}
 			
+			else if (NbBonnesReponses == 2){
+				if(getNbChecked() != 2)
+					return false;
+			}
+			
+			else if (NbBonnesReponses == 3){
+				if(getNbChecked() != 3)
+					return false;
+			}
+		
+		
+			
+			if ( reponse1.isChecked() && !isBon(reponse1.getText().toString()) )
+				return false;
+			if ( reponse2.isChecked() && !isBon(reponse2.getText().toString()) )
+				return false;
+			
+			if (niveau >= 2){
+				if ( !(reponse3.isChecked() && isBon(reponse3.getText().toString())) )
+					return false;
+			}
+			if (niveau == 3){
+				if ( !(reponse4.isChecked() && isBon(reponse4.getText().toString())) )
+					return false;
+			}
+				
 			// Si aucune erreur n'est trouvé, on renvoit vrai.
 			return true;
 		}
 		
+		private boolean isBon (String proposition){
+			for (int i=0;i<NbBonnesReponses;i++){
+				if (proposition.equals(lesElements[i][0]))
+					return true;
+			}
+			return false;
+		}
 		// fonction qui retourne le nombre de checkbox coché
 		public int getNbChecked(){
 			int value = 0;

@@ -13,7 +13,7 @@ import android.util.Log;
 
 public class QuizzModel {
 	// variables de la classe
-	private static final int nbQuestionParQuizz = 5; 
+	private static final int nbQuestionParQuizz = 3; 
 	private Jeu jeu;
 	private THEMES theme;
 	private int levelChoisi=0;
@@ -31,22 +31,13 @@ public class QuizzModel {
 		tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>(nbQuestionParQuizz);
 	}
 	
-	/*
-	 * Ce constructeur sert uniquement quand on fait recommencer une partie
-	 * Donc on garder le même thème et level
-	 */
-	public QuizzModel(THEMES theme, int level) {
-		super();
-		Log.w("QuizzModel", "constructeur 1");
-		jeu = Jeu.getInstance();
+	//quand on recommence une partie
+	public void recommencer (THEMES theme, int level){
 		this.theme = theme;
 		this.levelChoisi = level;
-		numeroQuestionCourante=0;
-		tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>(nbQuestionParQuizz);
-		//et Hop ! on crée le quizz
 		creerLeQuizz();
 	}
-
+	
 	public void setTheme(THEMES theme) {
 		this.theme = theme;
 	}
@@ -141,26 +132,14 @@ public class QuizzModel {
 		/*
 		 * Pour le thème ménage, il y a les exos : - Synonyme - SuperChoix - MultiChoix
 		 */
-//		int nombreExercicePourCeTheme = 3;
-//		int repetitionD1MemeExo = nbQuestionParQuizz
-//				/ nombreExercicePourCeTheme;
-//		ajouterQuestionDansQuizz(EXERCICES.SYNONYME, repetitionD1MemeExo);
+//		int nombreExercicePourCeTheme = 2;
+//		int repetitionD1MemeExo = nbQuestionParQuizz / nombreExercicePourCeTheme;
+//		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, repetitionD1MemeExo);
 //		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
-//
-//		// si ce n'est pas un multiple de 3 : on doit ajouter une question de
-//		// plus à un exo
-//		if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 1)
-//			ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX,
-//					repetitionD1MemeExo + 1);// on ajoute 1 question de plus
-//												// pour un exo
-//		else if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 2)
-//			ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX,
-//					repetitionD1MemeExo + 2);// on ajoute 2 questions de plus
-//												// pour un exo
-	
-	
+
+		ajouterQuestionDansQuizz(EXERCICES.SYNONYME, nbQuestionParQuizz);
 		//ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, nbQuestionParQuizz);
-		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, nbQuestionParQuizz);
+		//ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, nbQuestionParQuizz);
 	}
 
 	private void creerLeQuizz_MATHS() {

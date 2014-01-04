@@ -28,8 +28,8 @@ public abstract class QuestionReponse {
 	protected THEMES themeDuQuizz;
 	protected EXERCICES typeExo;
 	protected int level;
-	protected String id;
 	
+	protected String id;
 	protected int numeroDeLaQuestion;
 	protected String question;
 	protected String phraseCorrection;
@@ -55,8 +55,6 @@ public abstract class QuestionReponse {
 	public void setNumeroDeLaQuestion(int numeroDeLaQuestion) {
 		this.numeroDeLaQuestion = numeroDeLaQuestion;
 	}
-
-	
 
 	public String getQuestion() {
 		return question;
@@ -86,18 +84,13 @@ public abstract class QuestionReponse {
 		return this;
 	}
 
-	
-
 	public THEMES getThemeDuQuizz() {
 		return themeDuQuizz;
 	}
 
-	
-	
 	public EXERCICES getTypeExo() {
 		return typeExo;
 	}
-	
 	
 	public String  lireFichierCSV (){
 		Log.w("QuestionReponse", "lireFichierCSV 1");
@@ -114,6 +107,8 @@ public abstract class QuestionReponse {
 		        		in_s = res.openRawResource(R.raw.multichoix_menage_lv1);
 		        	if (level == 2)
 		        		in_s = res.openRawResource(R.raw.multichoix_menage_lv2);
+		        	if (level == 3)
+		        		in_s = res.openRawResource(R.raw.multichoix_menage_lv3);
 		        	
 	        	}
 	        	
@@ -136,6 +131,7 @@ public abstract class QuestionReponse {
 		        		in_s = res.openRawResource(R.raw.synonyme_menage_lv3);
 		        	
 	        	}
+	        	
 	        }
 	       
 	        byte[] b = new byte[in_s.available()];
@@ -154,7 +150,6 @@ public abstract class QuestionReponse {
 		
 		
 	}
-	
 	
 	public String[][] extraireTousElementsTableau(){
 		String texte = lireFichierCSV ();

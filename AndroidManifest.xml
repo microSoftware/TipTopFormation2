@@ -42,6 +42,10 @@
             android:name="com.example.tiptopformation2.MultiChoixJeu"
             android:label="@string/title_activity_multi_choix_jeu" >
         </activity>
+        <activity
+            android:name="com.example.tiptopformation2.Synonyme"
+            android:label="@string/title_activity_synonyme" >
+        </activity>
     </application>
 
 </manifest>

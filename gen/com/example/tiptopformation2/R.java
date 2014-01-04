@@ -107,9 +107,10 @@ public final class R {
         public static final int activity_multi_choix_jeu=0x7f030002;
         public static final int activity_quizz=0x7f030003;
         public static final int activity_super_choix_jeu=0x7f030004;
-        public static final int quizz_resultat=0x7f030005;
-        public static final int resultat_super_choix_jeu=0x7f030006;
-        public static final int selectionner_level=0x7f030007;
+        public static final int activity_synonyme=0x7f030005;
+        public static final int quizz_resultat=0x7f030006;
+        public static final int resultat_super_choix_jeu=0x7f030007;
+        public static final int selectionner_level=0x7f030008;
     }
     public static final class menu {
         public static final int culture_generale_jeu=0x7f080000;
@@ -119,17 +120,19 @@ public final class R {
         public static final int selectionner_level=0x7f080004;
         public static final int super_choix=0x7f080005;
         public static final int super_choix_jeu=0x7f080006;
-        public static final int testctivite=0x7f080007;
+        public static final int synonyme=0x7f080007;
+        public static final int testctivite=0x7f080008;
     }
     public static final class raw {
         public static final int multichoix_menage_lv1=0x7f040000;
         public static final int multichoix_menage_lv2=0x7f040001;
-        public static final int superchoix_menage_lv1=0x7f040002;
-        public static final int superchoix_menage_lv2=0x7f040003;
-        public static final int superchoix_menage_lv3=0x7f040004;
-        public static final int synonyme_menage_lv1=0x7f040005;
-        public static final int synonyme_menage_lv2=0x7f040006;
-        public static final int synonyme_menage_lv3=0x7f040007;
+        public static final int multichoix_menage_lv3=0x7f040002;
+        public static final int superchoix_menage_lv1=0x7f040003;
+        public static final int superchoix_menage_lv2=0x7f040004;
+        public static final int superchoix_menage_lv3=0x7f040005;
+        public static final int synonyme_menage_lv1=0x7f040006;
+        public static final int synonyme_menage_lv2=0x7f040007;
+        public static final int synonyme_menage_lv3=0x7f040008;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
@@ -144,6 +147,7 @@ public final class R {
         public static final int title_activity_selectionner_level=0x7f060003;
         public static final int title_activity_super_choix=0x7f060006;
         public static final int title_activity_super_choix_jeu=0x7f060007;
+        public static final int title_activity_synonyme=0x7f06000d;
         public static final int title_activity_testctivite=0x7f060005;
     }
     public static final class style {

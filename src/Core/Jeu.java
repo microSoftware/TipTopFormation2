@@ -58,8 +58,8 @@ public class Jeu  {
 		int level = quizz.getLevelChoisi();
 		
 		quizz = null;
-		quizz = new QuizzModel(theme, level);
-		
+		quizz = new QuizzModel();
+		quizz.recommencer(theme, level);
 	}
 	
 	/*

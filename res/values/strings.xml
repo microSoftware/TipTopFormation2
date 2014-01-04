@@ -14,5 +14,6 @@
     <string name="facile">Facile</string>
     <string name="moyen">Moyen</string>
     <string name="difficile">Difficile</string>
+    <string name="title_activity_synonyme">Synonyme</string>
 
 </resources>
