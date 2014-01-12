@@ -24,6 +24,11 @@ public class SuperChoix extends QuestionReponse {
 	 */
 	private static List<String> tabQuestionHistorique;//liste des id que l'on a déjà
 	
+	public static void viderTabQuesHistorique (){
+		if (tabQuestionHistorique != null)
+			tabQuestionHistorique.clear();
+	}
+	
 	public SuperChoix() {
 		super();
 		Log.w("SuperChoix", "Debut Constructeur");
@@ -68,7 +73,7 @@ public class SuperChoix extends QuestionReponse {
 		int nombreElementTableau = tabTexte.length;
 		
 		boolean ok = false;
-		int nbEssai = 5; //eviter une boucle infini
+		int nbEssai = 10; //eviter une boucle infini
 		while (!ok && nbEssai >= 0){
 			nbEssai--;
 			int alea = (int) (Math.random()*nombreElementTableau);//0,1,2

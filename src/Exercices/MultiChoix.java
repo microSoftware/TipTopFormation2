@@ -17,6 +17,11 @@ public class MultiChoix extends QuestionReponse {
 	 */
 	private static List<String> tabQuestionHistorique;//liste des id que l'on a déjà
 	
+	public static void viderTabQuesHistorique (){
+		if (tabQuestionHistorique != null)
+			tabQuestionHistorique.clear();
+	}
+	
 	public MultiChoix() {
 		super();
 		typeExo = EXERCICES.MULTICHOIX;
@@ -34,12 +39,13 @@ public class MultiChoix extends QuestionReponse {
 		 Log.w("SuperChoix", "remplirLesVariables()");
 		
 		 String[] tabData = recupererQuestion();
-		 Log.w("", "Test de l'id      #"+tabData[0]+"#");
+		 
 		 
 		 id = tabData[0];
 		 question= tabData[1];
 		 phraseCorrection = tabData[2];
-		 NbBonnesReponses = 1;//Integer.parseInt(tabData[3]);
+		 Log.w("", "NbBonnesReponses      #"+tabData[3]+"# AND class = "+tabData[3].getClass());
+		 NbBonnesReponses = Integer.parseInt(tabData[3]);
 		 
 		 if (level == 1){
 			 lesElements[0][0] = tabData[4];//la réponse texte 1
@@ -77,7 +83,7 @@ public class MultiChoix extends QuestionReponse {
 		int nombreElementTableau = tabTexte.length;
 		
 		boolean ok = false;
-		int nbEssai = 5; //eviter une boucle infini
+		int nbEssai = 10; //eviter une boucle infini
 		while (!ok && nbEssai >= 0){
 			nbEssai--;
 			int alea = (int) (Math.random()*nombreElementTableau);//0,1,2

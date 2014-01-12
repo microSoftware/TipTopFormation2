@@ -84,8 +84,10 @@ public class MultiChoixJeu extends Activity  {
 						if (!boutonSuivantAfficher){
 							if (!isRight) 
 								Toast.makeText(MultiChoixJeu.this, "Mauvaise réponse !\n"+correction, Toast.LENGTH_SHORT).show();
-							else 
+							else {
+								instanceDeLaQuestion.getQuizz().gagnerPoint();
 								Toast.makeText(MultiChoixJeu.this, "Bonne réponse !\n"+correction, Toast.LENGTH_SHORT).show();
+							}
 							
 							submit.setText("Suivant");
 							boutonSuivantAfficher = true;

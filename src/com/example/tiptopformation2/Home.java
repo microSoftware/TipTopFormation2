@@ -2,7 +2,6 @@ package com.example.tiptopformation2;
 
 import Core.Jeu;
 import Core.THEMES;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 public class Home extends Activity implements OnClickListener{
 
@@ -22,40 +22,85 @@ public class Home extends Activity implements OnClickListener{
 	
 	//Variable Core
 	private Jeu jeu;
+	private static boolean splashScreenTerminee = true;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_home);
-		Log.w("Home", "onCreate - avant initialiserQuizz()");
-		jeu = Jeu.getInstance();
-		jeu.initialiserContexteAndroid(this.getApplicationContext());
-		jeu.initialiserLeQuizz();
-		Log.w("Home", "onCreate - après initialiserQuizz()");
-		//
-		//Listener sur les boutons 
-		//
 		
-		Log.w("d",getApplicationContext().toString());
-		Log.w("d",getBaseContext().toString());
+		if ( ! splashScreenTerminee)
+			afficherSplashScreen();
 		
-		B_menage = (Button) findViewById(R.id.button1);
-		B_menage.setOnClickListener(this);
-		
-		B_maths = (Button) findViewById(R.id.button2);
-		B_maths.setOnClickListener(this);
-		
-		B_francais = (Button) findViewById(R.id.button3);
-		B_francais.setOnClickListener(this);
-		
-		B_cultureGenerale = (Button) findViewById(R.id.button4);
-		B_cultureGenerale.setOnClickListener(this);
-		
-		
-		
-		
+		if (splashScreenTerminee){
+			setContentView(R.layout.activity_home);
+			Log.w("Home", "onCreate - avant initialiserQuizz()");
+			jeu = Jeu.getInstance();
+			jeu.initialiserContexteAndroid(this.getApplicationContext());
+			jeu.initialiserLeQuizz();
+			
+			
+			
+			Log.w("Home", "onCreate - après initialiserQuizz()");
+			//
+			//Listener sur les boutons 
+			//
+			
+			Log.w("d",getApplicationContext().toString());
+			Log.w("d",getBaseContext().toString());
+			
+			B_menage = (Button) findViewById(R.id.button1);
+			B_menage.setOnClickListener(this);
+			
+			B_maths = (Button) findViewById(R.id.button2);
+			B_maths.setOnClickListener(this);
+			
+			B_francais = (Button) findViewById(R.id.button3);
+			B_francais.setOnClickListener(this);
+			
+			B_cultureGenerale = (Button) findViewById(R.id.button4);
+			B_cultureGenerale.setOnClickListener(this);
+			
+			
+			ProgressBar progress=(ProgressBar) findViewById(R.id.progressbar);
+			progress.setProgress(jeu.getUser().scoreToral());
+		}
 		
 	}
+
+	private void afficherSplashScreen() {
+		 final int _splashTime = 2000; 
+
+		    Thread splashTread;
+		    setContentView(R.layout.splash);
+
+		     
+
+		      /** Thread pour l'affichage du SplashScreen */
+		      splashTread = new Thread() 
+		      {
+		         @Override
+		         public void run() 
+		         {
+		            try 
+		            {
+		                 synchronized(this)
+		                 {
+		                    wait(_splashTime);
+		                 }
+		             } catch(InterruptedException e) {} 
+		             finally 
+		             {
+		               splashScreenTerminee = true;
+		               startActivity(new Intent(Home.this, Home.class));
+		             }
+		          }
+		       };
+
+		       
+		       		splashTread.start();
+	}
+	
 
 	@Override
 	public void onClick(View v) {

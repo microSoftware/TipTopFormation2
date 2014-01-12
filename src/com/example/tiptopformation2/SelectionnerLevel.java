@@ -17,8 +17,8 @@ import android.widget.Toast;
 public class SelectionnerLevel extends Activity implements OnClickListener {
 
 	//Couleur de grisement
-	private static final String colorGriserBouton="#FF5555";
-	private static final String colorAfficherBouton="#83B913";
+	private static final String colorGriserBouton="#FF5555";//rouge
+	private static final String colorAfficherBouton="#F0F0F0";//blanc
 	
 	
 	private int levelUserTheme;//level du joueur sur ce thème

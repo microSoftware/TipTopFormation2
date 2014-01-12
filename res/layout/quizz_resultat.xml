@@ -5,22 +5,106 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Résultat du Quizz"
+        android:layout_gravity="center_horizontal"
+        android:text="Résultat"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
-        android:id="@+id/recommencer"
+    <TextView
+        android:id="@+id/bravo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Recommencer" />
+        android:text="Bravo, vous avez gagné 8 points"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-    <Button
+    <TextView
+        android:id="@+id/felicitation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|fill_horizontal"
+        android:text="Félicitation, Vous venez de passer au niveau suppérieur (lv2) !"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView
+        android:id="@+id/TextMenage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ménage :"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/entrainer_menage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S'entrainer" />
+        
+    </LinearLayout>
+
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView
+        android:id="@+id/TextFrancais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Français :"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/entrainer_francais"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S'entrainer" />
+        
+    </LinearLayout>
+    
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+         >
+        
+        <TextView
+        android:id="@+id/TextMaths"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maths :"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Button
+            android:id="@+id/entrainer_maths"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S'entrainer" />
+        
+    </LinearLayout>
+    
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center_horizontal" >
+        
+       <Button
         android:id="@+id/revenirHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choisir un autre thème" />
+        android:text="Accueil" />
+
+     <Button
+         android:id="@+id/recommencer"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Recommencer" />
+        
+    </LinearLayout>
+
+     
 
 </LinearLayout>

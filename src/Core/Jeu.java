@@ -19,7 +19,10 @@ public class Jeu  {
 	}
 
 	private Jeu (){
-		user  = new User();
+		user = (User) User.restaurer();
+
+		if (user == null)
+			user  = new User();
 		
 	}
 	
@@ -46,12 +49,13 @@ public class Jeu  {
 		
 	}
 
+	/*
+	 * Pour recommencer une partie 
+	 * Il faut sauvegarder le thème et le level choisi
+	 * Mettre quizz à null et recréer un quizz avec le thème et le level
+	 */
 	public void recommencer(){
-		/*
-		 * Pour recommencer une partie 
-		 * Il faut sauvegarder le thème et le level choisi
-		 * Mettre quizz à null et recréer un quizz avec le thème et le level
-		 */
+		
 		
 		//sauvegarde du thème et du level
 		THEMES theme = quizz.getTheme();
@@ -61,6 +65,20 @@ public class Jeu  {
 		quizz = new QuizzModel();
 		quizz.recommencer(theme, level);
 	}
+	
+	/*
+	 * Pour s'entrainer sur un thème, 
+	 * on récupère le thème en argument, l'utilisateur
+	 * choisira son niveau par la suite
+	 */
+	public void sentrainer(THEMES theme){
+		
+		quizz = null;
+		quizz = new QuizzModel();
+		quizz.setTheme(theme);
+	}
+	
+	
 	
 	/*
 	 * Cette méthode pour récupérer les ressources (fichiers

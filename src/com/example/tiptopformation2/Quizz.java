@@ -3,8 +3,8 @@ package com.example.tiptopformation2;
 import Core.EXERCICES;
 import Core.Jeu;
 import Core.QuizzModel;
+import Core.THEMES;
 import Exercices.QuestionReponse;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Quizz extends Activity implements OnClickListener {
 
@@ -22,6 +23,9 @@ public class Quizz extends Activity implements OnClickListener {
 	//variables de vue
 	Button recommencer;
 	Button home;
+	Button menage;
+	Button francais;
+	Button maths;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +68,61 @@ public class Quizz extends Activity implements OnClickListener {
 		Log.w("Quizz (activité)", "lancerLeQuizz() ; quizz.getNbquestionparquizz() = "+ quizz.getNbquestionparquizz() );
 		
 		
-		
+		/*
+		 * On a finit le quizz => on affiche la page de résultat
+		 */
 		if ( numeroDeLaQuestionCourante == quizz.getNbquestionparquizz() ){
 			setContentView(R.layout.quizz_resultat);
 			recommencer = (Button) findViewById(R.id.recommencer);
 			recommencer.setOnClickListener(this);
 			home = (Button) findViewById(R.id.revenirHome);
 			home.setOnClickListener(this);
+			
+			TextView bravo = (TextView) findViewById(R.id.bravo);
+			TextView felicitation = (TextView) findViewById(R.id.felicitation);
+			String texteBravo = "Bravo, vous avez gagné "+
+					jeu.getUser().nbPointsGagnes(quizz.getTheme())
+					+" points";
+			
+			
+			//on sauvegarde le score du joueur en sérialisant la classe User
+			jeu.getUser().sauvegarder();
+			
+			//nombre de point manquant pour passer au level suppérieur
+			int nbPointManquantPourPasserNiveauSup = jeu.getUser().differencePointLevelSuivant(quizz.getTheme());
+			String texteFelicitation = "";
+			if (nbPointManquantPourPasserNiveauSup == 0){
+				//L'utilisateur passe au level suppérieur
+				 texteFelicitation = "Félicitation, vous venez de passer au suppérieur suppérieur !";
+			}
+			else {
+				 texteFelicitation = "Il vous manque encore "+nbPointManquantPourPasserNiveauSup+
+						" points pour passer au niveau suppérieur";
+			}
+			
+			bravo.setText(texteBravo);
+			felicitation.setText(texteFelicitation);
+			
+			//On sauvegarde les points
+			//jeu.getUser().sauvegarderPointPartie();
+			
+			/*
+			 * Si le thème n'est pas Culture générale (= tous les 
+			 * thèmes à la fois). Alors on n'a pas besoin d'afficher
+			 * les détails des points
+			 */
+			if (quizz.getTheme() != THEMES.CULTURE_GENERALE){
+				cacherDetailsPoint();
+			}
+			else {
+				menage = (Button) findViewById(R.id.entrainer_menage);
+				francais = (Button) findViewById(R.id.entrainer_francais);
+				maths = (Button) findViewById(R.id.entrainer_maths);
+				
+				menage.setOnClickListener(this);
+				francais.setOnClickListener(this);
+				maths.setOnClickListener(this);
+			}
 		}
 
 		else {
@@ -92,6 +144,10 @@ public class Quizz extends Activity implements OnClickListener {
 						Intent intent = new Intent(Quizz.this, SuperChoixJeu.class);
 						startActivity(intent);
 					}
+					else if ( question.getTypeExo() == EXERCICES.SYNONYME ){
+						Intent intent = new Intent(Quizz.this, SynonymeJeu.class);
+						startActivity(intent);
+					}
 					
 					
 				}
@@ -107,9 +163,34 @@ public class Quizz extends Activity implements OnClickListener {
 
 
 
+	private void cacherDetailsPoint() {
+		// TODO Auto-generated method stub
+		menage = (Button) findViewById(R.id.entrainer_menage);
+		francais = (Button) findViewById(R.id.entrainer_francais);
+		maths = (Button) findViewById(R.id.entrainer_maths);
+		
+		TextView menageText = (TextView) findViewById(R.id.TextMenage);
+		TextView francaisText = (TextView) findViewById(R.id.TextFrancais);
+		TextView mathsText = (TextView) findViewById(R.id.TextMaths);
+		
+		//puis on cache tous ça !
+		menage.setVisibility(View.INVISIBLE);
+		francais.setVisibility(View.INVISIBLE);
+		maths.setVisibility(View.INVISIBLE);
+		menageText.setVisibility(View.INVISIBLE);
+		francaisText.setVisibility(View.INVISIBLE);
+		mathsText.setVisibility(View.INVISIBLE);
+		
+	}
+
+
+
+
+
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		quizz.viderIdHistorique();
 		if(v == recommencer) {
 			jeu.recommencer();
 			//et c'est partie !!!
@@ -118,6 +199,21 @@ public class Quizz extends Activity implements OnClickListener {
 		}
 		else if(v == home) {
 			Intent intent = new Intent(Quizz.this, Home.class);
+			startActivity(intent);
+		}
+		else if(v == menage) {
+			jeu.sentrainer(THEMES.MENAGE);
+			Intent intent = new Intent(Quizz.this, SelectionnerLevel.class);
+			startActivity(intent);
+		}
+		else if(v == francais) {
+			jeu.sentrainer(THEMES.FRANCAIS);
+			Intent intent = new Intent(Quizz.this, SelectionnerLevel.class);
+			startActivity(intent);
+		}
+		else if(v == maths) {
+			jeu.sentrainer(THEMES.MATHS);
+			Intent intent = new Intent(Quizz.this, SelectionnerLevel.class);
 			startActivity(intent);
 		}
 		

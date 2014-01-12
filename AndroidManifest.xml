@@ -43,9 +43,14 @@
             android:label="@string/title_activity_multi_choix_jeu" >
         </activity>
         <activity
-            android:name="com.example.tiptopformation2.Synonyme"
+            android:name="com.example.tiptopformation2.SynonymeJeu"
             android:label="@string/title_activity_synonyme" >
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" >
+</uses-permission>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+</uses-permission>
 
 </manifest>

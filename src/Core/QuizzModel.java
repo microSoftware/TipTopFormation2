@@ -19,7 +19,6 @@ public class QuizzModel {
 	private int levelChoisi=0;
 	private ArrayList<QuestionReponse> tableauDeToutesLesQuestions;
 	private int numeroQuestionCourante;
-	private int nbPointGagne;
 	
 
 	
@@ -29,6 +28,7 @@ public class QuizzModel {
 		jeu = Jeu.getInstance();
 		numeroQuestionCourante=-1;
 		tableauDeToutesLesQuestions = new ArrayList<QuestionReponse>(nbQuestionParQuizz);
+		jeu.getUser().initialiserPointPartie();
 	}
 	
 	//quand on recommence une partie
@@ -36,8 +36,14 @@ public class QuizzModel {
 		this.theme = theme;
 		this.levelChoisi = level;
 		creerLeQuizz();
+		
 	}
 	
+	public void viderIdHistorique() {
+		SuperChoix.viderTabQuesHistorique();
+		MultiChoix.viderTabQuesHistorique();
+	}
+
 	public void setTheme(THEMES theme) {
 		this.theme = theme;
 	}
@@ -70,6 +76,7 @@ public class QuizzModel {
 	}
 
 	public int getNbPointGagne() {
+		int nbPointGagne = jeu.getUser().nbPointsGagnes(this.theme);
 		return nbPointGagne;
 	}
 
@@ -101,7 +108,7 @@ public class QuizzModel {
 				question.setNumeroDeLaQuestion(i);
 				i++;
 			}
-			afficherTableauQuestion ();
+			afficherTableauQuestion ();//pour le déboggage
 	}
 
 	public void creerLeQuizz() {
@@ -125,8 +132,16 @@ public class QuizzModel {
 			
 	}
 		
-
 	
+	/*
+	 * on récupère le thème de la question
+	 * et on l'ajoute dans pointPartieEnCours de la
+	 * classe User
+	 */
+	public void gagnerPoint(){
+		THEMES theme = getQuestionInstance().getThemeDuQuizz();
+		jeu.getUser().ajouterPoint(theme);
+	}
 
 	private void creerLeQuizz_MENAGE() {
 		/*
@@ -134,7 +149,8 @@ public class QuizzModel {
 		 */
 //		int nombreExercicePourCeTheme = 2;
 //		int repetitionD1MemeExo = nbQuestionParQuizz / nombreExercicePourCeTheme;
-//		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, repetitionD1MemeExo);
+//		int reste = nbQuestionParQuizz % repetitionD1MemeExo;
+//		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, repetitionD1MemeExo + reste);
 //		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
 
 		ajouterQuestionDansQuizz(EXERCICES.SYNONYME, nbQuestionParQuizz);
@@ -231,10 +247,11 @@ public class QuizzModel {
 		return null;
 	}
 
+	/*
+	 * Pour le débuggage
+	 */
 	private void afficherTableauQuestion (){
-		/*
-		 * Pour le débuggage
-		 */
+		
 		Log.w("DEBUGGAGE", "============================");
 		Log.w("DEBUGGAGE", "============================");
 		Log.w("DEBUGGAGE", "FIN DE CREATION DU QUIZZ");

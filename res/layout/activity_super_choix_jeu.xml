@@ -102,15 +102,7 @@
             android:layout_weight="0.09"
             android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/home"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_gravity="bottom"
-                android:background="@android:color/holo_red_light"
-                android:text="Menu"
-                android:textColor="@android:color/white"
-                android:textSize="30sp" />
+            
 
             <Button
                 android:id="@+id/valider"
