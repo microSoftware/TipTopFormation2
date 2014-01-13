@@ -54,14 +54,13 @@ public class SynonymeJeu extends Activity implements OnTouchListener{
 	List<Button> listeDesPropositions=new ArrayList<Button>();
 	Dialog box;
 	
+	int nbDeBoutonMis = 0;
+	
 	//Donnée du modèle
 	private String monTexte;
 	private String tabElements[];
 	private int nombreBonneReponse;
 	private String titreCorrection;
-	
-	
-	//Données du Modèle 
 	private Synonyme  instanceDeLaQuestion;
 	int numeroQuestion1;
 	int nombreDeQuestion;
@@ -82,6 +81,9 @@ public class SynonymeJeu extends Activity implements OnTouchListener{
 		valider.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
+				if (nbDeBoutonMis != nombreBonneReponse)
+					isRight = false;
+				
 				afficherCorrection();
 			}});
 		
@@ -97,7 +99,7 @@ public class SynonymeJeu extends Activity implements OnTouchListener{
 					rep1.setText(leBouton.getText());
 					LinearLayout ll = (LinearLayout) leBouton.getParent();
 					ll.removeView(leBouton);
-					
+					nbDeBoutonMis++;
 					if (! (leBouton.getText().equals(tabElements[0])) )
 						isRight = false;
 					else 
@@ -118,6 +120,7 @@ public class SynonymeJeu extends Activity implements OnTouchListener{
 					rep2.setText(leBouton.getText());
 					LinearLayout ll = (LinearLayout) leBouton.getParent();
 					ll.removeView(leBouton);
+					nbDeBoutonMis++;
 					
 					if (! (leBouton.getText().equals(tabElements[1])) )
 						isRight = false;
@@ -137,6 +140,7 @@ public class SynonymeJeu extends Activity implements OnTouchListener{
 					rep3.setText(leBouton.getText());
 					LinearLayout ll = (LinearLayout) leBouton.getParent();
 					ll.removeView(leBouton);
+					nbDeBoutonMis++;
 					
 					if (! (leBouton.getText().equals(tabElements[2])) )
 						isRight = false;
@@ -156,6 +160,7 @@ public class SynonymeJeu extends Activity implements OnTouchListener{
 					rep4.setText(leBouton.getText());
 					LinearLayout ll = (LinearLayout) leBouton.getParent();
 					ll.removeView(leBouton);
+					nbDeBoutonMis++;
 					
 					if (! (leBouton.getText().equals(tabElements[3])) )
 						isRight = false;

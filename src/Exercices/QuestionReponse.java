@@ -134,6 +134,80 @@ public abstract class QuestionReponse {
 	        	
 	        }
 	       
+	        else if (themeDuQuizz == THEMES.FRANCAIS)
+	        {
+	        	
+	        	if (typeExo == EXERCICES.MULTICHOIX){
+		        	if (level == 1)
+		        		in_s = res.openRawResource(R.raw.multichoix_francais_lv1);
+		        	if (level == 2)
+		        		in_s = res.openRawResource(R.raw.multichoix_francais_lv2);
+		        	if (level == 3)
+		        		in_s = res.openRawResource(R.raw.multichoix_francais_lv3);
+		        	
+	        	}
+	        	
+	        	if (typeExo == EXERCICES.SUPERCHOIX){
+		        	if (level == 1)
+		        		in_s = res.openRawResource(R.raw.superchoix_francais_lv1);
+		        	if (level == 2)
+		        		in_s = res.openRawResource(R.raw.superchoix_francais_lv2);
+		        	if (level == 3)
+		        		in_s = res.openRawResource(R.raw.superchoix_francais_lv3);
+		        	Log.w("QuestionReponse", "lireFichierCSV 3");
+	        	}
+	        	
+	        	if (typeExo == EXERCICES.SYNONYME){
+		        	if (level == 1)
+		        		in_s = res.openRawResource(R.raw.synonyme_francais_lv1);
+		        	if (level == 2)
+		        		in_s = res.openRawResource(R.raw.synonyme_francais_lv2);
+		        	if (level == 3)
+		        		in_s = res.openRawResource(R.raw.synonyme_francais_lv3);
+		        	
+	        	}
+	        	
+	        
+	        	
+	        }
+	        
+	        else if (themeDuQuizz == THEMES.MATHS)
+	        {
+	        	
+	        	if (typeExo == EXERCICES.MULTICHOIX){
+		        	if (level == 1)
+		        		in_s = res.openRawResource(R.raw.multichoix_maths_lv1);
+		        	if (level == 2)
+		        		in_s = res.openRawResource(R.raw.multichoix_maths_lv2);
+		        	if (level == 3)
+		        		in_s = res.openRawResource(R.raw.multichoix_maths_lv3);
+		        	
+	        	}
+	        	
+//	        	if (typeExo == EXERCICES.TRICHOIX){
+//		        	if (level == 1)
+//		        		in_s = res.openRawResource(R.raw.trichoix_maths_lv1);
+//		        	if (level == 2)
+//		        		in_s = res.openRawResource(R.raw.trichoix_maths_lv2);
+//		        	if (level == 3)
+//		        		in_s = res.openRawResource(R.raw.trichoix_maths_lv3);
+//		        	Log.w("QuestionReponse", "lireFichierCSV 3");
+//	        	}
+//	        	
+//	        	if (typeExo == EXERCICES.SYNONYME){
+//		        	if (level == 1)
+//		        		in_s = res.openRawResource(R.raw.synonyme_maths_lv1);
+//		        	if (level == 2)
+//		        		in_s = res.openRawResource(R.raw.synonyme_maths_lv2);
+//		        	if (level == 3)
+//		        		in_s = res.openRawResource(R.raw.synonyme_maths_lv3);
+//		        	
+//	        	}
+	        	
+	        
+	        	
+	        }
+	       
 	        byte[] b = new byte[in_s.available()];
 	        
 	        in_s.read(b);
@@ -163,7 +237,7 @@ public abstract class QuestionReponse {
 		}
 		Log.w("QuestionReponse", "extraireTousElementsTableau 2");
 		int nombreLignes = listeLignes.size();
-		String [][] tableau = new String [nombreLignes][8];
+		String [][] tableau = new String [nombreLignes][10];
 		Log.w("QuestionReponse", "extraireTousElementsTableau 3");
 		int numeroLigne = 0;
 		for (String ligne : listeLignes) {

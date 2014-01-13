@@ -35,7 +35,7 @@ public class User extends Activity implements Serializable {
 		
 		//on met des niveaux au pif pour chaque thèmes mais normalement
 		//on devrait rechercher dans la bd
-		level.put(THEMES.MENAGE ,0); //Pour ménage, l'user à 10 points => level 2
+		level.put(THEMES.MENAGE ,30); //Pour ménage, l'user à 10 points => level 2
 		level.put(THEMES.MATHS ,0); //level 3
 		level.put(THEMES.FRANCAIS ,0); //level 1
 		int total = (Integer) level.get(THEMES.MENAGE) + (Integer) level.get(THEMES.MATHS) + (Integer) level.get(THEMES.FRANCAIS);

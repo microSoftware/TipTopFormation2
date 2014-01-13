@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/logo"
+    android:orientation="vertical"
+    android:padding="15dp" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:paddingBottom="8dip"
+        android:text="Projet tuteuré 2013/2014 - IUT de Laval"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="17dip"
+        android:text="Cette application à été réalisé par cinq étudiants du département informatique de l&apos;IUT de Laval."
+        android:textColor="@android:color/white"
+        android:textSize="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="17dip"
+        android:text="Elle est destinée aux entreprises souhaitant tester les compétences de ses employés ainsi qu&apos;au particulier souhaitant améliorer leurs compétences"
+        android:textColor="@android:color/white"
+        android:textSize="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="17dip"
+        android:text="Cette application reste l&apos;entière propriété de l&apos;IUT de Laval ©"
+        android:textColor="@android:color/white"
+        android:textSize="10dp" />
+
+</LinearLayout>

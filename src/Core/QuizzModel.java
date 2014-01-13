@@ -147,60 +147,67 @@ public class QuizzModel {
 		/*
 		 * Pour le thème ménage, il y a les exos : - Synonyme - SuperChoix - MultiChoix
 		 */
-//		int nombreExercicePourCeTheme = 2;
-//		int repetitionD1MemeExo = nbQuestionParQuizz / nombreExercicePourCeTheme;
-//		int reste = nbQuestionParQuizz % repetitionD1MemeExo;
-//		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, repetitionD1MemeExo + reste);
-//		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
-
-		ajouterQuestionDansQuizz(EXERCICES.SYNONYME, nbQuestionParQuizz);
+		int nombreExercicePourCeTheme = 3;
+		int repetitionD1MemeExo = nbQuestionParQuizz / nombreExercicePourCeTheme;
+		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, repetitionD1MemeExo);
+		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
+		if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 0)
+			ajouterQuestionDansQuizz(EXERCICES.SYNONYME,repetitionD1MemeExo);
+				/*
+				 * si ce n'est pas un multiple de 3 : on doit ajouter une question de
+				 * plus à un exo
+				 */
+				if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 1)
+					ajouterQuestionDansQuizz(EXERCICES.SYNONYME,
+							repetitionD1MemeExo + 1);// on ajoute 1 question de plus
+														// pour cet exo
+				else if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 2)
+					ajouterQuestionDansQuizz(EXERCICES.SYNONYME,
+							repetitionD1MemeExo + 2);// on ajoute 2 questions de plus
+														// pour cet exo
+				
+		//ajouterQuestionDansQuizz(EXERCICES.SYNONYME, nbQuestionParQuizz);
 		//ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, nbQuestionParQuizz);
 		//ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, nbQuestionParQuizz);
 	}
 
 	private void creerLeQuizz_MATHS() {
 		/*
-		 * Pour le thème Maths, il y a les exos : - TriChoix - SuperChoix - MultiChoix
+		 * Pour le thème Maths, il y a les exos : - TriChoix - Synonyme - MultiChoix
 		 */
-		int nombreExercicePourCeTheme = 3;
-		int repetitionD1MemeExo = nbQuestionParQuizz
-				/ nombreExercicePourCeTheme;
-		ajouterQuestionDansQuizz(EXERCICES.TRICHOIX, repetitionD1MemeExo);
-		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
-
-		// si ce n'est pas un multiple de 3 : on doit ajouter une question de
-		// plus à un exo
-		if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 1)
-			ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX,
-					repetitionD1MemeExo + 1);// on ajoute 1 question de plus
-												// pour un exo
-		else if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 2)
-			ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX,
-					repetitionD1MemeExo + 2);// on ajoute 2 questions de plus
-												// pour un exo
+		
+		//ajouterQuestionDansQuizz(EXERCICES.SYNONYME, nbQuestionParQuizz);
+		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, nbQuestionParQuizz);
+		//ajouterQuestionDansQuizz(EXERCICES.TRICHOIX, nbQuestionParQuizz);
 	}
 
 	private void creerLeQuizz_FRANCAIS() {
 		/*
-		 * Pour le thème Français, il y a les exos : - Synonyme - SuperChoix - TriChoix
+		 * Pour le thème Français, il y a les exos : - Synonyme - SuperChoix - multichoix
 		 */
+		
 		int nombreExercicePourCeTheme = 3;
-		int repetitionD1MemeExo = nbQuestionParQuizz
-				/ nombreExercicePourCeTheme;
-		ajouterQuestionDansQuizz(EXERCICES.SYNONYME, repetitionD1MemeExo);
+		int repetitionD1MemeExo = nbQuestionParQuizz / nombreExercicePourCeTheme;
+		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, repetitionD1MemeExo);
 		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
-
-		// si ce n'est pas un multiple de 3 : on doit ajouter une question de
-		// plus à un exo
-		if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 1)
-			ajouterQuestionDansQuizz(EXERCICES.TRICHOIX,
-					repetitionD1MemeExo + 1);// on ajoute 1 question de plus
-												// pour un exo
-		else if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 2)
-			ajouterQuestionDansQuizz(EXERCICES.TRICHOIX,
-					repetitionD1MemeExo + 2);
-		// on ajoute 2 questions de plus
-		// pour un exo
+		if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 0)
+			ajouterQuestionDansQuizz(EXERCICES.SYNONYME,repetitionD1MemeExo);
+				/*
+				 * si ce n'est pas un multiple de 3 : on doit ajouter une question de
+				 * plus à un exo
+				 */
+				if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 1)
+					ajouterQuestionDansQuizz(EXERCICES.SYNONYME,
+							repetitionD1MemeExo + 1);// on ajoute 1 question de plus
+														// pour cet exo
+				else if ((nbQuestionParQuizz % nombreExercicePourCeTheme) == 2)
+					ajouterQuestionDansQuizz(EXERCICES.SYNONYME,
+							repetitionD1MemeExo + 2);// on ajoute 2 questions de plus
+														// pour cet exo
+		
+		//ajouterQuestionDansQuizz(EXERCICES.SYNONYME, nbQuestionParQuizz);
+		//ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, nbQuestionParQuizz);
+		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, nbQuestionParQuizz);
 	}
 
 	private void creerLeQuizz_CULTURE_GENERALE() {
@@ -209,6 +216,7 @@ public class QuizzModel {
 
 	private void ajouterQuestionDansQuizz(EXERCICES typeExo, int nombreDeQuestionAAjouter) {
 		Log.w("QuizzModel", "ajouterQuestionDansQuizz() - étape 0");
+		
 		if (typeExo == EXERCICES.SYNONYME) {
 			for (int i = 0; i < nombreDeQuestionAAjouter; i++)
 				tableauDeToutesLesQuestions.add( new Synonyme() );

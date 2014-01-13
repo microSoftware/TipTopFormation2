@@ -3,13 +3,16 @@ package com.example.tiptopformation2;
 import Core.Jeu;
 import Core.THEMES;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 public class Home extends Activity implements OnClickListener{
@@ -19,7 +22,7 @@ public class Home extends Activity implements OnClickListener{
 	private Button B_maths;
 	private Button B_francais;
 	private Button B_cultureGenerale;
-	
+	private ImageView aPropos;
 	//Variable Core
 	private Jeu jeu;
 	private static boolean splashScreenTerminee = true;
@@ -49,6 +52,9 @@ public class Home extends Activity implements OnClickListener{
 			Log.w("d",getApplicationContext().toString());
 			Log.w("d",getBaseContext().toString());
 			
+			aPropos = (ImageView) findViewById(R.id.imageView1);
+			aPropos.setOnClickListener(this);
+			
 			B_menage = (Button) findViewById(R.id.button1);
 			B_menage.setOnClickListener(this);
 			
@@ -68,6 +74,27 @@ public class Home extends Activity implements OnClickListener{
 		
 	}
 
+	private void afficherAPropos (){
+		
+		LayoutInflater factory = LayoutInflater.from(Home.this);
+
+		final View aProposView = factory.inflate(R.layout.a_propos_dialog, null);
+
+		AlertDialog.Builder adb = new AlertDialog.Builder(Home.this);
+
+		adb.setView(aProposView);
+
+		adb.setTitle("A propos...");
+
+		adb.setPositiveButton("Retour au menu", null);
+
+		adb.show();
+		
+		setContentView(R.layout.activity_home);
+		
+	}
+	
+	
 	private void afficherSplashScreen() {
 		 final int _splashTime = 2000; 
 
@@ -105,6 +132,10 @@ public class Home extends Activity implements OnClickListener{
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		
+//		if (v == aPropos)
+//			afficherAPropos();
+			
 		if(v == B_menage) 
 			jeu.getQuizz().setTheme(THEMES.MENAGE);
 		

@@ -122,9 +122,7 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 					reponse.setText("Mauvaise réponse !");
 					reponse.setTextColor(Color.RED);
 					isRight = false;
-				}else {
-					//si il a bon, il gagne un point
-					instanceDeLaQuestion.getQuizz().gagnerPoint();
+				
 				}
 				
 				reponse.setVisibility(View.VISIBLE);
@@ -136,6 +134,9 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 					boutonSuivantAfficher = true;
 				}
 				else {
+					if (isRight)
+						instanceDeLaQuestion.getQuizz().gagnerPoint();
+					
 					Intent intent = new Intent(SuperChoixJeu.this, Quizz.class);
 					startActivity(intent);
 				}
