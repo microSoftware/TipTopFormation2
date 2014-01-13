@@ -11,6 +11,8 @@ import Core.Jeu;
 import Core.QuizzModel;
 import Exercices.MultiChoix;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -95,6 +97,7 @@ public class MultiChoixJeu extends Activity  {
 						else {
 							Intent intent = new Intent(MultiChoixJeu.this, Quizz.class);
 							startActivity(intent);
+							finish();
 						}
 						
 						
@@ -296,6 +299,40 @@ public class MultiChoixJeu extends Activity  {
 			if (reponse4.isChecked())
 				value++;
 			return value;
+		}
+		
+		public void onBackPressed(){
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+			builder.setTitle("Retour à l'accueil");
+			builder.setMessage("Vous vous arrêter votre partie");
+
+			builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+				public void onClick(DialogInterface dialog, int which) {
+					// Do nothing but close the dialog
+					QuizzModel quizz = Jeu.getInstance().getQuizz();
+					quizz.viderIdHistorique();
+					quizz = null;
+					quizz = new QuizzModel();
+					dialog.dismiss();
+					Intent intent = new Intent(MultiChoixJeu.this, Home.class);
+					startActivity(intent);
+				}
+
+			});
+
+			builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					//donc on cache la boite de dialogue
+					dialog.dismiss();
+				}
+			});
+
+			AlertDialog alert = builder.create();
+			alert.show();
 		}
 
 }

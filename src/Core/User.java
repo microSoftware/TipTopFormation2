@@ -78,6 +78,7 @@ public class User extends Activity implements Serializable {
 		
 		//pour la culture générale 
 		//on retourne la sommme de tous les thèmes
+		
 		if (theme == THEMES.CULTURE_GENERALE){
 			int menage = (Integer) pointPartieEnCours.get(THEMES.MENAGE);
 			int maths = (Integer) pointPartieEnCours.get(THEMES.MATHS);
@@ -150,6 +151,28 @@ public class User extends Activity implements Serializable {
 		 */
 		
 		int nbPointDuTheme = (Integer) level.get(theme);
+		
+		if (nbPointDuTheme < LEVEL1)
+			return 1;
+		else if (nbPointDuTheme < LEVEL2)
+			return 2;
+		else if (nbPointDuTheme < LEVEL3)
+			return 3;
+		
+		return 0;
+		
+	}
+	
+	/*
+	 * Retourne le niveau du joueur par rapport à un thème
+	 */
+	public int getNouveauLevelByTheme (THEMES theme){
+		/*
+		 * on récupère le nombre de point dans la hashmap
+		 * La clé est theme
+		 */
+		
+		int nbPointDuTheme = (Integer) level.get(theme)  + nbPointsGagnes(theme);
 		
 		if (nbPointDuTheme < LEVEL1)
 			return 1;

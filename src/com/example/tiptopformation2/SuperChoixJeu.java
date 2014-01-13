@@ -6,7 +6,9 @@ import Core.Jeu;
 import Core.QuizzModel;
 import Exercices.SuperChoix;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -139,6 +141,7 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 					
 					Intent intent = new Intent(SuperChoixJeu.this, Quizz.class);
 					startActivity(intent);
+					finish();
 				}
 			}
 		});
@@ -250,6 +253,38 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 		imageNom = instanceDeLaQuestion.getImage();
 	}
 	
-	
+	public void onBackPressed(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		builder.setTitle("Retour à l'accueil");
+		builder.setMessage("Vous vous arrêter votre partie");
+
+		builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int which) {
+				// Do nothing but close the dialog
+				QuizzModel quizz = Jeu.getInstance().getQuizz();
+				quizz.viderIdHistorique();
+				quizz = null;
+				quizz = new QuizzModel();
+				dialog.dismiss();
+				Intent intent = new Intent(SuperChoixJeu.this, Home.class);
+				startActivity(intent);
+			}
+
+		});
+
+		builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//donc on cache la boite de dialogue
+				dialog.dismiss();
+			}
+		});
+
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
 
 }

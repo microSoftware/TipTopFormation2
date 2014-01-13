@@ -3,8 +3,9 @@ package com.example.tiptopformation2;
 import Core.Jeu;
 import Core.QuizzModel;
 import Core.THEMES;
-
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -124,6 +125,7 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 		
 		Intent intent = new Intent(SelectionnerLevel.this, Quizz.class);
 		startActivity(intent);
+		finish();
 	}
 	
 	private void griserLevelsInterdit (){
@@ -138,6 +140,8 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 			moyen.setBackgroundColor(Color.parseColor(colorGriserBouton));
 		}
 	}
+
+	
 
 	
 

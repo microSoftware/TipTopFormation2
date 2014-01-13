@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Quizz extends Activity implements OnClickListener {
 
@@ -69,7 +70,7 @@ public class Quizz extends Activity implements OnClickListener {
 		
 		
 		/*
-		 * On a finit le quizz => on affiche la page de résultat
+		 * On a fini le quizz => on affiche la page de résultat
 		 */
 		if ( numeroDeLaQuestionCourante == quizz.getNbquestionparquizz() ){
 			setContentView(R.layout.quizz_resultat);
@@ -93,7 +94,7 @@ public class Quizz extends Activity implements OnClickListener {
 			String texteFelicitation = "";
 			if (nbPointManquantPourPasserNiveauSup == 0){
 				//L'utilisateur passe au level suppérieur
-				 texteFelicitation = "Félicitation, vous venez de passer au suppérieur suppérieur !";
+				 texteFelicitation = "Félicitation, vous venez de passer au supérieur suppérieur !";
 			}
 			else {
 				 texteFelicitation = "Il vous manque encore "+nbPointManquantPourPasserNiveauSup+
@@ -148,6 +149,8 @@ public class Quizz extends Activity implements OnClickListener {
 						Intent intent = new Intent(Quizz.this, SynonymeJeu.class);
 						startActivity(intent);
 					}
+					
+					
 					
 					
 				}

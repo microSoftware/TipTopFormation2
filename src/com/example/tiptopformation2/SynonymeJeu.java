@@ -8,8 +8,10 @@ import Core.Jeu;
 import Core.QuizzModel;
 import Exercices.Synonyme;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -218,6 +220,7 @@ public class SynonymeJeu extends Activity implements OnTouchListener{
 			public void onClick(View v) {
 				Intent intent = new Intent(SynonymeJeu.this, Quizz.class);
 				startActivity(intent);
+				finish();
 			}});
 		
 	}
@@ -342,5 +345,37 @@ public class SynonymeJeu extends Activity implements OnTouchListener{
 		
 	}
 	
-	
+	public void onBackPressed(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		builder.setTitle("Retour à l'accueil");
+		builder.setMessage("Vous vous arrêter votre partie");
+
+		builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int which) {
+				// Do nothing but close the dialog
+				QuizzModel quizz = Jeu.getInstance().getQuizz();
+				quizz.viderIdHistorique();
+				quizz = null;
+				quizz = new QuizzModel();
+				dialog.dismiss();
+				Intent intent = new Intent(SynonymeJeu.this, Home.class);
+				startActivity(intent);
+			}
+
+		});
+
+		builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//donc on cache la boite de dialogue
+				dialog.dismiss();
+			}
+		});
+
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
 }

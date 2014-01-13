@@ -13,7 +13,7 @@ import android.util.Log;
 
 public class QuizzModel {
 	// variables de la classe
-	private static final int nbQuestionParQuizz = 3; 
+	private static final int nbQuestionParQuizz = 8; 
 	private Jeu jeu;
 	private THEMES theme;
 	private int levelChoisi=0;
@@ -42,6 +42,7 @@ public class QuizzModel {
 	public void viderIdHistorique() {
 		SuperChoix.viderTabQuesHistorique();
 		MultiChoix.viderTabQuesHistorique();
+		Synonyme.viderTabQuesHistorique();
 	}
 
 	public void setTheme(THEMES theme) {
@@ -114,6 +115,7 @@ public class QuizzModel {
 	public void creerLeQuizz() {
 		Log.w("QuizzModel", "creerLeQuizz()");	
 		if (levelChoisi != 0){
+			
 			if (theme == THEMES.MENAGE)
 				creerLeQuizz_MENAGE();
 	
@@ -173,11 +175,19 @@ public class QuizzModel {
 
 	private void creerLeQuizz_MATHS() {
 		/*
-		 * Pour le thème Maths, il y a les exos : - TriChoix - Synonyme - MultiChoix
+		 * Pour le thème Maths, il y a les exos : -  Synonyme - MultiChoix
 		 */
 		
-		//ajouterQuestionDansQuizz(EXERCICES.SYNONYME, nbQuestionParQuizz);
-		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, nbQuestionParQuizz);
+		int nombreExercicePourCeTheme = 2;
+		int repetitionD1MemeExo = nbQuestionParQuizz / nombreExercicePourCeTheme;
+		int reste = nbQuestionParQuizz - repetitionD1MemeExo;
+		ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, repetitionD1MemeExo + reste);
+		ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, repetitionD1MemeExo);
+	
+				
+				
+		//ajouterQuestionDansQuizz(EXERCICES.SUPERCHOIX, nbQuestionParQuizz);
+		//ajouterQuestionDansQuizz(EXERCICES.MULTICHOIX, nbQuestionParQuizz);
 		//ajouterQuestionDansQuizz(EXERCICES.TRICHOIX, nbQuestionParQuizz);
 	}
 

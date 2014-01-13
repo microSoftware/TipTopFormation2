@@ -44,7 +44,7 @@ public class Home extends Activity implements OnClickListener{
 			
 			
 			
-			Log.w("Home", "onCreate - après initialiserQuizz()");
+			Log.w("Home", "onCreate - après initialiserQuizz() REF TACHE= "+this.getTaskId()+" ET "+this.hashCode());
 			//
 			//Listener sur les boutons 
 			//
@@ -169,6 +169,7 @@ public class Home extends Activity implements OnClickListener{
 			//on change d'activité => SelectionnerLevel
 			Intent intent = new Intent(Home.this, SelectionnerLevel.class);
 			startActivity(intent);
+			
 	}
 
 	
