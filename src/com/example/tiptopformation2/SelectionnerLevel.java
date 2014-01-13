@@ -143,7 +143,11 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 		}
 	}
 
-	
+	public void onBackPressed(){
+		Intent intent = new Intent(SelectionnerLevel.this, Home.class);
+		startActivity(intent);
+		overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+	}
 
 	
 

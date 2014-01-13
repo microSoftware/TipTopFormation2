@@ -89,26 +89,29 @@ public class Quizz extends Activity implements OnClickListener {
 					+" points";
 			
 			
-			//on sauvegarde le score du joueur en sérialisant la classe User
-			jeu.getUser().sauvegarder();
+		
 			
 			//nombre de point manquant pour passer au level suppérieur
 			int nbPointManquantPourPasserNiveauSup = jeu.getUser().differencePointLevelSuivant(quizz.getTheme());
+			
 			String texteFelicitation = "";
-			if (nbPointManquantPourPasserNiveauSup == 0){
+			if (nbPointManquantPourPasserNiveauSup <= 0){
+				int nouveauNiveau = jeu.getUser().getLevelByTheme(quizz.getTheme())+1;
 				//L'utilisateur passe au level suppérieur
-				 texteFelicitation = "Félicitation, vous venez de passer au supérieur suppérieur !";
+				 texteFelicitation = "Félicitation, vous venez de passer au niveau suppérieur !\n"
+				 		+ "Vous êtes maintenant niveau "+ nouveauNiveau;
 			}
 			else {
-				 texteFelicitation = "Il vous manque encore "+nbPointManquantPourPasserNiveauSup+
-						" points pour passer au niveau suppérieur";
+				int niveau = jeu.getUser().getLevelByTheme(quizz.getTheme());
+				 texteFelicitation = "Vous êtes niveau "+niveau+"\nIl vous manque encore "+nbPointManquantPourPasserNiveauSup+
+						" points pour passer au niveau suppérieur" ;
 			}
 			
 			bravo.setText(texteBravo);
 			felicitation.setText(texteFelicitation);
 			
 			//On sauvegarde les points
-			//jeu.getUser().sauvegarderPointPartie();
+			jeu.getUser().sauvegarderPointPartie();
 			
 			/*
 			 * Si le thème n'est pas Culture générale (= tous les 

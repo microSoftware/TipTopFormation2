@@ -18,9 +18,9 @@ public class User extends Activity implements Serializable {
 	
 	private static final long serialVersionUID = 1367898756;
 
-	private final static int LEVEL1 = 15;
-	private final static int LEVEL2 = 25;
-	private final static int LEVEL3 = 40;
+	private final static int LEVEL1 = 10;
+	private final static int LEVEL2 = 20;
+	private final static int LEVEL3 = 34;
 	
 	
 	private HashMap<THEMES, Integer> level;//clé-valeur
@@ -35,13 +35,16 @@ public class User extends Activity implements Serializable {
 		
 		//on met des niveaux au pif pour chaque thèmes mais normalement
 		//on devrait rechercher dans la bd
-		level.put(THEMES.MENAGE ,30); //Pour ménage, l'user à 10 points => level 2
+		level.put(THEMES.MENAGE ,8); //Pour ménage, l'user à 10 points => level 2
 		level.put(THEMES.MATHS ,0); //level 3
 		level.put(THEMES.FRANCAIS ,0); //level 1
-		int total = (Integer) level.get(THEMES.MENAGE) + (Integer) level.get(THEMES.MATHS) + (Integer) level.get(THEMES.FRANCAIS);
-		int moyenne = total / 3;
-		level.put(THEMES.CULTURE_GENERALE ,moyenne);
 		
+		Log.w("","---------------------------------------------------");
+		Log.w("","---------------------------------------------------");
+		Log.w("","---------------   Creation d'une instance de de USER    ------------------");
+		Log.w("","---------------   ------------------");
+		Log.w("","---------------------------------------------------");
+		Log.w("","---------------------------------------------------");
 	} 
 	
 	private HashMap<THEMES, Integer> getLevel() {
@@ -65,7 +68,6 @@ public class User extends Activity implements Serializable {
 		pointPartieEnCours.put(THEMES.MENAGE ,0);
 		pointPartieEnCours.put(THEMES.MATHS ,0);
 		pointPartieEnCours.put(THEMES.FRANCAIS ,0);
-		pointPartieEnCours.put(THEMES.CULTURE_GENERALE ,0);
 	}
 	
 	public void ajouterPoint(THEMES theme){
@@ -105,18 +107,15 @@ public class User extends Activity implements Serializable {
 		maths += (Integer) level.get(THEMES.MATHS);
 		francais += (Integer) level.get(THEMES.FRANCAIS);
 		
-		int total = menage + maths + francais;
-		int moyenne = total / 3;
-		
 		level.remove(THEMES.MENAGE); 
 		level.remove(THEMES.MATHS); 
 		level.remove(THEMES.FRANCAIS); 
-		level.remove(THEMES.CULTURE_GENERALE); 
+		
 		
 		level.put(THEMES.MENAGE ,menage); 
 		level.put(THEMES.MATHS ,maths); 
 		level.put(THEMES.FRANCAIS ,francais); 
-		level.put(THEMES.CULTURE_GENERALE ,moyenne);
+		
 	}
 	
 	
@@ -185,47 +184,6 @@ public class User extends Activity implements Serializable {
 		
 	}
 	
-	public void sauvegarder (){
-		//on créer l'objet à sauvegarder
-		User usr = new User();
-		usr.setLevel(level);
-		//usr.setPointPartieEnCours(pointPartieEnCours);
-		
-		try
-        {
-			Context context = Jeu.getInstance().getContexte();
-			ObjectOutputStream objectOutputStream = new ObjectOutputStream(
-		                context.openFileOutput("save.bin", Context.MODE_PRIVATE));
-			objectOutputStream.writeObject(usr);
-			objectOutputStream.flush(); 
-			objectOutputStream.close();
-        }
-        catch(Exception ex)
-        {
-        	Log.v("User class SAUVEGARDE : ",ex.getMessage());
-        	ex.printStackTrace();
-        }
-	}
-	
-	public static Object restaurer (){
-		File f = new File("save.bin");
-		{
-		    try
-		    {
-		    	ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
-		    	Object o = ois.readObject();
-		    	return o;
-		    }
-		    catch(Exception ex)
-		    {
-			Log.v("User Class - RESTAURER",ex.getMessage());
-		    	ex.printStackTrace();
-		    }
-		    return null;
-		}
-
-
-	}
 	
 	public int scoreToral (){
 		int scoreTotal = 0;

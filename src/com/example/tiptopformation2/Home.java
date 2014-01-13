@@ -15,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class Home extends Activity implements OnClickListener{
 
@@ -24,6 +25,8 @@ public class Home extends Activity implements OnClickListener{
 	private Button B_francais;
 	private Button B_cultureGenerale;
 	private ImageView aPropos;
+	private ImageView barreDeNiveau;
+	
 	//Variable Core
 	private Jeu jeu;
 	private static boolean splashScreenTerminee = true;
@@ -33,6 +36,8 @@ public class Home extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+		
+		
 		
 		if ( ! splashScreenTerminee)
 			afficherSplashScreen();
@@ -57,6 +62,9 @@ public class Home extends Activity implements OnClickListener{
 			aPropos = (ImageView) findViewById(R.id.imageView1);
 			aPropos.setOnClickListener(this);
 			
+//			barreDeNiveau = (ImageView) findViewById(R.id.imageView2);
+//			barreDeNiveau.setOnClickListener(this);
+			
 			B_menage = (Button) findViewById(R.id.button1);
 			B_menage.setOnClickListener(this);
 			
@@ -72,6 +80,13 @@ public class Home extends Activity implements OnClickListener{
 			
 			ProgressBar progress=(ProgressBar) findViewById(R.id.progressbar);
 			progress.setProgress(jeu.getUser().scoreToral());
+			
+			Log.w("","---------------------------------------------------");
+			Log.w("","---------------------------------------------------");
+			Log.w("","---------------    on CREATE()   ------------------");
+			Log.w("","---------------   user = "+Integer.toString( jeu.getUser().scoreToral() ) +"   ------------------");
+			Log.w("","---------------------------------------------------");
+			Log.w("","---------------------------------------------------");
 		}
 		
 	}
@@ -80,20 +95,26 @@ public class Home extends Activity implements OnClickListener{
 		
 		LayoutInflater factory = LayoutInflater.from(Home.this);
 
-		final View aProposView = factory.inflate(R.layout.a_propos_dialog, null);
+		View aProposView = factory.inflate(R.layout.a_propos_dialog, null);
 
-		AlertDialog.Builder adb = new AlertDialog.Builder(Home.this);
+		AlertDialog.Builder adb = new AlertDialog.Builder(this);
 
+		
+		
 		adb.setView(aProposView);
 
 		adb.setTitle("A propos...");
 
-		adb.setPositiveButton("Retour au menu", null);
+		adb.setPositiveButton("Retour", null);
 
-		adb.show();
+		//adb.show();
 		
-		setContentView(R.layout.activity_home);
 		
+		AlertDialog alert = adb.create();
+		alert.show();
+		
+		//setContentView(R.layout.activity_home);
+		onCreate(null);
 	}
 	
 	
@@ -135,22 +156,33 @@ public class Home extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		
-//		if (v == aPropos)
-//			afficherAPropos();
+		if (v == aPropos)
+			afficherAPropos();
+		
+//		if (v == barreDeNiveau)
+//			Toast.makeText(Home.this, "Il faut travailler dur pour que cette barre soit pleine", Toast.LENGTH_SHORT).show();
 			
-		if(v == B_menage) 
+		if(v == B_menage) {
 			jeu.getQuizz().setTheme(THEMES.MENAGE);
+			choisirNiveau ();
+		}
 		
-		else if(v == B_maths) 
+		else if(v == B_maths) {
 			jeu.getQuizz().setTheme(THEMES.MATHS);
+			choisirNiveau ();
+		}
 		
-		else if(v == B_francais) 
+		else if(v == B_francais) {
 			jeu.getQuizz().setTheme(THEMES.FRANCAIS);
+			choisirNiveau ();
+		}
 		
-		else if(v == B_cultureGenerale) 
+		else if(v == B_cultureGenerale) {
 			jeu.getQuizz().setTheme(THEMES.CULTURE_GENERALE);
+			choisirNiveau ();
+		}
 		
-		choisirNiveau ();
+		
 	}
 	
 	
@@ -172,7 +204,7 @@ public class Home extends Activity implements OnClickListener{
 			Intent intent = new Intent(Home.this, SelectionnerLevel.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
-			
+			finish();
 	}
 
 	

@@ -1,6 +1,7 @@
 package Core;
 
 import android.content.Context;
+import android.util.Log;
 
 
 /*
@@ -19,16 +20,14 @@ public class Jeu  {
 	}
 
 	private Jeu (){
-		user = (User) User.restaurer();
-
-		if (user == null)
+		
 			user  = new User();
 		
 	}
 	
 	public static Jeu getInstance() {
 	        if (null == instance) { // Premier appel
-	            instance = new Jeu();
+	        	instance = new Jeu();
 	        }
 	        return instance;
 	}
