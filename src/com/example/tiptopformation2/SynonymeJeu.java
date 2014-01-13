@@ -13,6 +13,7 @@ import android.app.Dialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -72,7 +73,8 @@ public class SynonymeJeu extends Activity implements OnTouchListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_synonyme);
-		
+		overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		initialiserModel();
 		initialiserElements();

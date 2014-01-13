@@ -8,6 +8,12 @@
 package com.example.tiptopformation2;
 
 public final class R {
+    public static final class anim {
+        public static final int trans_left_in=0x7f040000;
+        public static final int trans_left_out=0x7f040001;
+        public static final int trans_right_in=0x7f040002;
+        public static final int trans_right_out=0x7f040003;
+    }
     public static final class attr {
     }
     public static final class dimen {
@@ -17,8 +23,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f050000;
-        public static final int activity_vertical_margin=0x7f050001;
+        public static final int activity_horizontal_margin=0x7f060000;
+        public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
         public static final int culture_generale=0x7f020000;
@@ -73,87 +79,87 @@ public final class R {
         public static final int toxique=0x7f020031;
     }
     public static final class id {
-        public static final int ImageView01=0x7f090013;
-        public static final int ImageView02=0x7f090016;
-        public static final int ImageView03=0x7f090012;
-        public static final int NombreBonneReponse=0x7f09000d;
-        public static final int Question=0x7f09000c;
-        public static final int TextFrancais=0x7f090046;
-        public static final int TextMaths=0x7f090048;
-        public static final int TextMenage=0x7f090044;
-        public static final int Valider=0x7f090015;
-        public static final int action_settings=0x7f090050;
-        public static final int bravo=0x7f090042;
-        public static final int button1=0x7f090007;
-        public static final int button2=0x7f090006;
-        public static final int button3=0x7f090008;
-        public static final int button4=0x7f090005;
-        public static final int buttonProp1=0x7f09002d;
-        public static final int buttonProp2=0x7f09002e;
-        public static final int buttonProp3=0x7f090031;
-        public static final int buttonProp4=0x7f090032;
-        public static final int buttonProp5=0x7f090034;
-        public static final int buttonProp6=0x7f090035;
-        public static final int buttonRep1=0x7f090024;
-        public static final int buttonRep1a=0x7f090039;
-        public static final int buttonRep2=0x7f090026;
-        public static final int buttonRep2a=0x7f09003b;
-        public static final int buttonRep3=0x7f090028;
-        public static final int buttonRep3a=0x7f09003d;
-        public static final int buttonRep4=0x7f09002b;
-        public static final int buttonRep4a=0x7f09003f;
-        public static final int buttonSuivant=0x7f090036;
-        public static final int buttonValider=0x7f090020;
-        public static final int checkBox1=0x7f09000e;
-        public static final int checkBox2=0x7f09000f;
-        public static final int checkBox3=0x7f090010;
-        public static final int checkBox4=0x7f090011;
-        public static final int correction=0x7f090014;
-        public static final int difficile=0x7f09004f;
-        public static final int element1=0x7f09001b;
-        public static final int element2=0x7f09001c;
-        public static final int element3=0x7f09001d;
-        public static final int entrainer_francais=0x7f090047;
-        public static final int entrainer_maths=0x7f090049;
-        public static final int entrainer_menage=0x7f090045;
-        public static final int explication=0x7f09001f;
-        public static final int facile=0x7f09004d;
-        public static final int felicitation=0x7f090043;
-        public static final int image=0x7f090019;
-        public static final int imageView1=0x7f090009;
-        public static final int imageView2=0x7f09000a;
-        public static final int laquestion=0x7f090018;
-        public static final int linearLayout=0x7f090004;
-        public static final int moyen=0x7f09004e;
-        public static final int numeroQuestion=0x7f090017;
-        public static final int progressbar=0x7f09000b;
-        public static final int recommencer=0x7f09004b;
-        public static final int reponse=0x7f09001e;
-        public static final int revenirHome=0x7f09004a;
-        public static final int sdfdsf=0x7f090040;
-        public static final int sdfdsfdsf=0x7f09003c;
-        public static final int sdfsdf=0x7f090038;
-        public static final int sqdfqdsfdqsf=0x7f09003e;
-        public static final int tableLayout1=0x7f090022;
-        public static final int tableRow1=0x7f090023;
-        public static final int tableRow2=0x7f090025;
-        public static final int tableRow3=0x7f090027;
-        public static final int tableRow4=0x7f090029;
-        public static final int tableRow5=0x7f09002c;
-        public static final int tableRow6=0x7f09002f;
-        public static final int tableRow7=0x7f090030;
-        public static final int tableRow8=0x7f090033;
-        public static final int tableRsdfow2=0x7f09003a;
-        public static final int textView1=0x7f090002;
-        public static final int textView2=0x7f090001;
-        public static final int textView3=0x7f090003;
-        public static final int textView4=0x7f09002a;
-        public static final int textViewTexte=0x7f090021;
-        public static final int theme=0x7f09004c;
-        public static final int titre=0x7f090041;
-        public static final int tqdsf=0x7f090037;
-        public static final int valider=0x7f090000;
-        public static final int zoneDepot=0x7f09001a;
+        public static final int ImageView01=0x7f0a0013;
+        public static final int ImageView02=0x7f0a0016;
+        public static final int ImageView03=0x7f0a0012;
+        public static final int NombreBonneReponse=0x7f0a000d;
+        public static final int Question=0x7f0a000c;
+        public static final int TextFrancais=0x7f0a0046;
+        public static final int TextMaths=0x7f0a0048;
+        public static final int TextMenage=0x7f0a0044;
+        public static final int Valider=0x7f0a0015;
+        public static final int action_settings=0x7f0a0050;
+        public static final int bravo=0x7f0a0042;
+        public static final int button1=0x7f0a0007;
+        public static final int button2=0x7f0a0006;
+        public static final int button3=0x7f0a0008;
+        public static final int button4=0x7f0a0005;
+        public static final int buttonProp1=0x7f0a002d;
+        public static final int buttonProp2=0x7f0a002e;
+        public static final int buttonProp3=0x7f0a0031;
+        public static final int buttonProp4=0x7f0a0032;
+        public static final int buttonProp5=0x7f0a0034;
+        public static final int buttonProp6=0x7f0a0035;
+        public static final int buttonRep1=0x7f0a0024;
+        public static final int buttonRep1a=0x7f0a0039;
+        public static final int buttonRep2=0x7f0a0026;
+        public static final int buttonRep2a=0x7f0a003b;
+        public static final int buttonRep3=0x7f0a0028;
+        public static final int buttonRep3a=0x7f0a003d;
+        public static final int buttonRep4=0x7f0a002b;
+        public static final int buttonRep4a=0x7f0a003f;
+        public static final int buttonSuivant=0x7f0a0036;
+        public static final int buttonValider=0x7f0a0020;
+        public static final int checkBox1=0x7f0a000e;
+        public static final int checkBox2=0x7f0a000f;
+        public static final int checkBox3=0x7f0a0010;
+        public static final int checkBox4=0x7f0a0011;
+        public static final int correction=0x7f0a0014;
+        public static final int difficile=0x7f0a004f;
+        public static final int element1=0x7f0a001b;
+        public static final int element2=0x7f0a001c;
+        public static final int element3=0x7f0a001d;
+        public static final int entrainer_francais=0x7f0a0047;
+        public static final int entrainer_maths=0x7f0a0049;
+        public static final int entrainer_menage=0x7f0a0045;
+        public static final int explication=0x7f0a001f;
+        public static final int facile=0x7f0a004d;
+        public static final int felicitation=0x7f0a0043;
+        public static final int image=0x7f0a0019;
+        public static final int imageView1=0x7f0a0009;
+        public static final int imageView2=0x7f0a000a;
+        public static final int laquestion=0x7f0a0018;
+        public static final int linearLayout=0x7f0a0004;
+        public static final int moyen=0x7f0a004e;
+        public static final int numeroQuestion=0x7f0a0017;
+        public static final int progressbar=0x7f0a000b;
+        public static final int recommencer=0x7f0a004b;
+        public static final int reponse=0x7f0a001e;
+        public static final int revenirHome=0x7f0a004a;
+        public static final int sdfdsf=0x7f0a0040;
+        public static final int sdfdsfdsf=0x7f0a003c;
+        public static final int sdfsdf=0x7f0a0038;
+        public static final int sqdfqdsfdqsf=0x7f0a003e;
+        public static final int tableLayout1=0x7f0a0022;
+        public static final int tableRow1=0x7f0a0023;
+        public static final int tableRow2=0x7f0a0025;
+        public static final int tableRow3=0x7f0a0027;
+        public static final int tableRow4=0x7f0a0029;
+        public static final int tableRow5=0x7f0a002c;
+        public static final int tableRow6=0x7f0a002f;
+        public static final int tableRow7=0x7f0a0030;
+        public static final int tableRow8=0x7f0a0033;
+        public static final int tableRsdfow2=0x7f0a003a;
+        public static final int textView1=0x7f0a0002;
+        public static final int textView2=0x7f0a0001;
+        public static final int textView3=0x7f0a0003;
+        public static final int textView4=0x7f0a002a;
+        public static final int textViewTexte=0x7f0a0021;
+        public static final int theme=0x7f0a004c;
+        public static final int titre=0x7f0a0041;
+        public static final int tqdsf=0x7f0a0037;
+        public static final int valider=0x7f0a0000;
+        public static final int zoneDepot=0x7f0a001a;
     }
     public static final class layout {
         public static final int a_propos_dialog=0x7f030000;
@@ -167,61 +173,62 @@ public final class R {
         public static final int quizz_resultat=0x7f030008;
         public static final int resultat_super_choix_jeu=0x7f030009;
         public static final int selectionner_level=0x7f03000a;
-        public static final int splash=0x7f03000b;
+        public static final int slide=0x7f03000b;
+        public static final int splash=0x7f03000c;
     }
     public static final class menu {
-        public static final int culture_generale_jeu=0x7f080000;
-        public static final int home=0x7f080001;
-        public static final int multi_choix_jeu=0x7f080002;
-        public static final int quizz=0x7f080003;
-        public static final int selectionner_level=0x7f080004;
-        public static final int super_choix=0x7f080005;
-        public static final int super_choix_jeu=0x7f080006;
-        public static final int synonyme=0x7f080007;
-        public static final int testctivite=0x7f080008;
+        public static final int culture_generale_jeu=0x7f090000;
+        public static final int home=0x7f090001;
+        public static final int multi_choix_jeu=0x7f090002;
+        public static final int quizz=0x7f090003;
+        public static final int selectionner_level=0x7f090004;
+        public static final int super_choix=0x7f090005;
+        public static final int super_choix_jeu=0x7f090006;
+        public static final int synonyme=0x7f090007;
+        public static final int testctivite=0x7f090008;
     }
     public static final class raw {
-        public static final int multichoix_francais_lv1=0x7f040000;
-        public static final int multichoix_francais_lv2=0x7f040001;
-        public static final int multichoix_francais_lv3=0x7f040002;
-        public static final int multichoix_maths_lv1=0x7f040003;
-        public static final int multichoix_maths_lv2=0x7f040004;
-        public static final int multichoix_maths_lv3=0x7f040005;
-        public static final int multichoix_menage_lv1=0x7f040006;
-        public static final int multichoix_menage_lv2=0x7f040007;
-        public static final int multichoix_menage_lv3=0x7f040008;
-        public static final int superchoix_francais_lv1=0x7f040009;
-        public static final int superchoix_francais_lv2=0x7f04000a;
-        public static final int superchoix_francais_lv3=0x7f04000b;
-        public static final int superchoix_maths_lv1=0x7f04000c;
-        public static final int superchoix_maths_lv2=0x7f04000d;
-        public static final int superchoix_maths_lv3=0x7f04000e;
-        public static final int superchoix_menage_lv1=0x7f04000f;
-        public static final int superchoix_menage_lv2=0x7f040010;
-        public static final int superchoix_menage_lv3=0x7f040011;
-        public static final int synonyme_francais_lv1=0x7f040012;
-        public static final int synonyme_francais_lv2=0x7f040013;
-        public static final int synonyme_francais_lv3=0x7f040014;
-        public static final int synonyme_menage_lv1=0x7f040015;
-        public static final int synonyme_menage_lv2=0x7f040016;
-        public static final int synonyme_menage_lv3=0x7f040017;
-        public static final int synonyme_menage_lvl3=0x7f040018;
+        public static final int multichoix_francais_lv1=0x7f050000;
+        public static final int multichoix_francais_lv2=0x7f050001;
+        public static final int multichoix_francais_lv3=0x7f050002;
+        public static final int multichoix_maths_lv1=0x7f050003;
+        public static final int multichoix_maths_lv2=0x7f050004;
+        public static final int multichoix_maths_lv3=0x7f050005;
+        public static final int multichoix_menage_lv1=0x7f050006;
+        public static final int multichoix_menage_lv2=0x7f050007;
+        public static final int multichoix_menage_lv3=0x7f050008;
+        public static final int superchoix_francais_lv1=0x7f050009;
+        public static final int superchoix_francais_lv2=0x7f05000a;
+        public static final int superchoix_francais_lv3=0x7f05000b;
+        public static final int superchoix_maths_lv1=0x7f05000c;
+        public static final int superchoix_maths_lv2=0x7f05000d;
+        public static final int superchoix_maths_lv3=0x7f05000e;
+        public static final int superchoix_menage_lv1=0x7f05000f;
+        public static final int superchoix_menage_lv2=0x7f050010;
+        public static final int superchoix_menage_lv3=0x7f050011;
+        public static final int synonyme_francais_lv1=0x7f050012;
+        public static final int synonyme_francais_lv2=0x7f050013;
+        public static final int synonyme_francais_lv3=0x7f050014;
+        public static final int synonyme_menage_lv1=0x7f050015;
+        public static final int synonyme_menage_lv2=0x7f050016;
+        public static final int synonyme_menage_lv3=0x7f050017;
+        public static final int synonyme_menage_lvl3=0x7f050018;
     }
     public static final class string {
-        public static final int action_settings=0x7f060001;
-        public static final int app_name=0x7f060000;
-        public static final int difficile=0x7f06000c;
-        public static final int facile=0x7f06000a;
-        public static final int hello_world=0x7f060002;
-        public static final int moyen=0x7f06000b;
-        public static final int title_activity_culture_generale_jeu=0x7f060008;
-        public static final int title_activity_multi_choix_jeu=0x7f060009;
-        public static final int title_activity_quizz=0x7f060004;
-        public static final int title_activity_selectionner_level=0x7f060003;
-        public static final int title_activity_super_choix=0x7f060006;
-        public static final int title_activity_super_choix_jeu=0x7f060007;
-        public static final int title_activity_synonyme=0x7f06000d;
-        public static final int title_activity_testctivite=0x7f060005;
+        public static final int action_settings=0x7f070001;
+        public static final int app_name=0x7f070000;
+        public static final int difficile=0x7f07000c;
+        public static final int facile=0x7f07000a;
+        public static final int hello_world=0x7f070002;
+        public static final int moyen=0x7f07000b;
+        public static final int title_activity_culture_generale_jeu=0x7f070008;
+        public static final int title_activity_multi_choix_jeu=0x7f070009;
+        public static final int title_activity_quizz=0x7f070004;
+        public static final int title_activity_selectionner_level=0x7f070003;
+        public static final int title_activity_super_choix=0x7f070006;
+        public static final int title_activity_super_choix_jeu=0x7f070007;
+        public static final int title_activity_synonyme=0x7f07000d;
+        public static final int title_activity_testctivite=0x7f070005;
     }
     public static final class style {
         /** 
@@ -245,10 +252,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f070001;
+        public static final int AppTheme=0x7f080001;
     }
 }

@@ -5,6 +5,7 @@ import Core.THEMES;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class Home extends Activity implements OnClickListener{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		if ( ! splashScreenTerminee)
 			afficherSplashScreen();
@@ -169,6 +171,7 @@ public class Home extends Activity implements OnClickListener{
 			//on change d'activité => SelectionnerLevel
 			Intent intent = new Intent(Home.this, SelectionnerLevel.class);
 			startActivity(intent);
+			overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
 			
 	}
 

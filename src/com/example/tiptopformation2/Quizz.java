@@ -32,6 +32,9 @@ public class Quizz extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quizz); //pour le retour en arrière
+		overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+		
+		
 		Log.w("Quizz (activité)", "onCreate - avant lancerLeQuizz()");
 		jeu = Jeu.getInstance();
 		quizz = Jeu.getInstance().getQuizz();

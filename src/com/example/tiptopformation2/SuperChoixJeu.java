@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.DragEvent;
@@ -63,6 +64,8 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_super_choix_jeu);
+		overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 		
 		initialiserModel();
 		

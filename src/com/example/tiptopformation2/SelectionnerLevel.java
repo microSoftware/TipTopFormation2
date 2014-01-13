@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -37,7 +38,8 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.selectionner_level);
-
+		overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); 
 		
 		quizz = Jeu.getInstance().getQuizz();
 		THEMES theme = quizz.getTheme();

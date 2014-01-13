@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -65,6 +66,9 @@ public class MultiChoixJeu extends Activity  {
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.activity_multi_choix_jeu);
+			overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
+			setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+			
 			initialiserModel();
 			initialiserVariables();
 			gererComposants();
