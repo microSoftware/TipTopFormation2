@@ -1,3 +1,9 @@
-01;Lequel de ces produit utiliseriez-vous pour laver le sol ?;La bonne réponse était ...;1;Agglutinant;menage_agglutinant;Dégraissant;menage_degraissant
-02;Quel matériel utiliseriez vous pour dépoussiérer le sol ?;La bonne réponse était ...;1;Aspirateur;menage_aspirateur;Raclette;menage_raclette
-03;A quel chaleur utiliseriez vous le fer à repasser pour une matière tel que le nylon ou la soie ?;La bonne réponse était ...;1;Fer doux;menage_ferdoux;Fer chaud;menage_ferchaud
+01;Lequel de ces produit utiliseriez-vous pour laver le sol ?;La bonne réponse était Agglutinant;1;Agglutinant;menage_agglutinant;Dégraissant;menage_degraissant
+02;Quel matériel utiliseriez vous pour dépoussiérer le sol ?;La bonne réponse était Aspirateur;1;Aspirateur;menage_aspirateur;Raclette;menage_raclette
+03;A quel chaleur utiliseriez vous le fer à repasser pour une matière tel que le nylon ou la soie ?;La bonne réponse était Fer doux;1;Fer doux;menage_ferdoux;Fer chaud;menage_ferchaud
+04;Pour laver les vitre, il faut :;Il faut du produit à vitre;1;Produit à vitre;menage_agglutinant;Produit à vaisselle;menage_degraissant
+05;Si il y a une tâche sur un vêtement, on utilise :;On utilise un détachant adapté au tissu;1;Un détachant adapté;menage_aspirateur;Un produit à vaisselle;menage_raclette
+06;Doit on boire les produits chimiques;La bonne réponse était NON;1;OUI;menage_ferdoux;NON;menage_ferchaud
+07;Quel outil pour nettoyer le plafond;Pour nettoyer le plafond, il faut utiliser un balai conçu spécialement pour cela;1;Un balai spécial;menage_agglutinant;Un balai brosse;menage_degraissant
+08;Il y a une areignée sur le mur, vous :;Il faut l'enlever délicatement pour ne pas tacher le mur;1;L'enlever délicatement;menage_aspirateur;Taper dessus;menage_raclette
+09;Pour nettoyer des écrans il faut utiliser :;Il faut utiliser un chiffon spécial;1;Un chiffon spécial;menage_ferdoux;Un torchon;menage_ferchaud

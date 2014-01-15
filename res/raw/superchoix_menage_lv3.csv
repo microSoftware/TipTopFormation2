@@ -1,3 +1,8 @@
-55;menage_nocif;Glisser le mot correspondant au pictogramme;C'est Nocif car ...;Nocif
-66;menage_polluant;Glisser le mot correspondant au pictogramme;C'est Polluant car ...;Polluant
-12;menage_comburant;Glisser le mot correspondant au pictogramme;C'est Comburant car ...;Comburant
+55;menage_nocif;Glisser le mot correspondant au pictogramme;La bonne réponse était Nocif;Nocif
+66;menage_polluant;Glisser le mot correspondant au pictogramme;La bonne réponse était Polluant;Polluant
+12;menage_comburant;Glisser le mot correspondant au pictogramme;La bonne réponse était Comburant;Comburant
+13;menage_aspirateur;Glisser le mot correspondant au pictogramme;La bonne réponse était Aspirateur;Aspirateur;Machine à laver
+14;menage_balai;Glisser le mot correspondant au pictogramme;La bonne réponse était Balai;Balai;Aspirateur
+15;menage_javel;Est-ce que ça se boit ?;Il est dangereux de boire de l'eau de javel;Oui;Non
+16;menage_raclette;Glisser le mot correspondant au pictogramme;La bonne réponse était Raclette;Raclette;Tournevis
+17;menage_sacaspi;Glisser le mot correspondant au pictogramme;L'image correspond à un sac d'aspirateur;Sac d'aspirateur;Plastique

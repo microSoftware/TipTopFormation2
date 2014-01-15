@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,7 +33,7 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 	private Button moyen;
 	private Button difficile;
 	private Button jouer;
-	private static final String phrase ="Sélectionner le niveau pour le thème ";
+	
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +43,11 @@ public class SelectionnerLevel extends Activity implements OnClickListener {
 		setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT); 
 		
 		quizz = Jeu.getInstance().getQuizz();
+		
 		THEMES theme = quizz.getTheme();
+		
 		levelUserTheme = Jeu.getInstance().getUser().getLevelByTheme(theme);
 		
-		String themeTitre = theme.toString();
-		//TextView titre = (TextView) findViewById(R.id.textView1);
-		//titre.setText(phrase+themeTitre);
 		
 		
 		/*

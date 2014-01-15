@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondbleu"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp" >
+
+    <TextView
+        android:id="@+id/titre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        
+        android:text="Bienvenue"
+        android:textColor="@android:color/white"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/bouton_commencer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="282dp"
+        android:background="@android:color/holo_green_light"
+        android:gravity="fill_horizontal"
+        android:padding="40dp"
+        android:text="Commencer"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/felicitation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bouton_commencer"
+        android:layout_alignLeft="@+id/bravo"
+        android:layout_marginBottom="85dp"
+        android:text="Cliquer sur &apos;COMMENCER&apos;"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/bravo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/felicitation"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="87dp"
+        android:text="Bienvenue sur l&apos;application TipTop Formation.\nNous allons tester votre niveau."
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>

@@ -25,27 +25,27 @@
         </activity>
         <activity
             android:name="com.example.tiptopformation2.SelectionnerLevel"
-            android:label="@string/title_activity_selectionner_level" >
+            android:label="Sélectionner un niveau" >
         </activity>
         <activity
             android:name="com.example.tiptopformation2.Quizz"
-            android:label="@string/title_activity_quizz" >
+            android:label="Quizz" >
         </activity>
         <activity
             android:name="com.example.tiptopformation2.SuperChoixJeu"
-            android:label="@string/title_activity_super_choix_jeu" >
+            android:label="Quizz" >
         </activity>
         <activity
             android:name="com.example.tiptopformation2.CultureGeneraleJeu"
-            android:label="@string/title_activity_culture_generale_jeu" >
+            android:label="Quizz" >
         </activity>
         <activity
             android:name="com.example.tiptopformation2.MultiChoixJeu"
-            android:label="@string/title_activity_multi_choix_jeu" >
+            android:label="Quizz" >
         </activity>
         <activity
             android:name="com.example.tiptopformation2.SynonymeJeu"
-            android:label="@string/title_activity_synonyme" >
+            android:label="Quizz" >
         </activity>
     </application>
 

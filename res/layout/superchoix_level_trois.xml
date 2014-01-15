@@ -9,69 +9,35 @@
     tools:context=".MainActivity"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/numeroQuestion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1" />
-    
   <TextView
-      android:id="@+id/laquestion"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center_horizontal"
-      android:text="Que signifie ce pictogramme ?"
-      android:textSize="25sp"
-      android:textStyle="bold" />
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Que signifie ce pictogramme ?"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
     <ImageView
-        android:id="@+id/image"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_launcher" />
 
-    <Button
-        android:id="@+id/zoneDepot"
-        android:layout_width="200dp"
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:clickable="false"/>
+        android:layout_marginTop="30dp"
+        android:hint="Entrez ici votre réponse"/>
 
-    <Button
-        android:id="@+id/element1"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="Inflammable" />
 
-    <Button
-        android:id="@+id/element2"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="Corrosif" />
-
-    <Button
-        android:id="@+id/element3"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/holo_blue_light"
-        android:text="Toxique"
-        android:visibility="invisible" />
     
     <View
     android:layout_width="fill_parent"
     android:layout_height="2dp"
-    android:layout_marginTop="5dp"
+    android:layout_marginTop="30dp"
     android:background="@android:color/darker_gray"/>
     
     <TextView 
@@ -104,16 +70,14 @@
 
             <Button
                 android:id="@+id/valider"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="450dp"
-                 android:layout_marginBottom="25dp"
-                 android:padding="10dp"
+                android:layout_marginLeft="250dp"
                 android:background="@android:color/holo_green_light"
-                android:textColor="@android:color/white"
                 android:text="Valider"
-                 />
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
         </LinearLayout>
 
 </LinearLayout>

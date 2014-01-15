@@ -15,6 +15,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.DragEvent;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
@@ -216,12 +217,6 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 
 
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.main, menu);
-		return true;
-	}
 
 	public boolean onTouch(View v, MotionEvent event) {
 		data = ClipData.newPlainText("", "");
@@ -257,10 +252,68 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 	}
 	
 	public void onBackPressed(){
+		confirmationAccueil();
+	}
+	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.quizz, menu);
+        return true;
+    }
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent = new Intent(SuperChoixJeu.this, Home.class);
+		switch (item.getItemId()) {
+			case R.id.accueil:
+				confirmationAccueil();
+				return true;
+				
+			case R.id.recommencer:
+				confirmationRecommencer();
+				return true;
+				
+			default:
+				//return super.onOptionsItemSelected(item);
+				return true;
+		}
+	}
+	
+	private void confirmationRecommencer(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		builder.setTitle("Recommencer");
+		builder.setMessage("Voulez vous arrêter votre partie");
+
+		builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int which) {
+				// Do nothing but close the dialog
+				Jeu.getInstance().recommencer();
+				Intent intent = new Intent(SuperChoixJeu.this, Quizz.class);
+				startActivity(intent);
+			}
+
+		});
+
+		builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//donc on cache la boite de dialogue
+				dialog.dismiss();
+			}
+		});
+
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+	
+	private void confirmationAccueil(){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
 		builder.setTitle("Retour à l'accueil");
-		builder.setMessage("Vous vous arrêter votre partie");
+		builder.setMessage("Voulez vous arrêter votre partie");
 
 		builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
 
@@ -289,5 +342,6 @@ public class SuperChoixJeu extends Activity implements OnTouchListener {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
+
 
 }

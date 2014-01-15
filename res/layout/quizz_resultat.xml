@@ -2,15 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+  	android:paddingLeft="20dp"
+  	android:paddingRight="20dp"
+    android:background="@drawable/fondbleu"
     android:orientation="vertical" >
 
     <TextView
         android:id="@+id/titre"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:padding="40dp"
         android:text="Résultat"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="40dp" />
 
     <TextView
         android:id="@+id/bravo"
@@ -23,6 +29,7 @@
         android:id="@+id/felicitation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
         android:layout_gravity="center_horizontal|fill_horizontal"
         android:text="Félicitation, Vous venez de passer au niveau suppérieur (lv2) !"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -69,6 +76,7 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:layout_marginBottom="100dp"
          >
         
         <TextView
@@ -95,12 +103,19 @@
         android:id="@+id/revenirHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white"
         android:text="Accueil" />
 
      <Button
          android:id="@+id/recommencer"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
+         android:layout_marginLeft="20dp"
+         android:padding="10dp"
+         android:background="@android:color/holo_green_light"
+         android:textColor="@android:color/white"
          android:text="Recommencer" />
         
     </LinearLayout>

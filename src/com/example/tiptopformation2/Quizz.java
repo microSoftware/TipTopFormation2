@@ -6,10 +6,13 @@ import Core.QuizzModel;
 import Core.THEMES;
 import Exercices.QuestionReponse;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -53,12 +56,7 @@ public class Quizz extends Activity implements OnClickListener {
 		startActivity(intent);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.quizz, menu);
-		return true;
-	}
+	
 
 	private void lancerLeQuizz() {
 		Log.w("Quizz (activité)", "lancerLeQuizz() - Etape 0");
@@ -90,28 +88,54 @@ public class Quizz extends Activity implements OnClickListener {
 			
 			
 		
-			
-			//nombre de point manquant pour passer au level suppérieur
-			int nbPointManquantPourPasserNiveauSup = jeu.getUser().differencePointLevelSuivant(quizz.getTheme());
-			
-			String texteFelicitation = "";
-			if (nbPointManquantPourPasserNiveauSup <= 0){
-				int nouveauNiveau = jeu.getUser().getLevelByTheme(quizz.getTheme())+1;
-				//L'utilisateur passe au level suppérieur
-				 texteFelicitation = "Félicitation, vous venez de passer au niveau suppérieur !\n"
-				 		+ "Vous êtes maintenant niveau "+ nouveauNiveau;
+			//Premier démarrage
+			if (jeu.getUser().isPremierDemarrage()){
+				int point = jeu.getUser().pointTotalGagnee();
+				if (point > (jeu.getQuizz().getNbquestionparquizz() / 2)){
+					texteBravo = "\n\nBravo, vous avez gagné "+point+ " point(s)";;
+					bravo.setText(texteBravo);
+					felicitation.setText("Vous passez directement au niveau 2");
+				}
+				else {
+					texteBravo = "\n\nBravo, vous avez gagné "+point+ " point(s)";;
+					bravo.setText(texteBravo);
+					felicitation.setText("Vous commencez au niveau 1");
+				}
+				jeu.getUser().setPremierDemarrage(false);
 			}
-			else {
-				int niveau = jeu.getUser().getLevelByTheme(quizz.getTheme());
-				 texteFelicitation = "Vous êtes niveau "+niveau+"\nIl vous manque encore "+nbPointManquantPourPasserNiveauSup+
-						" points pour passer au niveau suppérieur" ;
-			}
+			else {//Pas le premier démarrage
+				
+				if (quizz.getTheme() == THEMES.CULTURE_GENERALE){
+					texteBravo = "\n\nBravo, vous avez gagné "+jeu.getUser().pointTotalGagnee()+ " point(s)";;
+					bravo.setText(texteBravo);
+					felicitation.setText("Votre niveau en "+jeu.getUser().themeMoinsGagnerPoints().toString()+" est faible.\nNous "
+							+ "vous encourageons à vous entrainer sur ce thème");
+				}
+				else {
+					//nombre de point manquant pour passer au level suppérieur
+					int nbPointManquantPourPasserNiveauSup = jeu.getUser().differencePointLevelSuivant(quizz.getTheme());
+					
+					String texteFelicitation = "";
+					if (nbPointManquantPourPasserNiveauSup <= 0){
+						int nouveauNiveau = jeu.getUser().getLevelByTheme(quizz.getTheme())+1;
+						//L'utilisateur passe au level suppérieur
+						 texteFelicitation = "Félicitation, vous venez de passer au niveau suppérieur !\n"
+						 		+ "Vous êtes maintenant niveau "+ nouveauNiveau;
+					}
+					else {
+						int niveau = jeu.getUser().getLevelByTheme(quizz.getTheme());
+						 texteFelicitation = "Vous êtes niveau "+niveau+"\nIl vous manque encore "+nbPointManquantPourPasserNiveauSup+
+								" points pour passer au niveau suppérieur" ;
+					}
+					
+					bravo.setText(texteBravo);
+					felicitation.setText(texteFelicitation);
+					}
+					
+				
+					
+				}
 			
-			bravo.setText(texteBravo);
-			felicitation.setText(texteFelicitation);
-			
-			//On sauvegarde les points
-			jeu.getUser().sauvegarderPointPartie();
 			
 			/*
 			 * Si le thème n'est pas Culture générale (= tous les 
@@ -130,19 +154,22 @@ public class Quizz extends Activity implements OnClickListener {
 				francais.setOnClickListener(this);
 				maths.setOnClickListener(this);
 			}
+			
+			
+			//On sauvegarde les points
+			jeu.getUser().sauvegarderPointPartie();
 		}
 
+		
+		//On a pas encore fini le quizz
 		else {
 			for (QuestionReponse question : quizz.getTableauDeToutesLesQuestions() ){
 				
 				if ( (question.getNumeroDeLaQuestion() == numeroDeLaQuestionCourante )   ){
 					
-					if ( question.getTypeExo() == EXERCICES.TEST){
-						Intent intent = new Intent(Quizz.this, CultureGeneraleJeu.class);
-						startActivity(intent);
-					}
 					
-					else if ( question.getTypeExo() == EXERCICES.MULTICHOIX ){
+					
+					if ( question.getTypeExo() == EXERCICES.MULTICHOIX ){
 						Intent intent = new Intent(Quizz.this, MultiChoixJeu.class);
 						startActivity(intent);
 					}
@@ -229,6 +256,96 @@ public class Quizz extends Activity implements OnClickListener {
 		
 	}
 
+	public void onBackPressed(){
+		confirmationAccueil();
+	}
 	
+	@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.quizz, menu);
+        return true;
+    }
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent = new Intent(Quizz.this, Home.class);
+		switch (item.getItemId()) {
+			case R.id.accueil:
+				confirmationAccueil();
+				return true;
+				
+			case R.id.recommencer:
+				confirmationRecommencer();
+				return true;
+				
+			default:
+				//return super.onOptionsItemSelected(item);
+				return true;
+		}
+	}
+	
+	private void confirmationRecommencer(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		builder.setTitle("Recommencer");
+		builder.setMessage("Voulez vous arrêter votre partie");
+
+		builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int which) {
+				// Do nothing but close the dialog
+				Jeu.getInstance().recommencer();
+				Intent intent = new Intent(Quizz.this, Quizz.class);
+				startActivity(intent);
+			}
+
+		});
+
+		builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//donc on cache la boite de dialogue
+				dialog.dismiss();
+			}
+		});
+
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+	
+	private void confirmationAccueil(){
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+		builder.setTitle("Retour à l'accueil");
+		builder.setMessage("Voulez vous arrêter votre partie");
+
+		builder.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int which) {
+				// Do nothing but close the dialog
+				QuizzModel quizz = Jeu.getInstance().getQuizz();
+				quizz.viderIdHistorique();
+				quizz = null;
+				quizz = new QuizzModel();
+				dialog.dismiss();
+				Intent intent = new Intent(Quizz.this, Home.class);
+				startActivity(intent);
+			}
+
+		});
+
+		builder.setNegativeButton("Non", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				//donc on cache la boite de dialogue
+				dialog.dismiss();
+			}
+		});
+
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
 
 }

@@ -194,15 +194,15 @@ public abstract class QuestionReponse {
 		        	Log.w("QuestionReponse", "lireFichierCSV 3");
 	        	}
 	        	
-//	        	if (typeExo == EXERCICES.SYNONYME){
-//		        	if (level == 1)
-//		        		in_s = res.openRawResource(R.raw.synonyme_maths_lv1);
-//		        	if (level == 2)
-//		        		in_s = res.openRawResource(R.raw.synonyme_maths_lv2);
-//		        	if (level == 3)
-//		        		in_s = res.openRawResource(R.raw.synonyme_maths_lv3);
-//		        	
-//	        	}
+	        	if (typeExo == EXERCICES.SYNONYME){
+		        	if (level == 1)
+		        		in_s = res.openRawResource(R.raw.synonyme_maths_lv1);
+		        	if (level == 2)
+		        		in_s = res.openRawResource(R.raw.synonyme_maths_lv2);
+		        	if (level == 3)
+		        		in_s = res.openRawResource(R.raw.synonyme_maths_lv3);
+		        	
+	        	}
 	        	
 	        
 	        	

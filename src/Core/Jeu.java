@@ -59,7 +59,7 @@ public class Jeu  {
 		//sauvegarde du thème et du level
 		THEMES theme = quizz.getTheme();
 		int level = quizz.getLevelChoisi();
-		
+		quizz.viderIdHistorique();
 		quizz = null;
 		quizz = new QuizzModel();
 		quizz.recommencer(theme, level);

@@ -22,6 +22,7 @@ public class User extends Activity implements Serializable {
 	private final static int LEVEL2 = 20;
 	private final static int LEVEL3 = 34;
 	
+	private boolean premierDemarrage;
 	
 	private HashMap<THEMES, Integer> level;//clé-valeur
 	private HashMap<THEMES, Integer> pointPartieEnCours;//clé-valeur
@@ -31,11 +32,11 @@ public class User extends Activity implements Serializable {
 		
 		//Pour l'instant on remplit les valeurs en brutes
 		this.level = new HashMap();
-		
+		premierDemarrage = true;
 		
 		//on met des niveaux au pif pour chaque thèmes mais normalement
 		//on devrait rechercher dans la bd
-		level.put(THEMES.MENAGE ,8); //Pour ménage, l'user à 10 points => level 2
+		level.put(THEMES.MENAGE ,0); //Pour ménage, l'user à 10 points => level 2
 		level.put(THEMES.MATHS ,0); //level 3
 		level.put(THEMES.FRANCAIS ,0); //level 1
 		
@@ -47,6 +48,33 @@ public class User extends Activity implements Serializable {
 		Log.w("","---------------------------------------------------");
 	} 
 	
+	public boolean isPremierDemarrage() {
+		return premierDemarrage;
+	}
+
+	public void setPremierDemarrage(boolean premierDemarrage) {
+		this.premierDemarrage = premierDemarrage;
+	}
+	
+	public void gagnerPointDemarrage (){
+		int menage = (Integer) pointPartieEnCours.get(THEMES.MENAGE);
+		int maths = (Integer) pointPartieEnCours.get(THEMES.MATHS);
+		int francais = (Integer) pointPartieEnCours.get(THEMES.FRANCAIS);
+		
+		menage +=  7;
+		maths +=  7;
+		francais += 7;
+		
+		level.remove(THEMES.MENAGE); 
+		level.remove(THEMES.MATHS); 
+		level.remove(THEMES.FRANCAIS); 
+		
+		
+		level.put(THEMES.MENAGE ,menage); 
+		level.put(THEMES.MATHS ,maths); 
+		level.put(THEMES.FRANCAIS ,francais);
+	}
+
 	private HashMap<THEMES, Integer> getLevel() {
 		return level;
 	}
@@ -99,6 +127,7 @@ public class User extends Activity implements Serializable {
 	 * en cours dans la hashmap level
 	 */
 	public void sauvegarderPointPartie (){
+		
 		int menage = (Integer) pointPartieEnCours.get(THEMES.MENAGE);
 		int maths = (Integer) pointPartieEnCours.get(THEMES.MATHS);
 		int francais = (Integer) pointPartieEnCours.get(THEMES.FRANCAIS);
@@ -126,6 +155,7 @@ public class User extends Activity implements Serializable {
 	 * Cette fonction est faite pour cela
 	 */
 	public int differencePointLevelSuivant (THEMES theme){
+		
 		int point =  (Integer) level.get(theme) + nbPointsGagnes(theme);
 		int level = getLevelByTheme (theme);
 		int pointManquant = 0;
@@ -139,6 +169,32 @@ public class User extends Activity implements Serializable {
 		return pointManquant;
 	}
 	
+	/*
+	 * Quand on fait Culture Générale donc tous les
+	 * thèmes.
+	 * Cette fonction renvoie le nombre de point gagné dans tous les thèmes
+	 */
+	public int pointTotalGagnee(){
+		int menage = (Integer) pointPartieEnCours.get(THEMES.MENAGE);
+		int maths = (Integer) pointPartieEnCours.get(THEMES.MATHS);
+		int francais = (Integer) pointPartieEnCours.get(THEMES.FRANCAIS);
+		return (menage + maths + francais);
+	}
+	
+	public THEMES themeMoinsGagnerPoints(){
+		int i=0;
+		THEMES theme = THEMES.MENAGE; 
+		if ((Integer) pointPartieEnCours.get(THEMES.MENAGE) <= i)
+			theme = THEMES.MENAGE;
+		
+		if ((Integer) pointPartieEnCours.get(THEMES.FRANCAIS) <= i)
+			theme = THEMES.FRANCAIS;
+		
+		if ((Integer) pointPartieEnCours.get(THEMES.MATHS) <= i)
+			theme = THEMES.MATHS;
+		
+		return theme;
+	}
 	
 	/*
 	 * Retourne le niveau du joueur par rapport à un thème
@@ -149,7 +205,12 @@ public class User extends Activity implements Serializable {
 		 * La clé est theme
 		 */
 		
-		int nbPointDuTheme = (Integer) level.get(theme);
+		int nbPointDuTheme = 0;
+		
+		if (theme == THEMES.CULTURE_GENERALE)
+			nbPointDuTheme = moyenneTousLesThemes();
+		else 
+			nbPointDuTheme = (Integer) level.get(theme);
 		
 		if (nbPointDuTheme < LEVEL1)
 			return 1;
@@ -161,6 +222,14 @@ public class User extends Activity implements Serializable {
 		return 0;
 		
 	}
+	
+	private int moyenneTousLesThemes(){
+		int nbPointDuTheme = (Integer) level.get(THEMES.MENAGE);
+		nbPointDuTheme += (Integer) level.get(THEMES.MATHS);
+		nbPointDuTheme += (Integer) level.get(THEMES.FRANCAIS);
+		return nbPointDuTheme;
+	}
+	
 	
 	/*
 	 * Retourne le niveau du joueur par rapport à un thème
